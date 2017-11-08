@@ -10,10 +10,19 @@ File me [tickets](https://github.com/DennyZhang/aws-jenkins-study/issues) or sta
 Case study using AWS techstack to setup Jenkins env
 
 # Requirements
+Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Chef/Puppet)
 
-# How To Test
+# Task Breakdown
+- Use cloud formation start EC2 VM
+- Use Chef to deploy Jenkins instance
+- Jenkins install sample jobs
+
+- [Optional] Setup ELB/ASG
+- [Optional] Security Hardening
+- [Optional] Monitoring/Alerting
 
 # Highlights
+- Principle: 1. Fully automated. 2. Improve availability
 - TODO: How to verify deployment quickly: use docker
 - TODO: How to verify the Jenkins deployment: use serverspec
 - TODO: How to test cluster env: use kitchen converge
@@ -21,7 +30,7 @@ Case study using AWS techstack to setup Jenkins env
 
 # Follow Up
 - TODO: HA jenkins env
-- TODO: Jenkins two-way sync
+- TODO: What about backup, and Jenkins two-way sync
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
