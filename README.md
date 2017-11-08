@@ -20,7 +20,8 @@ Case study using AWS techstack to setup Jenkins env
 - TODO: How to test customization: multiple kitchen
 
 # Follow Up
-- TODO
+- TODO: HA jenkins env
+- TODO: Jenkins two-way sync
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
