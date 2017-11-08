@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Update Jenkins itself.&#xd;
+  </description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>50</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>devops_branch_name</name>
+          <description></description>
+          <defaultValue><%= node['common_basic']['devops_branch_name'] %></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>recipe_name</name>
+          <description>chef recipe to apply</description>
+          <defaultValue>jenkins-demo</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>package_url</name>
+          <description>URL to download artifact files. Use official repo, if you can't or won't do local code build: http://repo.carol.ai:18000. If you do local build, use: http://172.17.0.1:18000.</description>
+          <defaultValue><%= node['common_basic']['package_url'] %></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>jenkins_jobs</name>
+          <description>What Jenkins jobs to enable. Include BuildMDMRepo, if you need to do code build</description>
+          <defaultValue><%= node['jenkins_mdm']['jenkins_jobs'] %></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>github_key</name>
+          <description>github key to checkout mdm code repo. Ignore this, if you don't need to do code build locally. If you leave this empty, existing key won't be changed.</description>
+          <defaultValue></defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.PasswordParameterDefinition>
+          <name>github_key_passphrase</name>
+          <description>You need to specify this, only if you want to do code build and your github_key is passphrase protected.</description>
+          <defaultValue></defaultValue>
+        </hudson.model.PasswordParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>chef_json</name>
+          <description>json attributes for chef client</description>
+          <defaultValue>{
+ &quot;run_list&quot;: [&quot;recipe[jenkins-demo::conf_jenkins]&quot;],
+ &quot;common_basic&quot;:{&quot;devops_branch_name&quot;:&quot;$devops_branch_name&quot;,
+       &quot;kill_existing_gulp_process&quot;:&quot;false&quot;,
+       &quot;frontend_skip_install&quot;:&quot;false&quot;,
+       &quot;frontend_skip_update_cfg&quot;:&quot;false&quot;,
+       &quot;frontend_skip_update_code&quot;:&quot;false&quot;,
+       &quot;app_http_port&quot;:&quot;80&quot;,
+       &quot;app_https_port&quot;:&quot;443&quot;,
+       &quot;app_backup_port&quot;:&quot;8084&quot;,
+       &quot;package_url&quot;:&quot;$package_url&quot;},
+ &quot;jenkins_mdm&quot;:{&quot;docker_daemon_ip&quot;:&quot;<%= node['jenkins_mdm']['docker_daemon_ip'] %>&quot;,
+        &quot;jenkins_jobs&quot;:&quot;$jenkins_jobs&quot;}
+}</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>kill_running_chef_update</name>
+          <description>Chef update may hang or stuck on internet requests.
+
+If this option enabled, we will kill existing chef update, before we update sandbox again.</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -ex
+####################################################################################
+# git repo for chef cookbooks
+ssh_server_ip=&quot;127.0.0.1&quot;
+ssh_port=&quot;22&quot;
+git_repo_url=&quot;git@github.com:TOTVS/mdmdevops.git&quot;
+git_repo=&quot;mdmdevops&quot;
+working_dir=&quot;/root/&quot;
+####################################################################################
+# get docker daemon ip
+function guess_docker_daemon_ip() {
+    local docker_daemon_ip=&quot;&quot;
+    lists=&quot;172.18.42.1 172.17.42.1 172.18.0.1 172.17.0.1 192.168.50.10&quot;
+    lists=($lists)
+    for ip in ${lists[*]}; do
+        if ping -c3 $ip 2&gt;/dev/null 1&gt;/dev/null; then
+            docker_daemon_ip=$ip
+            break
+        fi
+    done
+    echo $docker_daemon_ip
+}
+
+docker_daemon_ip=$(guess_docker_daemon_ip)
+if [ -z $docker_daemon_ip ]; then
+    echo &quot;ERROR: fail to guess docker daemon ip&quot;
+    exit 1
+else
+    echo &quot;docker_daemon_ip: $docker_daemon_ip&quot;
+fi
+
+chef_json=&quot;$chef_json&quot;
+# reconfigure docker_daemon_ip in chef_json
+chef_json=$(echo &quot;$chef_json&quot; | sed &quot;s/\&quot;docker_daemon_ip\&quot;.*/\&quot;docker_daemon_ip\&quot;:\&quot;$docker_daemon_ip\&quot;,/g&quot;)
+
+# reconfigure package_url in chef_json
+
+if [[ &quot;${package_url}&quot; != *repo.carol.ai* ]]; then
+   package_url=&quot;http://$docker_daemon_ip:18000&quot;
+fi
+
+# TODO: current implementation is hacky, need to improve
+chef_json=$(echo &quot;$chef_json&quot; | sed &quot;s@\&quot;package_url\&quot;.*@\&quot;package_url\&quot;:\&quot;$package_url\&quot;},@g&quot;)
+
+chef_json=&quot;${chef_json//[[:space:]]/}&quot;
+
+echo &quot;chef_json: $chef_json&quot;
+####################################################################################
+
+# echo &quot;Inject ssh key to checkout code from git repo&quot;
+if [ -n &quot;$github_key&quot; ]; then
+  sudo rm -rf /var/lib/jenkins/.ssh/github_id_rsa
+  touch /var/lib/jenkins/.ssh/github_id_rsa
+  cat &gt; /var/lib/jenkins/.ssh/github_id_rsa &lt;&lt; EOF
+$github_key
+EOF
+  # Remove passphrase, if key file is encrypted
+  if grep &quot;ENCRYPTED&quot; /var/lib/jenkins/.ssh/github_id_rsa 2&gt;/dev/null 1&gt;/dev/null; then
+      if [ -z &quot;$github_key_passphrase&quot; ]; then
+          echo &quot;ERROR: git key is password protected. Please configure github_key_passphrase parameter correctly&quot;
+          exit 1
+      fi
+      echo &quot;Remove passphrase, since the key is encrypted&quot;
+      chmod 700 /var/lib/jenkins/.ssh/github_id_rsa
+      ssh-keygen -p -P &quot;$github_key_passphrase&quot; -N &quot;&quot; -f /var/lib/jenkins/.ssh/github_id_rsa
+  fi
+  chmod 400 /var/lib/jenkins/.ssh/github_id_rsa
+fi
+
+# TODO: remove when we all switch to latest docker image
+echo &quot;Make sure /etc/default/jenkins is correct&quot;
+container_id=`hostname`
+sudo sed -i &quot;s/generated by Chef for.*/generated by Chef for $container_id./g&quot; /etc/default/jenkins
+
+echo &quot;Deploy $devops_branch_name to ${ssh_server_ip}:${ssh_port}&quot;
+
+ssh_key_file=&quot;/var/lib/jenkins/ssh_id_rsa&quot;
+
+if $kill_running_chef_update; then
+   echo &quot;ps -ef | grep chef-solo || killall -9 chef-solo&quot;
+   ssh -i $ssh_key_file -p $ssh_port -o StrictHostKeyChecking=no root@$ssh_server_ip &quot;killall -9 chef-solo || true&quot;
+fi
+export code_dir=&quot;/root/chef&quot;
+export CODE_SH=&quot;/root/git_update.sh&quot;
+
+ssh -i $ssh_key_file -p $ssh_port -o StrictHostKeyChecking=no root@$ssh_server_ip $CODE_SH $code_dir $git_repo_url $devops_branch_name
+
+echo &quot;Prepare chef configuration&quot;
+echo &quot;cookbook_path [\&quot;$code_dir/$devops_branch_name/$git_repo/community_cookbooks\&quot;, \&quot;$code_dir/$devops_branch_name/$git_repo/cookbooks\&quot;]&quot; &gt; /tmp/client.rb
+echo &quot;$chef_json&quot; &gt; /tmp/client.json
+
+scp -i $ssh_key_file -P $ssh_port -o StrictHostKeyChecking=no /tmp/client.rb root@$ssh_server_ip:/root/client.rb
+scp -i $ssh_key_file -P $ssh_port -o StrictHostKeyChecking=no /tmp/client.json root@$ssh_server_ip:/root/client.json
+  
+echo &quot;Apply chef update&quot;
+ssh -i $ssh_key_file -p $ssh_port -o StrictHostKeyChecking=no root@$ssh_server_ip chef-solo --config /root/client.rb -j /root/client.json</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>50</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>ssh_server_ip</name>
+          <description></description>
+          <defaultValue><%= node['jenkins_mdm']['docker_daemon_ip'] %></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ssh_port</name>
+          <description></description>
+          <defaultValue>6022</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>log_file</name>
+          <description>Log files to check</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>/opt/mdm/logs/mdm-initscript.log</string>
+              <string>/opt/mdm/logs/mdm-app.log</string>
+              <string>/opt/mdm/logs/mdm-app-audit.log</string>
+              <string>/opt/mdm/logs/mdm-app-error.log</string>
+              <string>/usr/local/var/log/elasticsearch/mdm.log</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>tail_line_count</name>
+          <description>How many lines to tail</description>
+          <defaultValue>200</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -e
+
+ssh_key_file=&quot;/var/lib/jenkins/ssh_id_rsa&quot;
+
+echo &quot;============ tail -n $tail_line_count $log_file ============&quot;
+ssh -i $ssh_key_file -p $ssh_port -o StrictHostKeyChecking=no root@$ssh_server_ip &quot;tail -n $tail_line_count $log_file&quot;</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

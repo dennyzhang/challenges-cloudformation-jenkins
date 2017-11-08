@@ -1,0 +1,11 @@
+<VirtualHost *:<%= node['apache']['default_site_port'].to_i %>>
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot /var/www/repo
+    <Directory '/var/www/repo'>
+        Options Includes FollowSymLinks MultiViews
+        AllowOverride None
+        Require all granted
+    </Directory>
+    ErrorLog /var/log/apache2/repo_server-error.log
+    CustomLog /var/log/apache2/repo_server.log common
+</VirtualHost>

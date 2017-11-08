@@ -1,0 +1,15 @@
+AllCops:
+  Exclude:
+    - Berksfile
+
+Style/Next:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 90
+
+MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+   Enabled: false

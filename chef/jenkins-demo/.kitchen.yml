@@ -1,0 +1,51 @@
+---
+driver:
+  name: docker
+driver_config:
+  #http_proxy: <%= ENV.fetch('HTTP_PROXY', "http://172.17.42.1:3128") %>
+  #https_proxy: <%= ENV.fetch('HTTPS_PROXY', "http://172.17.42.1:3128") %>
+  instance_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
+  use_sudo: false
+  privileged: true
+  remove_images: false
+  image: <%= ENV.fetch('IMAGE_NAME', "totvslabs/mdm:v1.1") %>
+  tls_verify: true
+  tls_cacert: <%= ENV.fetch('TLS_FOLDER', "../../env_setup/tls") %>/ca.pem
+  tls_cert: <%= ENV.fetch('TLS_FOLDER', "../../env_setup/tls") %>/cert.pem
+  tls_key: <%= ENV.fetch('TLS_FOLDER', "../../env_setup/tls") %>/key.pem
+  socket: tcp://172.17.0.1:4243
+  provision_command: "curl -L https://raw.githubusercontent.com/TOTVS/mdmpublic/tag_v5/chef/chef_kitchen_provision.sh | bash -e"
+  forward:
+  - <%= ENV.fetch('DOCKER_PORT_FORWARD_PREFIX', "21") %>180:18080
+  volume:
+  - /home/denny/cache:/var/chef/cache/
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.17.44
+  data_path: test/shared
+  client_rb:
+      file_cache_path: "/var/chef/cache"
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[devops_library::install_serverspec]
+      - recipe[jenkins-demo::default]
+    attributes:
+        {common_basic:
+                {app_branch_name: '<%= ENV.fetch('APP_BRANCH_NAME', "") %>',
+                framework_branch_name: '<%= ENV.fetch('FRAMEWORK_BRANCH_NAME', "") %>',
+                devops_branch_name: '<%= ENV.fetch('branch_name', "") %>'
+                },
+         os_basic:
+                {enable_firewall: 'true'},
+         jenkins_mdm:
+                {buildrepo_dir: '/var/lib/jenkins/code/',
+                install_devkit: '1',
+                avoid_external_network: '0'
+                }
+        }

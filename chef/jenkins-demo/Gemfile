@@ -1,0 +1,14 @@
+source 'https://rubygems.org'
+
+gem 'kitchen-docker', '= 2.5.0'
+gem 'test-kitchen', '= 1.4.1'
+
+gem 'berkshelf', '=5.2.0'
+gem 'docker', '=0.3.1'
+
+gem 'busser', '=0.7.1'
+gem 'serverspec', '>= 1.6'
+
+gem 'chefspec',   '~> 4.1.0'
+gem 'foodcritic', '~> 4.0.0'
+gem 'rubocop',    '~> 0.28.0'
