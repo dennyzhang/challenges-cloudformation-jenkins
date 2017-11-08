@@ -13,6 +13,12 @@ Case study using AWS techstack to setup Jenkins env
 
 # How To Test
 
+# Highlights
+- TODO: How to verify deployment quickly: use docker
+- TODO: How to verify the Jenkins deployment: use serverspec
+- TODO: How to test cluster env: use kitchen converge
+- TODO: How to test customization: multiple kitchen
+
 # Follow Up
 - TODO
 

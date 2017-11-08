@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>50</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.TextParameterDefinition>
+          <name>server_list</name>
+          <description></description>
+          <defaultValue><%= node['jenkins_mdm']['docker_daemon_ip'] %>:6022</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>file_list</name>
+          <description></description>
+          <defaultValue>/etc/hosts
+/opt/couchbase/etc/couchbase/static_config
+/opt/mdm/config/mdm.yml
+/opt/mdm/logs/mdm-initscript.log
+/opt/mdm/logs/mdm-app.log
+/opt/mdm/logs/mdm-app-audit.log
+/opt/mdm/logs/mdm-app-error.log
+/opt/mdm/logs/mdmbackup-initscript.log
+/etc/elasticsearch/elasticsearch.yml
+/var/log/elasticsearch/mdm.log
+/var/log/elasticsearch/mdm_index_indexing_slowlog.log
+/var/log/elasticsearch/mdm_deprecation.log
+/var/log/elasticsearch/mdm_index_search_slowlog.log</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>env_parameters</name>
+          <description></description>
+          <defaultValue>export jenkins_baseurl=&quot;http://192.168.50.10:18080&quot;
+</defaultValue>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -e
+export ssh_key_file=&quot;/var/lib/jenkins/ssh_id_rsa&quot;
+bash -e /var/lib/jenkins/code/scripts/collect_files.sh</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
