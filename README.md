@@ -43,7 +43,7 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 ![](misc/jenkins_docker_aio.png)
 
 ## Scenario: ECS 2-Nodes Deployment
-![](misc/jenkins_docker_2nodes.png)
+![](https://github.com/DennyZhang/aws-jenkins-study/blob/master/misc/jenkins_docker_2nodes.png)
 
 # Highlights
 - **Principle**: 1. Fully automated. 2. Improve availability
