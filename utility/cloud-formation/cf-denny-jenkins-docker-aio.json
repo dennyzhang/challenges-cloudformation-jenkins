@@ -213,7 +213,7 @@
       "Metadata" : {
         "AWS::CloudFormation::Init" : {
           "configSets" : {
-            "wordpress_install" : ["install_cfn", "install_docker", "start_jenkins" ]
+            "jenkins_install" : ["install_cfn", "install_docker", "start_jenkins" ]
           },
           "install_cfn" : {
             "files": {
@@ -235,7 +235,7 @@
                   "action=/opt/aws/bin/cfn-init -v ",
                           "         --stack ", { "Ref" : "AWS::StackName" },
                           "         --resource Jenkins ",
-                          "         --configsets wordpress_install ",
+                          "         --configsets jenkins_install ",
                           "         --region ", { "Ref" : "AWS::Region" }, "\n"
                 ]]},          
                 "mode"  : "000400",
@@ -331,7 +331,7 @@
                        "/opt/aws/bin/cfn-init -v ",
                        "         --stack ", { "Ref" : "AWS::StackName" },
                        "         --resource Jenkins ",
-                       "         --configsets wordpress_install ",
+                       "         --configsets jenkins_install ",
                        "         --region ", { "Ref" : "AWS::Region" }, "\n",
 
                        "/opt/aws/bin/cfn-signal -e $? ",
