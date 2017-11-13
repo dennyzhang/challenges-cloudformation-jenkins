@@ -8,64 +8,19 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
   InstanceType:
-    Description: WebServer EC2 instance type
+    Description: Jenkins EC2 instance type
     Type: String
-    Default: t2.small
+    Default: t1.micro
     AllowedValues:
       - t1.micro
       - t2.nano
       - t2.micro
       - t2.small
       - t2.medium
-      - t2.large
       - m1.small
       - m1.medium
-      - m1.large
-      - m1.xlarge
-      - m2.xlarge
-      - m2.2xlarge
-      - m2.4xlarge
       - m3.medium
-      - m3.large
-      - m3.xlarge
-      - m3.2xlarge
-      - m4.large
-      - m4.xlarge
-      - m4.2xlarge
-      - m4.4xlarge
-      - m4.10xlarge
       - c1.medium
-      - c1.xlarge
-      - c3.large
-      - c3.xlarge
-      - c3.2xlarge
-      - c3.4xlarge
-      - c3.8xlarge
-      - c4.large
-      - c4.xlarge
-      - c4.2xlarge
-      - c4.4xlarge
-      - c4.8xlarge
-      - g2.2xlarge
-      - g2.8xlarge
-      - r3.large
-      - r3.xlarge
-      - r3.2xlarge
-      - r3.4xlarge
-      - r3.8xlarge
-      - i2.xlarge
-      - i2.2xlarge
-      - i2.4xlarge
-      - i2.8xlarge
-      - d2.xlarge
-      - d2.2xlarge
-      - d2.4xlarge
-      - d2.8xlarge
-      - hi1.4xlarge
-      - hs1.8xlarge
-      - cr1.8xlarge
-      - cc2.8xlarge
-      - cg1.4xlarge
     ConstraintDescription: must be a valid EC2 instance type.
   SSHLocation:
     Description: The IP address range that can be used to SSH to the EC2 instances
@@ -390,7 +345,7 @@ Mappings:
       HVM64: ami-cb858fa9
       HVMG2: NOT_SUPPORTED
 Resources:
-  WebServerSecurityGroup:
+  JenkinsSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Enable HTTP access via port 80 locked down to the load balancer
@@ -404,7 +359,7 @@ Resources:
           FromPort: '22'
           ToPort: '22'
           CidrIp: !Ref 'SSHLocation'
-  WebServer:
+  Jenkins:
     Type: AWS::EC2::Instance
     Metadata:
       AWS::CloudFormation::Init:
@@ -431,10 +386,10 @@ Resources:
 
                     ', 'triggers=post.update
 
-                    ', 'path=Resources.WebServer.Metadata.AWS::CloudFormation::Init
+                    ', 'path=Resources.Jenkins.Metadata.AWS::CloudFormation::Init
 
                     ', 'action=/opt/aws/bin/cfn-init -v ', '         --stack ', !Ref 'AWS::StackName',
-                  '         --resource WebServer ', '         --configsets wordpress_install ',
+                  '         --resource Jenkins ', '         --configsets wordpress_install ',
                   '         --region ', !Ref 'AWS::Region', '
 
                     ']]
@@ -521,7 +476,7 @@ Resources:
           !Ref 'InstanceType', Arch]]
       InstanceType: !Ref 'InstanceType'
       SecurityGroups:
-        - !Ref 'WebServerSecurityGroup'
+        - !Ref 'JenkinsSecurityGroup'
       KeyName: !Ref 'KeyName'
       UserData: !Base64
         Fn::Join:
@@ -535,7 +490,7 @@ Resources:
             - '/opt/aws/bin/cfn-init -v '
             - '         --stack '
             - !Ref 'AWS::StackName'
-            - '         --resource WebServer '
+            - '         --resource Jenkins '
             - '         --configsets wordpress_install '
             - '         --region '
             - !Ref 'AWS::Region'
@@ -545,7 +500,7 @@ Resources:
             - '/opt/aws/bin/cfn-signal -e $? '
             - '         --stack '
             - !Ref 'AWS::StackName'
-            - '         --resource WebServer '
+            - '         --resource Jenkins '
             - '         --region '
             - !Ref 'AWS::Region'
             - '
@@ -556,5 +511,5 @@ Resources:
         Timeout: PT15M
 Outputs:
   WebsiteURL:
-    Value: !Join ['', ['http://', !GetAtt 'WebServer.PublicDnsName', /wordpress]]
+    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', /wordpress]]
     Description: Jenkins Website
