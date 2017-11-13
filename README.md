@@ -31,7 +31,7 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 ![](misc/jenkins_docker_2nodes.png)
 
 # Highlights
-- Principle: 1. Fully automated. 2. Improve availability
+- **Principle**: 1. Fully automated. 2. Improve availability
 - TODO: How to verify deployment quickly: use docker
 - TODO: How to verify the Jenkins deployment: use serverspec
 - TODO: How to test cluster env: use kitchen converge
