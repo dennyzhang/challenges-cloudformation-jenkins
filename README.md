@@ -38,8 +38,8 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 - TODO: How to test customization: multiple kitchen
 
 # Follow Up
-- TODO: HA jenkins env
 - TODO: What about backup, and Jenkins two-way sync
+- TODO: HA jenkins env
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
