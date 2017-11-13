@@ -18,7 +18,7 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 - [Optional] Security Hardening
 - [Optional] Monitoring/Alerting
 
-# Scenario: VM single-node deployment
+# Scenario: VM Single-Node Deployment
 ![](misc/jenkins_vm_aio.png)
 
 # Scenario: VM 2-Nodes Deployment
