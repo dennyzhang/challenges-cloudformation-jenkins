@@ -34,7 +34,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2017-11-13 14:22:59 +0000</string>
+	<string>2017-11-13 14:25:29 +0000</string>
 	<key>Modifier</key>
 	<string>mac</string>
 	<key>NotesVisible</key>
@@ -7388,8 +7388,8 @@ Docker Deployment In AWS}</string>
 					<integer>44108</integer>
 					<key>Points</key>
 					<array>
-						<string>{287.99246918850901, 193.49292897450493}</string>
-						<string>{504.6249936750653, 358.99006283665256}</string>
+						<string>{281.45650860515059, 194.09398496774318}</string>
+						<string>{501.94643532545592, 353.57142706610716}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -7425,8 +7425,8 @@ Docker Deployment In AWS}</string>
 					<integer>44107</integer>
 					<key>Points</key>
 					<array>
-						<string>{505.54121424468968, 442.42933178800934}</string>
-						<string>{504.63616786319886, 401.85047646324961}</string>
+						<string>{501.16586855515561, 443.11949990549164}</string>
+						<string>{501.9381655564647, 396.43189716672396}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -7455,7 +7455,7 @@ Docker Deployment In AWS}</string>
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{471.67712638359893, 472.98987214813684}, {60.538604736328125, 14.305240222546312}}</string>
+							<string>{{466.78282623327499, 472.98987214813684}, {60.538604736328125, 14.305240222546312}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>ID</key>
@@ -7498,7 +7498,7 @@ Docker Deployment In AWS}</string>
 						</dict>
 						<dict>
 							<key>Bounds</key>
-							<string>{{481.11747771926701, 440.17856955452226}, {49.456509843281879, 31.808429829138227}}</string>
+							<string>{{476.22317756894307, 440.17856955452226}, {49.456509843281879, 31.808429829138227}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>ID</key>
@@ -7584,8 +7584,8 @@ Docker Deployment In AWS}</string>
 					<integer>44103</integer>
 					<key>Points</key>
 					<array>
-						<string>{406.02529159520776, 378.66581852246793}</string>
-						<string>{463.39284645826842, 380.17033207798556}</string>
+						<string>{398.72866812605173, 376.17870837394548}</string>
+						<string>{460.21432666680761, 374.75790627527653}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -7609,7 +7609,7 @@ Docker Deployment In AWS}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{463.39284645826842, 358.99006283665256}, {82.46429443359375, 42.360538482666016}}</string>
+					<string>{{460.71428810865905, 353.57142706610716}, {82.46429443359375, 42.360538482666016}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -8272,8 +8272,8 @@ Docker Deployment In AWS}</string>
 					<integer>44078</integer>
 					<key>Points</key>
 					<array>
-						<string>{232.51973932289445, 217.55115719019008}</string>
-						<string>{231.58362940627248, 288.78575624648295}</string>
+						<string>{225.99034442874128, 218.15225636978505}</string>
+						<string>{225.99034442874128, 303.82306221989853}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -8873,7 +8873,7 @@ Docker Deployment In AWS}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{55.400538622321534, 289.28571305408769}, {350.12492482845778, 169.55166625976562}}</string>
+					<string>{{53.751882602266534, 304.32306221386}, {344.47691895701348, 151.69451904296875}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -8987,7 +8987,7 @@ Docker Deployment In AWS}</string>
 					<integer>44002</integer>
 					<key>Points</key>
 					<array>
-						<string>{288.47551601718226, 193.36383307915841}</string>
+						<string>{281.94042540218811, 193.9681893673654}</string>
 						<string>{438.39284656470522, 153.29792048813474}</string>
 					</array>
 					<key>Style</key>
@@ -9022,7 +9022,7 @@ Docker Deployment In AWS}</string>
 					<integer>44003</integer>
 					<key>Points</key>
 					<array>
-						<string>{287.99246918850901, 193.49292897450493}</string>
+						<string>{281.95177144892813, 194.1626487932536}</string>
 						<string>{438.39286177027589, 215.85182629453803}</string>
 					</array>
 					<key>Style</key>
@@ -9057,8 +9057,8 @@ Docker Deployment In AWS}</string>
 					<integer>44004</integer>
 					<key>Points</key>
 					<array>
-						<string>{105.04349468112805, 193.15796833587959}</string>
-						<string>{176.56015495095014, 193.4906034220387}</string>
+						<string>{105.03425437412712, 193.28874983267156}</string>
+						<string>{170.52418896403734, 194.09398496774318}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -9158,7 +9158,7 @@ Docker Deployment In AWS}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{177.06014954739572, 169.93465756642456}, {110.93231964111328, 47.116542816160745}}</string>
+					<string>{{170.52418896403734, 170.53571355966281}, {110.93231964111328, 47.116542816160745}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
