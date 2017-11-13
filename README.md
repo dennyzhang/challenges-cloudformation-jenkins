@@ -57,6 +57,7 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 
 # More Resources
 - https://github.com/awslabs/startup-kit-templates
+- https://github.com/awslabs
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
