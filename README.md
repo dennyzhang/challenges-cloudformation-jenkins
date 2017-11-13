@@ -15,13 +15,13 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 # Scenario: VM single-node deployment
 ![](misc/jenkins_vm_aio.png)
 
-# Scenario: VM 2-nodes deployment
+# Scenario: VM 2-Nodes Deployment
 ![](misc/jenkins_vm_2nodes.png)
 
-# Scenario: ECS single-node deployment
+# Scenario: ECS Single-Node Deployment
 ![](misc/jenkins_docker_aio.png)
 
-# Scenario: ECS 2-nodes deployment
+# Scenario: ECS 2-Nodes Deployment
 ![](misc/jenkins_docker_2nodes.png)
 
 # Highlights
