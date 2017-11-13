@@ -1,3 +1,17 @@
+Table of Contents
+=================
+
+   * [aws-jenkins-study](#aws-jenkins-study)
+   * [Requirements](#requirements)
+      * [Scenario: VM Single-Node Deployment](#scenario-vm-single-node-deployment)
+      * [Scenario: VM 2-Nodes Deployment](#scenario-vm-2-nodes-deployment)
+      * [Scenario: ECS Single-Node Deployment](#scenario-ecs-single-node-deployment)
+      * [Scenario: ECS 2-Nodes Deployment](#scenario-ecs-2-nodes-deployment)
+   * [Highlights](#highlights)
+   * [Follow Up](#follow-up)
+   * [More Resources](#more-resources)
+   * [License](#license)
+
 # aws-jenkins-study
 <a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
 
@@ -18,16 +32,16 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 - [Optional] Security Hardening
 - [Optional] Monitoring/Alerting
 
-# Scenario: VM Single-Node Deployment
+## Scenario: VM Single-Node Deployment
 ![](misc/jenkins_vm_aio.png)
 
-# Scenario: VM 2-Nodes Deployment
+## Scenario: VM 2-Nodes Deployment
 ![](misc/jenkins_vm_2nodes.png)
 
-# Scenario: ECS Single-Node Deployment
+## Scenario: ECS Single-Node Deployment
 ![](misc/jenkins_docker_aio.png)
 
-# Scenario: ECS 2-Nodes Deployment
+## Scenario: ECS 2-Nodes Deployment
 ![](misc/jenkins_docker_2nodes.png)
 
 # Highlights
@@ -40,6 +54,9 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 # Follow Up
 - TODO: What about backup, and Jenkins two-way sync
 - TODO: HA jenkins env
+
+# More Resources
+- https://github.com/awslabs/startup-kit-templates
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
