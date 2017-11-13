@@ -11,6 +11,12 @@ Case study using AWS techstack to setup Jenkins env
 
 # Requirements
 Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Chef/Puppet)
+- Use cloud formation start EC2 VM
+- Use Chef to deploy Jenkins instance
+- Jenkins install sample jobs
+- [Optional] Setup ELB/ASG
+- [Optional] Security Hardening
+- [Optional] Monitoring/Alerting
 
 # Scenario: VM single-node deployment
 ![](misc/jenkins_vm_aio.png)
@@ -23,15 +29,6 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 
 # Scenario: ECS 2-Nodes Deployment
 ![](misc/jenkins_docker_2nodes.png)
-
-# Highlights
-- Use cloud formation start EC2 VM
-- Use Chef to deploy Jenkins instance
-- Jenkins install sample jobs
-
-- [Optional] Setup ELB/ASG
-- [Optional] Security Hardening
-- [Optional] Monitoring/Alerting
 
 # Highlights
 - Principle: 1. Fully automated. 2. Improve availability
