@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-14>
-## Updated: Time-stamp: <2017-11-14 09:38:06>
+## Updated: Time-stamp: <2017-11-14 10:01:17>
 ##-------------------------------------------------------------------
 set -e
 function log() {
@@ -63,7 +63,8 @@ function docker_start_jenkins() {
     fi
 }
 
-LOG_FILE="/var/log/my_docker.log"
+mkdir -p ~/log
+LOG_FILE="~/log/my_docker.log"
 
 # Base Docker image: https://github.com/DennyZhang/jenkins_image/blob/master/Dockerfile
 docker_image=${1:-"denny/jenkins_image:latest"}

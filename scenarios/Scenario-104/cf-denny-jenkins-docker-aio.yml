@@ -407,9 +407,13 @@ Resources:
             /home/ec2-user/install_docker.sh:
               source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/install_docker.sh
               mode: 755
+              owner: ec2-user
+              group: ec2-user
             /home/ec2-user/docker_start_jenkins.sh:
               source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/docker_start_jenkins.sh
               mode: 755
+              owner: ec2-user
+              group: ec2-user
           services:
             sysvinit:
               docker:
