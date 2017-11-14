@@ -28,10 +28,11 @@ Parameters:
     Type: String
     MinLength: '1'
     MaxLength: '64'
-    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9:_/]*'
     ConstraintDescription: must begin with a letter and contain only alphanumeric
       characters.
   JenkinsUser:
+    # TODO: feed JenkinsUser and JenkinsPassword to the script
     NoEcho: 'true'
     Description: The Jenkins username
     Type: String
@@ -416,7 +417,8 @@ Resources:
               command: bash /root/install_docker.sh
               test: which docker
             02_start_jenkins:
-              command: bash /root/docker_start_jenkins.sh
+              # TODO: add parameters
+              command: bash /root/docker_start_jenkins.sh DockerImage
               test: docker ps -ef | grep jenkins
     Properties:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
