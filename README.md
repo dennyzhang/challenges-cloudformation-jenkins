@@ -12,16 +12,17 @@ Table of Contents
 =================
 
    * [aws-jenkins-study](#aws-jenkins-study)
-   * [Table of Contents](#table-of-contents)
-   * [Requirements](#requirements)
-      * [Scenario101: VM Single-Node Jenkins Deployment](#scenario101-vm-single-node-jenkins-deployment)
-      * [Scenario102: VM Single-Node Jenkins Deployment II](#scenario102-vm-single-node-jenkins-deployment-ii)
-      * [Scenario103: VM Single-Node Jenkins Deployment III](#scenario103-vm-single-node-jenkins-deployment-iii)
-      * [Scenario104: Docker Single-Node Deployment](#scenario104-docker-single-node-deployment)
-      * [Scenario105: ECS Single-Node Deployment](#scenario105-ecs-single-node-deployment)
-      * [Scenario106: VM 2-Nodes Deployment](#scenario106-vm-2-nodes-deployment)
-      * [Scenario107: VM 2-Nodes Deployment II](#scenario107-vm-2-nodes-deployment-ii)
-      * [Scenario108: ECS 2-Nodes Deployment](#scenario108-ecs-2-nodes-deployment)
+   * [Scenario](#scenario)
+      * [Scenario-101: VM Single-Node Jenkins Deployment I](#scenario-101-vm-single-node-jenkins-deployment-i)
+      * [Scenario-102: VM Single-Node Jenkins Deployment II](#scenario-102-vm-single-node-jenkins-deployment-ii)
+      * [Scenario-103: VM Single-Node Jenkins Deployment III](#scenario-103-vm-single-node-jenkins-deployment-iii)
+      * [Scenario-104: Docker Single-Node Deployment I](#scenario-104-docker-single-node-deployment-i)
+      * [Scenario-105: Docker Single-Node Deployment II](#scenario-105-docker-single-node-deployment-ii)
+      * [Scenario-106: ECS Single-Node Deployment](#scenario-106-ecs-single-node-deployment)
+      * [Scenario-106: VM 2-Nodes Deployment I](#scenario-106-vm-2-nodes-deployment-i)
+      * [Scenario-108: VM 2-Nodes Deployment II](#scenario-108-vm-2-nodes-deployment-ii)
+      * [Scenario-109: ECS 2-Nodes Deployment I](#scenario-109-ecs-2-nodes-deployment-i)
+      * [Scenario-110: ECS 2-Nodes Deployment II](#scenario-110-ecs-2-nodes-deployment-ii)
    * [Highlights](#highlights)
    * [Follow Up](#follow-up)
    * [More Resources](#more-resources)
@@ -29,52 +30,54 @@ Table of Contents
 
 Case study using AWS techstack to setup Jenkins env
 
-# Requirements
-Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Chef/Puppet)
-- Use cloud formation start EC2 VM
-- Use Chef to deploy Jenkins instance
-- Jenkins install sample jobs
-- [Optional] Setup ELB/ASG
-- [Optional] Security Hardening
-- [Optional] Monitoring/Alerting
+# Scenario
 
-## Scenario101: VM Single-Node Jenkins Deployment
+## Scenario-101: VM Single-Node Jenkins Deployment I
 - Objective: We need a live Jenkins env in Cloud. Fast and easy.
 - Main Tech: Use Cloudformation to start an EC2 instance. Then provision Jenkins via Chef
 
 ![](misc/jenkins_vm_aio.png)
 
-## Scenario102: VM Single-Node Jenkins Deployment II
+## Scenario-102: VM Single-Node Jenkins Deployment II
 - Objective: Try to customize Jenkins by adding an extra Jenkins user.
 - Main Tech: Cloudformation, Chef
 
-## Scenario103: VM Single-Node Jenkins Deployment III
-- Objective: Besides Scenario102, get slack notification when Jenkins server is down.
+## Scenario-103: VM Single-Node Jenkins Deployment III
+- Objective: Besides Scenario-102, get slack notification when Jenkins server is down.
 - Main Tech: Cloudformation, Chef, Jenkins plugin, Slack
 
 ![](misc/jenkins_vm_aio.png)
 
-## Scenario104: Docker Single-Node Deployment
+## Scenario-104: Docker Single-Node Deployment I
 - Objective: Immutable infra would be faster and reliable, compared to conf mgmt tool.
 - Main Tech: Cloudformation, Docker
 
-## Scenario105: ECS Single-Node Deployment
+## Scenario-105: Docker Single-Node Deployment II
+- Objective: Use docker to deploy customized Jenkins
+- Main Tech: Cloudformation, Docker
+
+## Scenario-106: ECS Single-Node Deployment
 - Objective: Get exposed to docker orchestration service.
 - Main Tech: Cloudformation, ECS stack
 
-## Scenario106: VM 2-Nodes Deployment
+## Scenario-106: VM 2-Nodes Deployment I
 - Objective: Avoid SPOF by adding 2 Jenkins instance
 - Main Tech: Cloudformation, Docker
 
 ![](misc/jenkins_vm_2nodes.png)
 
-## Scenario107: VM 2-Nodes Deployment II
-- Objective: Besides Scenario106, share volume for Jenkins HOME for 2 instances
+## Scenario-108: VM 2-Nodes Deployment II
+- Objective: Besides Scenario-106, share volume for Jenkins HOME for 2 instances
 - Main Tech: Cloudformation, Docker
 
 ![](misc/jenkins_vm_2nodes.png)
 
-## Scenario108: ECS 2-Nodes Deployment
+## Scenario-109: ECS 2-Nodes Deployment I
+- Objective: Deploy 2 nodes Jenkins cluster. With 3 Jenkins instance
+- Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda
+![](misc/jenkins_docker_2nodes.png)
+
+## Scenario-110: ECS 2-Nodes Deployment II
 - Objective: Deploy Jenkins cluster. Stable: make sure no SPOF. Scalable: when users grow autoscaling take effect
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda
 ![](misc/jenkins_docker_2nodes.png)
@@ -93,6 +96,16 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 # More Resources
 - https://github.com/awslabs/startup-kit-templates
 - https://github.com/awslabs
+
+Misc Requirements
+
+Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Chef/Puppet)
+- Use cloud formation start EC2 VM
+- Use Chef to deploy Jenkins instance
+- Jenkins install sample jobs
+- [Optional] Setup ELB/ASG
+- [Optional] Security Hardening
+- [Optional] Monitoring/Alerting
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
