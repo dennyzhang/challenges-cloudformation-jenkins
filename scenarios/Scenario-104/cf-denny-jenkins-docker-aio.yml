@@ -402,10 +402,14 @@ Resources:
             # TODO: install docker daemon here
             yum:
               php: []
-          sources:
+          files:
             # TODO: create folder
-            /root/install_docker.sh: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/install_docker.sh
-            /root/docker_start_jenkins.sh: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/docker_start_jenkins.sh
+            /home/ec2-user/install_docker.sh:
+              source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/install_docker.sh
+              mode: 755
+            /home/ec2-user/docker_start_jenkins.sh:
+              source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/docker_start_jenkins.sh
+              mode: 755
           services:
             sysvinit:
               docker:
