@@ -22,14 +22,15 @@ Parameters:
       - m3.medium
       - c1.medium
     ConstraintDescription: must be a valid EC2 instance type.
-  SSHLocation:
-    Description: The IP address range that can be used to SSH to the EC2 instances
+  DockerImage:
+    Default: denny/jenkins_image:latest
+    Description: Docker Image Name
     Type: String
-    MinLength: '9'
-    MaxLength: '18'
-    Default: 0.0.0.0/0
-    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
-    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+    MinLength: '1'
+    MaxLength: '64'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric
+      characters.
   JenkinsUser:
     NoEcho: 'true'
     Description: The Jenkins username
@@ -47,6 +48,14 @@ Parameters:
     MaxLength: '41'
     AllowedPattern: '[a-zA-Z0-9]*'
     ConstraintDescription: must contain only alphanumeric characters.
+  SSHLocation:
+    Description: The IP address range that can be used to SSH to the EC2 instances
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
 Mappings:
   AWSInstanceType2Arch:
     t1.micro:
@@ -347,10 +356,9 @@ Resources:
     Metadata:
       AWS::CloudFormation::Init:
         configSets:
-          wordpress_install:
+          jenkins_install:
             - install_cfn
-            - install_wordpress
-            - configure_wordpress
+            - install_jenkins
         install_cfn:
           files:
             /etc/cfn/cfn-hup.conf:
@@ -372,7 +380,7 @@ Resources:
                     ', 'path=Resources.Jenkins.Metadata.AWS::CloudFormation::Init
 
                     ', 'action=/opt/aws/bin/cfn-init -v ', '         --stack ', !Ref 'AWS::StackName',
-                  '         --resource Jenkins ', '         --configsets wordpress_install ',
+                  '         --resource Jenkins ', '         --configsets jenkins_install ',
                   '         --region ', !Ref 'AWS::Region', '
 
                     ']]
@@ -387,8 +395,9 @@ Resources:
                 files:
                   - /etc/cfn/cfn-hup.conf
                   - /etc/cfn/hooks.d/cfn-auto-reloader.conf
-        install_wordpress:
+        install_jenkins:
           packages:
+            # TODO: install docker daemon here
             yum:
               php: []
               php-mysql: []
@@ -398,7 +407,7 @@ Resources:
               mysql-libs: []
               httpd: []
           sources:
-            /var/www/html: http://wordpress.org/latest.tar.gz
+            /var/www/html: http://jenkins.org/latest.tar.gz
           files:
             /tmp/setup.mysql:
               content: !Join ['', ['CREATE DATABASE ', !Ref 'DBName', ';
@@ -417,7 +426,7 @@ Resources:
             /tmp/create-wp-config:
               content: !Join ['', ['#!/bin/bash -xe
 
-                    ', 'cp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+                    ', 'cp /var/www/html/jenkins/wp-config-sample.php /var/www/html/jenkins/wp-config.php
 
                     ', sed -i "s/'database_name_here'/', !Ref 'DBName', '''/g" wp-config.php
 
@@ -431,29 +440,9 @@ Resources:
               group: root
           services:
             sysvinit:
-              httpd:
+              docker:
                 enabled: 'true'
                 ensureRunning: 'true'
-              mysqld:
-                enabled: 'true'
-                ensureRunning: 'true'
-        configure_wordpress:
-          commands:
-            01_set_mysql_root_password:
-              command: !Join ['', [mysqladmin -u root password ', !Ref 'DBRootPassword',
-                  '''']]
-              test: !Join ['', ['$(mysql ', !Ref 'DBName', ' -u root --password=''',
-                  !Ref 'DBRootPassword', ''' >/dev/null 2>&1 </dev/null); (( $? !=
-                    0 ))']]
-            02_create_database:
-              command: !Join ['', [mysql -u root --password=', !Ref 'DBRootPassword',
-                  ''' < /tmp/setup.mysql']]
-              test: !Join ['', ['$(mysql ', !Ref 'DBName', ' -u root --password=''',
-                  !Ref 'DBRootPassword', ''' >/dev/null 2>&1 </dev/null); (( $? !=
-                    0 ))']]
-            03_configure_wordpress:
-              command: /tmp/create-wp-config
-              cwd: /var/www/html/wordpress
     Properties:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
@@ -474,7 +463,7 @@ Resources:
             - '         --stack '
             - !Ref 'AWS::StackName'
             - '         --resource Jenkins '
-            - '         --configsets wordpress_install '
+            - '         --configsets jenkins_install '
             - '         --region '
             - !Ref 'AWS::Region'
             - '
@@ -494,5 +483,5 @@ Resources:
         Timeout: PT15M
 Outputs:
   WebsiteURL:
-    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', /wordpress]]
+    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':8080']]
     Description: Jenkins Website
