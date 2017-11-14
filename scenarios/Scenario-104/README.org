@@ -15,6 +15,18 @@ CF link: https://s3.amazonaws.com/aws.dennyzhang.com/cf-denny-jenkins-docker-aio
 Stack name: jenkins-docker-aio
 JenkinsPassword:
 JenkinsUser:
+* Useful Command
+#+BEGIN_EXAMPLE
+export stack_name="docker-cf-jenkins"
+export tmp_file="file://cf-denny-jenkins-docker-aio.yml"
+aws cloudformation create-stack --template-body "$tmp_file" \
+    --stack-name "$stack_name" --parameters \
+    ParameterKey=JenkinsUser,ParameterValue=username \
+    ParameterKey=JenkinsPassword,ParameterValue=mypassword \
+    ParameterKey=KeyName,ParameterValue=denny-ssh-key1
+
+aws cloudformation delete-stack --stack-name "$stack_name"
+#+END_EXAMPLE
 * Tasks BreakDown
 ** TODO Check log of UserData
 ** TODO Use a dedicated folder to host my scripts

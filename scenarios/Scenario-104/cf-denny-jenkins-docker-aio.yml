@@ -415,10 +415,12 @@ Resources:
           commands:
             01_config_docker:
               command: usermod -a -G docker ec2-user
-            02_start_jenkins:
+            02_start_docker:
+              command: service docker start
+            03_start_jenkins:
               # TODO: add parameters
               command: bash /root/docker_start_jenkins.sh
-              test: docker ps -a | grep jenkins
+              test: docker ps -a | grep -v jenkins
 
     Properties:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,

@@ -103,14 +103,17 @@ https://s3.amazonaws.com/aws.dennyzhang.com/cf-denny-jenkins-docker-aio.yml
 - Use aws cli to create cloudformation stack
 
 ```
-aws cloudformation create-stack --template-body file://templates/single_instance.yml \
-    --stack-name docker-cf-jenkins --parameters \
+export stack_name="docker-cf-jenkins"
+export tmp_file="file://Scenario-104/cf-denny-jenkins-docker-aio.yml"
+aws cloudformation create-stack --template-body "$tmp_file" \
+    --stack-name "$stack_name" --parameters \
     ParameterKey=KeyName,ParameterValue=tutorial \
     ParameterKey=InstanceType,ParameterValue=t2.micro
 ```
 
 ```
-aws cloudformation delete-stack --stack-name docker-cf-jenkins
+export stack_name="docker-cf-jenkins"
+aws cloudformation delete-stack --stack-name "$stack_name"
 ```
 
 # More Resources
