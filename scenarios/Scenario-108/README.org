@@ -1,0 +1,37 @@
+-*- mode:org; fill-column:70; coding:utf-8; -*-
+#+TAGS: noexport(n)
+#+OPTIONS: toc:3 \n:t ^:nil creator:nil d:nil
+#+AUTHOR: dennyzhang.com (https://www.dennyzhang.com/contact)
+* Detail Requirements
+** Hide port: Change http://XXX.XXX.XXX.XXX:8080 to http://XXX.XXX.XXX.XXX:18080
+** For your scripts in UserData, create a dedicated folder. Thus we can better organize them
+** The whole process takes more than 10 minutes, I only acccept 5 minutes
+** #  --8<-------------------------- separator ------------------------>8-- :noexport:
+** Create a dedicated policy
+** Customize EC2 profile
+** Create Tags to manage the stack
+** When container restart/recreate, Jenkins configuration won't be lost
+* Config Parameters
+CF link: https://s3.amazonaws.com/aws.dennyzhang.com/cf-denny-jenkins-docker-aio.yml
+Stack name: jenkins-docker-aio
+JenkinsPassword:
+JenkinsUser:
+* Useful Command
+#+BEGIN_EXAMPLE
+export stack_name="docker-cf-jenkins"
+export tmp_file="file://cf-denny-jenkins-docker-aio.yml"
+aws cloudformation create-stack --template-body "$tmp_file" \
+    --stack-name "$stack_name" --parameters \
+    ParameterKey=JenkinsUser,ParameterValue=username \
+    ParameterKey=JenkinsPassword,ParameterValue=mypassword \
+    ParameterKey=KeyName,ParameterValue=denny-ssh-key1
+
+aws cloudformation delete-stack --stack-name "$stack_name"
+#+END_EXAMPLE
+* Tasks BreakDown
+** TODO Check log of UserData
+** TODO Use a dedicated folder to host my scripts
+** TODO Pass JenkinsUser and Jenkinspassword to the script
+** #  --8<-------------------------- separator ------------------------>8-- :noexport:
+** TODO Customize Instance name
+** TODO Customize Jenkins port, instead of 8080
