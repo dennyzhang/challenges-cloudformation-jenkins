@@ -1,4 +1,6 @@
 -*- mode:org; fill-column:70; coding:utf-8; -*-
+#+TAGS: noexport(n)
+#+OPTIONS: toc:3 \n:t ^:nil creator:nil d:nil
 #+AUTHOR: dennyzhang.com (https://www.dennyzhang.com/contact)
 * Detail Requirements
 ** Hide port: Change http://XXX.XXX.XXX.XXX:8080 to http://XXX.XXX.XXX.XXX:18080
