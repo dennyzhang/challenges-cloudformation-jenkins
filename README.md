@@ -19,12 +19,13 @@ Table of Contents
       * [Scenario-104: Docker Single-Node Deployment I](#scenario-104-docker-single-node-deployment-i)
       * [Scenario-105: Docker Single-Node Deployment II](#scenario-105-docker-single-node-deployment-ii)
       * [Scenario-106: ECS Single-Node Deployment](#scenario-106-ecs-single-node-deployment)
-      * [Scenario-106: VM 2-Nodes Deployment I](#scenario-106-vm-2-nodes-deployment-i)
+      * [Scenario-107: VM 2-Nodes Deployment I](#scenario-107-vm-2-nodes-deployment-i)
       * [Scenario-108: VM 2-Nodes Deployment II](#scenario-108-vm-2-nodes-deployment-ii)
       * [Scenario-109: ECS 2-Nodes Deployment I](#scenario-109-ecs-2-nodes-deployment-i)
       * [Scenario-110: ECS 2-Nodes Deployment II](#scenario-110-ecs-2-nodes-deployment-ii)
    * [Highlights](#highlights)
    * [Follow Up](#follow-up)
+   * [Useful Commands](#useful-commands)
    * [More Resources](#more-resources)
    * [License](#license)
 
@@ -55,7 +56,6 @@ Case study using AWS techstack to setup Jenkins env
 - Main Tech: Cloudformation, Docker
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_aio.png)
-
 
 ## Scenario-106: ECS Single-Node Deployment
 - Objective: Get exposed to docker orchestration service.
@@ -91,6 +91,23 @@ Case study using AWS techstack to setup Jenkins env
 # Follow Up
 - TODO: What about backup, and Jenkins two-way sync
 - TODO: HA jenkins env
+
+# Useful Commands
+- Upload CF yaml files to AWS S3
+
+```
+s3cmd put cf-denny-jenkins-docker-aio.yml  s3://aws.dennyzhang.com/
+
+https://s3.amazonaws.com/aws.dennyzhang.com/cf-denny-jenkins-docker-aio.yml
+```
+- Use aws cli to create cloudformation stack
+
+```
+aws cloudformation create-stack --template-body file://templates/single_instance.yml \
+    --stack-name docker-cf-jenkins --parameters \
+    ParameterKey=KeyName,ParameterValue=tutorial \
+    ParameterKey=InstanceType,ParameterValue=t2.micro
+```
 
 # More Resources
 - https://github.com/awslabs/startup-kit-templates
