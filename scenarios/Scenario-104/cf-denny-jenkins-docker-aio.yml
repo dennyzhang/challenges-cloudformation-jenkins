@@ -359,8 +359,7 @@ Resources:
         configSets:
           jenkins_install:
             - install_cfn
-            - install_jenkins
-            - configure_jenkins
+            - setup_jenkins
         install_cfn:
           files:
             /etc/cfn/cfn-hup.conf:
@@ -397,7 +396,7 @@ Resources:
                 files:
                   - /etc/cfn/cfn-hup.conf
                   - /etc/cfn/hooks.d/cfn-auto-reloader.conf
-        install_jenkins:
+        setup_jenkins:
           packages:
             # TODO: install docker daemon here
             yum:
@@ -414,12 +413,6 @@ Resources:
               mode: 755
               owner: ec2-user
               group: ec2-user
-          services:
-            sysvinit:
-              docker:
-                enabled: 'true'
-                ensureRunning: 'true'
-        configure_jenkins:
           commands:
             01_install_docker:
               command: bash /root/install_docker.sh
@@ -428,6 +421,11 @@ Resources:
               # TODO: add parameters
               command: bash /root/docker_start_jenkins.sh DockerImage
               test: docker ps -ef | grep jenkins
+          services:
+            sysvinit:
+              docker:
+                enabled: 'true'
+                ensureRunning: 'true'
     Properties:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
