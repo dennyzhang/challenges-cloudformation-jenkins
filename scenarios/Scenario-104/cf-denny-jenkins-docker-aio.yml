@@ -10,7 +10,7 @@ Parameters:
   InstanceType:
     Description: Jenkins EC2 instance type
     Type: String
-    Default: t1.micro
+    Default: t2.micro
     AllowedValues:
       - t1.micro
       - t2.nano
