@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-14>
-## Updated: Time-stamp: <2017-11-14 10:13:01>
+## Updated: Time-stamp: <2017-11-14 10:17:40>
 ##-------------------------------------------------------------------
 set -e
 function log() {
@@ -22,8 +22,8 @@ function log() {
     fi
 }
 
-mkdir -p ~/log
-LOG_FILE="~/log/my_docker.log"
+mkdir -p /home/ec2-user/log
+LOG_FILE="/home/ec2-user/log/my_docker.log"
 
 if ! which docker; then
     # TODO: install specific version
