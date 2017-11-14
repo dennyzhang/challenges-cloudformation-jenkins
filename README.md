@@ -107,6 +107,7 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 - [Optional] Monitoring/Alerting
 
 - TODO: create a minibook from this project
+- TODO: Update main doc for the detail requirements
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).

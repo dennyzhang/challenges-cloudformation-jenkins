@@ -398,34 +398,27 @@ Resources:
                   - /etc/cfn/hooks.d/cfn-auto-reloader.conf
         setup_jenkins:
           packages:
-            # TODO: install docker daemon here
             yum:
-              php: []
+              docker: []
+          services:
+            sysvinit:
+              docker:
+                enabled: 'true'
+                ensureRunning: 'true'
           files:
-            # TODO: create folder
-            /home/ec2-user/install_docker.sh:
-              source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/install_docker.sh
-              mode: 755
-              owner: ec2-user
-              group: ec2-user
             /home/ec2-user/docker_start_jenkins.sh:
               source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/docker_start_jenkins.sh
               mode: 755
               owner: ec2-user
               group: ec2-user
           commands:
-            01_install_docker:
-              command: bash /root/install_docker.sh
-              test: which docker
+            01_config_docker:
+              command: usermod -a -G docker ec2-user
             02_start_jenkins:
               # TODO: add parameters
-              command: bash /root/docker_start_jenkins.sh DockerImage
+              command: bash /root/docker_start_jenkins.sh
               test: docker ps -ef | grep jenkins
-          services:
-            sysvinit:
-              docker:
-                enabled: 'true'
-                ensureRunning: 'true'
+
     Properties:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
