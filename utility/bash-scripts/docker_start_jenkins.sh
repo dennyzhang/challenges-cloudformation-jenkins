@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-14>
-## Updated: Time-stamp: <2017-11-14 10:18:15>
+## Updated: Time-stamp: <2017-11-14 10:22:29>
 ##-------------------------------------------------------------------
 set -e
 function log() {
@@ -71,7 +71,9 @@ docker_image=${1:-"denny/jenkins_image:latest"}
 jenkins_container_name=${2:-"my-jenkins"}
 jenkins_hostname=${3:-"myjenkins"}
 
+log "Begin to start jenkin"
 start_docker_daemon
 docker_pull_image "$docker_image"
 docker_start_jenkins "$jenkins_container_name" "$jenkins_hostname" "$docker_image"
+log "Action is done successfully"
 ## File: docker_start_jenkins.sh ends
