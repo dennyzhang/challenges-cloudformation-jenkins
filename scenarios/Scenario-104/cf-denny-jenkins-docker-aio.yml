@@ -359,6 +359,7 @@ Resources:
           jenkins_install:
             - install_cfn
             - install_jenkins
+            - configure_jenkins
         install_cfn:
           files:
             /etc/cfn/cfn-hup.conf:
@@ -400,49 +401,23 @@ Resources:
             # TODO: install docker daemon here
             yum:
               php: []
-              php-mysql: []
-              mysql: []
-              mysql-server: []
-              mysql-devel: []
-              mysql-libs: []
-              httpd: []
           sources:
-            /var/www/html: http://jenkins.org/latest.tar.gz
-          files:
-            /tmp/setup.mysql:
-              content: !Join ['', ['CREATE DATABASE ', !Ref 'DBName', ';
-
-                    ', CREATE USER ', !Ref 'DBUser', '''@''localhost'' IDENTIFIED
-                    BY ''', !Ref 'DBPassword', ''';
-
-                    ', 'GRANT ALL ON ', !Ref 'DBName', .* TO ', !Ref 'DBUser', '''@''localhost'';
-
-                    ', 'FLUSH PRIVILEGES;
-
-                    ']]
-              mode: '000400'
-              owner: root
-              group: root
-            /tmp/create-wp-config:
-              content: !Join ['', ['#!/bin/bash -xe
-
-                    ', 'cp /var/www/html/jenkins/wp-config-sample.php /var/www/html/jenkins/wp-config.php
-
-                    ', sed -i "s/'database_name_here'/', !Ref 'DBName', '''/g" wp-config.php
-
-                    ', sed -i "s/'username_here'/', !Ref 'DBUser', '''/g" wp-config.php
-
-                    ', sed -i "s/'password_here'/', !Ref 'DBPassword', '''/g" wp-config.php
-
-                    ']]
-              mode: '000500'
-              owner: root
-              group: root
+            # TODO: create folder
+            /root/install_docker.sh: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/install_docker.sh
+            /root/docker_start_jenkins.sh: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/docker_start_jenkins.sh
           services:
             sysvinit:
               docker:
                 enabled: 'true'
                 ensureRunning: 'true'
+        configure_jenkins:
+          commands:
+            01_install_docker:
+              command: bash /root/install_docker.sh
+              test: which docker
+            02_start_jenkins:
+              command: bash /root/docker_start_jenkins.sh
+              test: docker ps -ef | grep jenkins
     Properties:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
