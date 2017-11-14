@@ -109,6 +109,10 @@ aws cloudformation create-stack --template-body file://templates/single_instance
     ParameterKey=InstanceType,ParameterValue=t2.micro
 ```
 
+```
+aws cloudformation delete-stack --stack-name docker-cf-jenkins
+```
+
 # More Resources
 - https://github.com/awslabs/startup-kit-templates
 - https://github.com/awslabs

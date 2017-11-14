@@ -399,6 +399,7 @@ Resources:
         setup_jenkins:
           packages:
             yum:
+              tmux: []
               docker: []
           services:
             sysvinit:
