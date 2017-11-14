@@ -419,7 +419,7 @@ Resources:
               command: service docker start
             03_start_jenkins:
               # TODO: add parameters
-              command: bash /root/docker_start_jenkins.sh
+              command: bash /home/ec2-user/docker_start_jenkins.sh
               test: docker ps -a | grep -v jenkins
 
     Properties:
