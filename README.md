@@ -34,17 +34,17 @@ Case study using AWS techstack to setup Jenkins env
 
 ## Scenario-101: VM Single-Node Jenkins Deployment I
 - Objective: We need a live Jenkins env in Cloud. Fast and easy.
-- Main Tech: Use Cloudformation to start an EC2 instance. Then provision Jenkins via Chef
+- Main Tech: Cloudformation, Chef
 
 ![](misc/jenkins_vm_aio.png)
 
 ## Scenario-102: VM Single-Node Jenkins Deployment II
-- Objective: Try to customize Jenkins by adding an extra Jenkins user.
-- Main Tech: Cloudformation, Chef
+- Objective: Besides Scenario-101, add an additional Jenkins user. And enable security and monitoring
+- Main Tech: Cloudformation, Chef, VPC, CloudWatch
 
 ## Scenario-103: VM Single-Node Jenkins Deployment III
 - Objective: Besides Scenario-102, get slack notification when Jenkins server is down.
-- Main Tech: Cloudformation, Chef, Jenkins plugin, Slack
+- Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration
 
 ![](misc/jenkins_vm_aio.png)
 
@@ -58,17 +58,17 @@ Case study using AWS techstack to setup Jenkins env
 
 ## Scenario-106: ECS Single-Node Deployment
 - Objective: Get exposed to docker orchestration service.
-- Main Tech: Cloudformation, ECS stack
+- Main Tech: Cloudformation, ECS, EBS
 
 ## Scenario-106: VM 2-Nodes Deployment I
 - Objective: Avoid SPOF by adding 2 Jenkins instance
-- Main Tech: Cloudformation, Docker
+- Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration
 
 ![](misc/jenkins_vm_2nodes.png)
 
 ## Scenario-108: VM 2-Nodes Deployment II
 - Objective: Besides Scenario-106, share volume for Jenkins HOME for 2 instances
-- Main Tech: Cloudformation, Docker
+- Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration
 
 ![](misc/jenkins_vm_2nodes.png)
 
@@ -79,7 +79,7 @@ Case study using AWS techstack to setup Jenkins env
 
 ## Scenario-110: ECS 2-Nodes Deployment II
 - Objective: Deploy Jenkins cluster. Stable: make sure no SPOF. Scalable: when users grow autoscaling take effect
-- Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda
+- Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, EFS
 ![](misc/jenkins_docker_2nodes.png)
 
 # Highlights
