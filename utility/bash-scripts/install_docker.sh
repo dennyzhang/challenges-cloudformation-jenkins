@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-14>
-## Updated: Time-stamp: <2017-11-14 10:17:40>
+## Updated: Time-stamp: <2017-11-14 10:21:17>
 ##-------------------------------------------------------------------
 set -e
 function log() {
@@ -29,8 +29,8 @@ if ! which docker; then
     # TODO: install specific version
     log "Install docker daemon"
     sudo yum install docker -y
-    sudo service docker start
     sudo usermod -a -G docker ec2-user
+    sudo service docker start
 else
     log "docker daemon already installed"    
 fi
