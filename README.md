@@ -39,7 +39,6 @@ Case study using AWS techstack to setup Jenkins env
 ## Scenario-102: VM Single-Node Jenkins Deployment II
 - Objective: Besides Scenario-101, add an additional Jenkins user. And enable security and monitoring
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch
-![](misc/jenkins_vm_aio.png)
 
 ## Scenario-103: VM Single-Node Jenkins Deployment III
 - Objective: Besides Scenario-102, get slack notification when Jenkins server is down.
@@ -54,6 +53,8 @@ Case study using AWS techstack to setup Jenkins env
 ## Scenario-105: Docker Single-Node Deployment II
 - Objective: Use docker to deploy customized Jenkins
 - Main Tech: Cloudformation, Docker
+
+![](misc/jenkins_docker_aio.png)
 
 ## Scenario-106: ECS Single-Node Deployment
 - Objective: Get exposed to docker orchestration service.
@@ -72,6 +73,7 @@ Case study using AWS techstack to setup Jenkins env
 ## Scenario-109: ECS 2-Nodes Deployment I
 - Objective: Deploy 2 nodes Jenkins cluster. With 3 Jenkins instance
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, ALB
+
 ![](misc/jenkins_docker_2nodes.png)
 
 ## Scenario-110: ECS 2-Nodes Deployment II
