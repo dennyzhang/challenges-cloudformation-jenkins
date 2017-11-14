@@ -34,7 +34,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2017-11-13 14:25:29 +0000</string>
+	<string>2017-11-14 04:49:10 +0000</string>
 	<key>Modifier</key>
 	<string>mac</string>
 	<key>NotesVisible</key>
@@ -897,8 +897,8 @@
 							<integer>43995</integer>
 							<key>Points</key>
 							<array>
-								<string>{424.55478445236554, 352.50551102340779}</string>
-								<string>{457.71917223297925, 352.41696099276817}</string>
+								<string>{424.55478445236554, 352.50551102775836}</string>
+								<string>{457.71917223298027, 352.41696128568901}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -999,12 +999,12 @@
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Monitoring/Alerting}</string>
+\f0\fs22 \cf0 Enable monitoring}</string>
 									</dict>
 								</dict>
 								<dict>
 									<key>Bounds</key>
-									<string>{{132.93754067797767, 388.37682686003126}, {60.538604736328125, 16.877662658691406}}</string>
+									<string>{{98.53571572680579, 388.37682686003126}, {94.9404296875, 16.877662658691406}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>ID</key>
@@ -1038,7 +1038,7 @@
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Network/Security}</string>
+\f0\fs22 \cf0 Configure Network/Security}</string>
 									</dict>
 								</dict>
 								<dict>
@@ -2751,8 +2751,8 @@ VM Deployment In AWS}</string>
 					<integer>44107</integer>
 					<key>Points</key>
 					<array>
-						<string>{443.82914346341778, 529.25769937964628}</string>
-						<string>{443.59405970024852, 493.96766835864275}</string>
+						<string>{443.82914346341778, 529.2576993796464}</string>
+						<string>{443.59072903512333, 493.4676794440353}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -2948,8 +2948,8 @@ VM Deployment In AWS}</string>
 					<integer>44062</integer>
 					<key>Points</key>
 					<array>
-						<string>{244.05742510636932, 390.39456411141049}</string>
-						<string>{175.45612080624568, 470.15665314656997}</string>
+						<string>{244.38346088738348, 390.01548538602464}</string>
+						<string>{175.45330064946586, 470.15664021608819}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -2983,8 +2983,8 @@ VM Deployment In AWS}</string>
 					<integer>44061</integer>
 					<key>Points</key>
 					<array>
-						<string>{244.38346088738348, 390.01548538602464}</string>
-						<string>{280.50216678776928, 470.07983847759232}</string>
+						<string>{244.5890156202818, 390.47127838978571}</string>
+						<string>{280.49111506209255, 470.0798844052282}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4201,12 +4201,12 @@ VM Deployment In AWS}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Monitoring/Alerting}</string>
+\f0\fs22 \cf0 Enable Monitoring}</string>
 							</dict>
 						</dict>
 						<dict>
 							<key>Bounds</key>
-							<string>{{355.3571413442188, 366.50000462348601}, {60.538604736328125, 16.877662658691406}}</string>
+							<string>{{336.60714142404652, 364.9810338312472}, {101.14443284104493, 16.877662658691406}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>ID</key>
@@ -4240,7 +4240,8 @@ VM Deployment In AWS}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Network/Security}</string>
+\f0\fs22 \cf0 Configure \
+Network/Security}</string>
 							</dict>
 						</dict>
 						<dict>
@@ -5381,8 +5382,8 @@ VM Deployment In AWS}</string>
 					<integer>44108</integer>
 					<key>Points</key>
 					<array>
-						<string>{403.6641582487245, 350.753973911017}</string>
-						<string>{301.1685760152389, 350.97975390278106}</string>
+						<string>{403.66415808369635, 350.7539728424232}</string>
+						<string>{301.16857598255132, 350.97974431524386}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -5564,7 +5565,7 @@ VM Deployment In AWS}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Define Service/Task/Scaling}</string>
+\f0\fs22 \cf0 Create Service/Task/Scaling}</string>
 					</dict>
 				</dict>
 				<dict>
@@ -5579,8 +5580,8 @@ VM Deployment In AWS}</string>
 					<integer>44078</integer>
 					<key>Points</key>
 					<array>
-						<string>{232.52998707399504, 217.55118686519094}</string>
-						<string>{232.95283996270985, 275.03830683484443}</string>
+						<string>{232.52630936795236, 217.05120038258531}</string>
+						<string>{233.42075815080005, 281.61613094843534}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -6176,7 +6177,7 @@ VM Deployment In AWS}</string>
 						</dict>
 						<dict>
 							<key>Bounds</key>
-							<string>{{149.64133062391159, 275.53829331745004}, {167.64437866210938, 137.85456848144531}}</string>
+							<string>{{150.56389821449937, 282.11608262409067}, {167.64437866210938, 137.85456848144531}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>ID</key>
@@ -6249,12 +6250,12 @@ VM Deployment In AWS}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Monitoring/Alerting}</string>
+\f0\fs22 \cf0 Enable Monitoring}</string>
 					</dict>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{320.86979611063856, 210.64177105713057}, {60.538604736328125, 16.877662658691406}}</string>
+					<string>{{290.49999935770893, 210.64177105713057}, {110.93231964111328, 16.877662658691406}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -6288,7 +6289,8 @@ VM Deployment In AWS}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Network/Security}</string>
+\f0\fs22 \cf0 Configure \
+Network/Security}</string>
 					</dict>
 				</dict>
 				<dict>
@@ -7425,8 +7427,8 @@ Docker Deployment In AWS}</string>
 					<integer>44107</integer>
 					<key>Points</key>
 					<array>
-						<string>{501.16586855515561, 443.11949990549164}</string>
-						<string>{501.9381655564647, 396.43189716672396}</string>
+						<string>{501.16586855515561, 443.11949990549175}</string>
+						<string>{501.94643532545592, 395.93196554877318}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -7584,8 +7586,8 @@ Docker Deployment In AWS}</string>
 					<integer>44103</integer>
 					<key>Points</key>
 					<array>
-						<string>{398.72866812605173, 376.17870837394548}</string>
-						<string>{460.21432666680761, 374.75790627527653}</string>
+						<string>{398.72866839117023, 376.18261706244817}</string>
+						<string>{460.21442056150971, 374.76320408975545}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -8223,7 +8225,7 @@ Docker Deployment In AWS}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{238.70784985760616, 240.35506175486466}, {98.584304809570312, 32.666400909423828}}</string>
+					<string>{{132.98712976155127, 244.65446262560991}, {98.584304809570312, 32.666400909423828}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -8257,7 +8259,7 @@ Docker Deployment In AWS}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Define Service/Task/Scaling}</string>
+\f0\fs22 \cf0 Create Service/Task/Scaling}</string>
 					</dict>
 				</dict>
 				<dict>
@@ -8933,12 +8935,12 @@ Docker Deployment In AWS}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Monitoring/Alerting}</string>
+\f0\fs22 \cf0 Configure Monitoring}</string>
 					</dict>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{328.04289178715436, 212.8739122679992}, {60.538604736328125, 16.877662658691406}}</string>
+					<string>{{328.04289178715442, 212.8739122679992}, {105.31424713134766, 16.877662658691406}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -8972,7 +8974,8 @@ Docker Deployment In AWS}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs22 \cf0 Network/Security}</string>
+\f0\fs22 \cf0 Configure\
+Network/Security}</string>
 					</dict>
 				</dict>
 				<dict>
