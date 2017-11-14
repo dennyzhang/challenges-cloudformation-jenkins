@@ -44,7 +44,7 @@ Case study using AWS techstack to setup Jenkins env
 - Objective: Besides Scenario-102, get slack notification when Jenkins server is down.
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration
 
-![](misc/jenkins_vm_aio.png)
+![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_aio.png)
 
 ## Scenario-104: Docker Single-Node Deployment I
 - Objective: Immutable infra would be faster and reliable, compared to conf mgmt tool.
@@ -54,7 +54,8 @@ Case study using AWS techstack to setup Jenkins env
 - Objective: Use docker to deploy customized Jenkins
 - Main Tech: Cloudformation, Docker
 
-![](misc/jenkins_docker_aio.png)
+![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_aio.png)
+
 
 ## Scenario-106: ECS Single-Node Deployment
 - Objective: Get exposed to docker orchestration service.
@@ -64,7 +65,7 @@ Case study using AWS techstack to setup Jenkins env
 - Objective: Avoid SPOF by adding 2 Jenkins instance
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
 
-![](misc/jenkins_vm_2nodes.png)
+![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png)
 
 ## Scenario-108: VM 2-Nodes Deployment II
 - Objective: Besides Scenario-106, share volume for Jenkins HOME for 2 instances
@@ -74,7 +75,7 @@ Case study using AWS techstack to setup Jenkins env
 - Objective: Deploy 2 nodes Jenkins cluster. With 3 Jenkins instance
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, ALB
 
-![](misc/jenkins_docker_2nodes.png)
+![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_2nodes.png)
 
 ## Scenario-110: ECS 2-Nodes Deployment II
 - Objective: Deploy Jenkins cluster. Stable: make sure no SPOF. Scalable: when users grow autoscaling take effect
