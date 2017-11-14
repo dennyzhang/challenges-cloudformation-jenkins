@@ -418,7 +418,7 @@ Resources:
             02_start_jenkins:
               # TODO: add parameters
               command: bash /root/docker_start_jenkins.sh
-              test: docker ps -ef | grep jenkins
+              test: docker ps -a | grep jenkins
 
     Properties:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
