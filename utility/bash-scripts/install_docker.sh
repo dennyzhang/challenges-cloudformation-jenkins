@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-14>
-## Updated: Time-stamp: <2017-11-14 10:21:17>
+## Updated: Time-stamp: <2017-11-14 10:30:00>
 ##-------------------------------------------------------------------
 set -e
 function log() {
@@ -22,7 +22,7 @@ function log() {
     fi
 }
 
-mkdir -p /home/ec2-user/log
+[ -d /home/ec2-user/log ] || mkdir -p /home/ec2-user/log
 LOG_FILE="/home/ec2-user/log/my_docker.log"
 
 if ! which docker; then

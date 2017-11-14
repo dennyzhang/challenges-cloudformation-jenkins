@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-14>
-## Updated: Time-stamp: <2017-11-14 10:22:29>
+## Updated: Time-stamp: <2017-11-14 10:29:58>
 ##-------------------------------------------------------------------
 set -e
 function log() {
@@ -63,7 +63,7 @@ function docker_start_jenkins() {
     fi
 }
 
-mkdir -p /home/ec2-user/log
+[ -d /home/ec2-user/log ] || mkdir -p /home/ec2-user/log
 LOG_FILE="/home/ec2-user/log/my_docker.log"
 
 # Base Docker image: https://github.com/DennyZhang/jenkins_image/blob/master/Dockerfile
