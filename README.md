@@ -50,7 +50,7 @@ Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Ch
 ![](misc/jenkins_vm_aio.png)
 
 ## Scenario104: Docker Single-Node Deployment
-- Objective: Immutable infra would be faster and reliable. Use Docker instead of Configuration Management tool
+- Objective: Immutable infra would be faster and reliable, compared to conf mgmt tool.
 - Main Tech: Cloudformation, Docker
 
 ## Scenario105: ECS Single-Node Deployment
