@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-14>
-## Updated: Time-stamp: <2017-11-14 10:07:39>
+## Updated: Time-stamp: <2017-11-14 10:13:14>
 ##-------------------------------------------------------------------
 set -e
 function log() {
@@ -24,8 +24,8 @@ function log() {
 
 function is_container_running(){
     local container_name=${1?}
-    if sudo docker ps -a | grep "$container_name" 1>/dev/null 2>/dev/null; then
-        if sudo docker ps | grep "$container_name" 1>/dev/null 2>/dev/null; then
+    if docker ps -a | grep "$container_name" 1>/dev/null 2>/dev/null; then
+        if docker ps | grep "$container_name" 1>/dev/null 2>/dev/null; then
             echo "running"
         else
             echo "dead"
@@ -36,17 +36,16 @@ function is_container_running(){
 }
 
 function start_docker_daemon() {
-    # TODO: install docker daemon as a normal user, instead of root
-    if ! sudo service docker status | grep running;then
+    if ! service docker status | grep running;then
         # start docker
         log "start docker:"
-        sudo service docker start
+        service docker start
     fi
 }
 
 function docker_pull_image() {
     docker_image=${1?}
-    sudo docker pull "$docker_image"
+    docker pull "$docker_image"
 }
 ################################################################################
 function docker_start_jenkins() {
@@ -60,7 +59,7 @@ function docker_start_jenkins() {
         command="docker run -p 8080:8080 --name $container_name -h $container_hostname --restart=always $docker_image"
         eval "$command"
     elif [ "$container_status" = "dead" ]; then
-        sudo docker start "$container_name"
+        docker start "$container_name"
     fi
 }
 
