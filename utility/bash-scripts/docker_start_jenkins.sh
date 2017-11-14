@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-14>
-## Updated: Time-stamp: <2017-11-14 10:29:58>
+## Updated: Time-stamp: <2017-11-14 12:20:37>
 ##-------------------------------------------------------------------
 set -e
 function log() {
@@ -56,7 +56,8 @@ function docker_start_jenkins() {
     container_status=$(is_container_running "$container_name")
 
     if [ "$container_status" = "none" ]; then
-        command="docker run -p 8080:8080 --name $container_name -h $container_hostname --restart=always $docker_image"
+        # TODO: make the bash shorter
+        command="docker run -d -t -p 8080:8080 --name $container_name -h $container_hostname --restart=always $docker_image"
         eval "$command"
     elif [ "$container_status" = "dead" ]; then
         docker start "$container_name"
