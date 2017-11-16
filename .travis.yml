@@ -3,7 +3,7 @@ rvm:
   - 2.2
 # command to install dependencies
 install:
-  - gem install rubocop -v "0.44.1"
+  - gem install rubocop -v "0.48.1"
 # command to run tests
 script:
   # TODO: add more test logic
