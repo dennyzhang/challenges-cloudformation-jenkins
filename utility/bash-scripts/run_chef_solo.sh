@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-16 00:02:43>
+## Updated: Time-stamp: <2017-11-16 00:05:29>
 ##-------------------------------------------------------------------
 set -e
 
@@ -52,8 +52,7 @@ EOF
 [ -d /home/ec2-user/log ] || mkdir -p /home/ec2-user/log
 LOG_FILE="/home/ec2-user/log/run_chef_solo.log"
 
-# TODO: customize this
-cookbook_name=${1:-"jenkins-demo-101"}
+cookbook_name=${1?"cookbook name"}
 cookbook_folder="/home/ec2-user/${cookbook_name}"
 
 get_community_cookbook "/tmp/berks_cookbooks" "$cookbook_folder"
