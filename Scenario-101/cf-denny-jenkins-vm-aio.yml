@@ -399,7 +399,7 @@ Resources:
         setup_jenkins:
           packages:
             yum:
-              chefdk: []
+              # TODO: remove this
               git: []
           files:
             /home/ec2-user/run_chef_solo.sh:
@@ -410,6 +410,8 @@ Resources:
           sources:
               /home/ec2-user/jenkins-demo: 'https://github.com/DennyZhang/aws-jenkins-study/blob/master/utility/chef/jenkins-demo-101/tarball/master'
           commands:
+            01_install_chef:
+              command: curl -LO https://omnitruck.chef.io/install.sh && sudo bash ./install.sh -v 13.2.20 && rm install.sh
             01_chef_install_jenkins:
               # TODO: customize parameters
               command: bash /home/ec2-user/run_chef_solo.sh "jenkins-demo-101"
