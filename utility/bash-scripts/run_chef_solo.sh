@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-16 00:05:29>
+## Updated: Time-stamp: <2017-11-16 00:21:23>
 ##-------------------------------------------------------------------
 set -e
 
@@ -53,7 +53,7 @@ EOF
 LOG_FILE="/home/ec2-user/log/run_chef_solo.log"
 
 cookbook_name=${1?"cookbook name"}
-cookbook_folder="/home/ec2-user/${cookbook_name}"
+cookbook_folder=${2?"cookbook folder"}
 
 get_community_cookbook "/tmp/berks_cookbooks" "$cookbook_folder"
 run_chef_solo "/tmp/berks_cookbooks" "$cookbook_folder" "$cookbook_name"
