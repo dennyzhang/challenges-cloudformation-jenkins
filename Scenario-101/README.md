@@ -7,16 +7,38 @@ File me [tickets](https://github.com/DennyZhang/chef-study/issues) or star [the 
 Table of Contents
 =================
 
-   * [Start docker-compose env](#start-docker-compose-env)
-   * [Login to the container, and run procedure](#login-to-the-container-and-run-procedure)
-   * [Destroy docker-compose env after testing](#destroy-docker-compose-env-after-testing)
+   * [Requirement](#requirement)
+   * [Verify Jenkins](#verify-jenkins)
+   * [Userful Command](#userful-command)
 
 ![scenario-101-screenshot.png](../images/scenario-101-screenshot.png)
 
 # Requirement
 
 1. Use cloudformation to start an EC2 instance
-2. Start chef server inside the EC2 instance
+2. Start Jenkins inside the EC2 instance
+- Get cookbooks
+```
+docker exec -it my_chef sh
+
+mkdir -p /tmp/berks_cookbooks
+
+cd /tmp/cookbooks/jenkins-demo/
+berks vendor /tmp/berks_cookbooks
+ls -lth /tmp/berks_cookbooks
+```
+
+- Apply Chef update
+```
+cd /tmp
+# From config/node.json, we specify to apply example cookbook
+chef-solo -c config/solo.rb -j config/node.json
+
+- After deployment, jenkins is up and running
+```
+
+# Verify Jenkins
+curl -I http://localhost:8080
 
 # Userful Command
 - TODO: cleanup JenkinsUser and JenkinsPassword
