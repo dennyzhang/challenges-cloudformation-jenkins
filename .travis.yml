@@ -1,10 +1,10 @@
-language: python
-python:
-  - "2.7"
+language: ruby
+rvm:
+  - 2.2
 # command to install dependencies
 install:
-  - pip install nose pylint
+  - gem install rubocop -v "0.44.1"
 # command to run tests
 script:
-  echo "To be done"
-  # - find . -name "*.py" | xargs pylint -E
+  # TODO: add more test logic
+  - find . -name cookbooks | xargs rubocop
