@@ -28,6 +28,6 @@ Table of Contents
         ParameterKey=JenkinsUser,ParameterValue=username \
         ParameterKey=JenkinsPassword,ParameterValue=mypassword \
         ParameterKey=KeyName,ParameterValue=denny-ssh-key1
-    
+
     aws cloudformation delete-stack --stack-name "$stack_name"
 ```

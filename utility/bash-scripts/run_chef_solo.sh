@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-16 00:38:34>
+## Updated: Time-stamp: <2017-11-16 11:38:13>
 ##-------------------------------------------------------------------
 set -e
 
@@ -46,7 +46,7 @@ EOF
   "run_list": [ "recipe[$cookbook_name]" ]
 }
 EOF
-    log "Apply chef update"
+    log "Apply chef update: sudo chef-solo -c solo.rb -j node.json"
     sudo chef-solo -c solo.rb -j node.json
 }
 
