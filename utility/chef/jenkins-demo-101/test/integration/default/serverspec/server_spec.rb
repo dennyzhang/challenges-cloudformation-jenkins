@@ -8,7 +8,7 @@ set :backend, :exec
 #############################################################################
 # TODO: make the code more general
 require 'json'
-chef_data = JSON.parse(IO.read('/tmp/kitchen/dna.json'))
+# chef_data = JSON.parse(IO.read('/tmp/kitchen/dna.json'))
 # BUILDREPO_DIR = CHEF_DATA.FETCH('JENKINS_MDM').FETCH('BUILDREPO_DIR')
 
 describe command('java -version') do
