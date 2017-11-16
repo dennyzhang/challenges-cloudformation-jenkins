@@ -36,50 +36,60 @@ Case study using AWS techstack to setup Jenkins env
 ## Scenario-101: VM Single-Node Jenkins Deployment I
 - Objective: We need a live Jenkins env in public Cloud. Fast and easy.
 - Main Tech: Cloudformation, Chef
+- See more: [Scenario-101](./Scenario-101)
 
 ## Scenario-102: VM Single-Node Jenkins Deployment II
 - Objective: Besides Scenario-101, add an additional Jenkins user. And enable security and monitoring
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch
+- See more: [Scenario-102](./Scenario-102)
 
 ## Scenario-103: VM Single-Node Jenkins Deployment III
 - Objective: Besides Scenario-102, get slack notification when Jenkins server is down.
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration
+- See more: [Scenario-103](./Scenario-103)
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_aio.png)
 
-## Scenario-104: VM 2-Nodes Deployment I
+## Scenario-201: VM 2-Nodes Deployment I
 - Objective: Avoid SPOF by adding 2 Jenkins instance
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
+- See more: [Scenario-201](./Scenario-201)
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png)
 
-## Scenario-105: VM 2-Nodes Deployment II
+## Scenario-202: VM 2-Nodes Deployment II
 - Objective: Besides Scenario-106, share volume for Jenkins HOME for 2 instances
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration, ALB
+- See more: [Scenario-202](./Scenario-202)
 
-## Scenario-106: Docker Single-Node Deployment I
+## Scenario-301: Docker Single-Node Deployment I
 - Objective: Immutable infra would be faster and reliable, compared to conf mgmt tool.
 - Main Tech: Cloudformation, Docker
+- See more: [Scenario-301](./Scenario-301)
 
-## Scenario-107: Docker Single-Node Deployment II
+## Scenario-302: Docker Single-Node Deployment II
 - Objective: Use docker to deploy customized Jenkins
 - Main Tech: Cloudformation, Docker
+- See more: [Scenario-302](./Scenario-302)
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_aio.png)
 
-## Scenario-108: ECS Single-Node Deployment
+## Scenario-401: ECS Single-Node Deployment
 - Objective: Get exposed to docker orchestration service.
 - Main Tech: Cloudformation, ECS, EBS
+- See more: [Scenario-401](./Scenario-401)
 
-## Scenario-109: ECS 2-Nodes Deployment I
+## Scenario-501: ECS 2-Nodes Deployment I
 - Objective: Deploy 2 nodes Jenkins cluster. With 3 Jenkins instance
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, ALB
+- See more: [Scenario-501](./Scenario-501)
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_2nodes.png)
 
-## Scenario-110: ECS 2-Nodes Deployment II
+## Scenario-502: ECS 2-Nodes Deployment II
 - Objective: Deploy Jenkins cluster. Stable: make sure no SPOF. Scalable: when users grow autoscaling take effect
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, EFS, ALB
+- See more: [Scenario-502](./Scenario-502)
 
 # Highlights
 - **Principle**: 1. Fully automated. 2. Improve availability
