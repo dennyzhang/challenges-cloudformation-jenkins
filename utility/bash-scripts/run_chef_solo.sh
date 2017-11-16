@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-16 15:08:37>
+## Updated: Time-stamp: <2017-11-16 15:43:21>
 ##-------------------------------------------------------------------
 set -e
 
@@ -37,9 +37,8 @@ function run_chef_solo() {
     berks_cookbook_folder=${1?}
     cookbook_folder=${2?}
     cookbook_name=${3?}
-    chef_folder="/home/ec2-user/chef"
-    cd "$chef_folder"
-    sudo chown -R ec2-user:ec2-user "$chef_folder"
+    working_dir="/home/ec2-user/chef"
+    cd "$working_dir"
     cat > solo.rb << EOF
 cookbook_path [File.expand_path(File.join('$cookbook_folder', '..')), '$berks_cookbook_folder']
 EOF
@@ -48,8 +47,8 @@ EOF
   "run_list": [ "recipe[$cookbook_name]" ]
 }
 EOF
-    log "Apply chef update: sudo chef-solo -c solo.rb -j node.json"
-    sudo chef-solo -c solo.rb -j node.json
+    log "Apply chef update: chef-solo -c solo.rb -j node.json"
+    chef-solo -c solo.rb -j node.json
 }
 
 [ -d /home/ec2-user/log ] || mkdir -p /home/ec2-user/log
