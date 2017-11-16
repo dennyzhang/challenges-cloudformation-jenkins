@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-16 00:21:23>
+## Updated: Time-stamp: <2017-11-16 00:38:34>
 ##-------------------------------------------------------------------
 set -e
 
@@ -37,8 +37,9 @@ function run_chef_solo() {
     berks_cookbook_folder=${1?}
     cookbook_folder=${2?}
     cookbook_name=${3?}
+    cd "/home/ec2-user/chef"
     cat > solo.rb << EOF
-cookbook_path [File.expand_path(File.join(File.dirname(__FILE__), '..', "cookbooks")), '$berks_cookbook_folder']
+cookbook_path [File.expand_path(File.join('$cookbook_folder', '..')), '$berks_cookbook_folder']
 EOF
     cat > node.json <<EOF
 {
@@ -46,7 +47,7 @@ EOF
 }
 EOF
     log "Apply chef update"
-    chef-solo -c solo.rb -j node.json
+    sudo chef-solo -c solo.rb -j node.json
 }
 
 [ -d /home/ec2-user/log ] || mkdir -p /home/ec2-user/log
@@ -54,7 +55,8 @@ LOG_FILE="/home/ec2-user/log/run_chef_solo.log"
 
 cookbook_name=${1?"cookbook name"}
 cookbook_folder=${2?"cookbook folder"}
+berks_cookbooks_folder="/tmp/berks_cookbooks"
 
-get_community_cookbook "/tmp/berks_cookbooks" "$cookbook_folder"
-run_chef_solo "/tmp/berks_cookbooks" "$cookbook_folder" "$cookbook_name"
+get_community_cookbook "$berks_cookbooks_folder" "$cookbook_folder"
+run_chef_solo "$berks_cookbooks_folder" "$cookbook_folder" "$cookbook_name"
 ## File: run_chef_solo.sh ends

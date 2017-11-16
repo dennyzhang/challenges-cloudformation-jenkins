@@ -408,7 +408,7 @@ Resources:
               owner: ec2-user
               group: ec2-user
           sources:
-              /home/ec2-user/aws-jenkins-study: 'https://github.com/DennyZhang/aws-jenkins-study/tarball/master'
+              /home/ec2-user/chef/aws-jenkins-study: 'https://github.com/DennyZhang/aws-jenkins-study/tarball/master'
               owner: ec2-user
               group: ec2-user
           commands:
@@ -417,7 +417,7 @@ Resources:
               command: wget -O /tmp/chefdk.rpm https://packages.chef.io/files/stable/chefdk/2.3.4/el/7/chefdk-2.3.4-1.el7.x86_64.rpm && sudo rpm -ivh /tmp/chefdk.rpm
             01_chef_install_jenkins:
               # TODO: customize parameters
-              command: bash -ex /home/ec2-user/run_chef_solo.sh "jenkins-demo-101" "/home/ec2-user/aws-jenkins-study/utility/chef/jenkins-demo-101"
+              command: bash -ex /home/ec2-user/run_chef_solo.sh "jenkins-demo-101" "/home/ec2-user/chef/aws-jenkins-study/utility/chef/jenkins-demo-101"
               test: which chef-solo
 
     Properties:
