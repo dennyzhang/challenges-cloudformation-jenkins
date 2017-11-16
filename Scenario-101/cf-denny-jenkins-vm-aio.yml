@@ -402,7 +402,7 @@ Resources:
               chefdk: []
               git: []
           files:
-            /home/ec2-user/run_chef_solo.sh
+            /home/ec2-user/run_chef_solo.sh:
               source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
               mode: 755
               owner: ec2-user
