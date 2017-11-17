@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-16 15:43:21>
+## Updated: Time-stamp: <2017-11-16 19:05:35>
 ##-------------------------------------------------------------------
 set -e
 
@@ -48,7 +48,7 @@ EOF
 }
 EOF
     log "Apply chef update: chef-solo -c solo.rb -j node.json"
-    chef-solo -c solo.rb -j node.json
+    chef-solo -L "$LOG_FILE" -c config/solo.rb -j config/node.json
 }
 
 [ -d /home/ec2-user/log ] || mkdir -p /home/ec2-user/log
