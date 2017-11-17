@@ -8,15 +8,19 @@ Table of Contents
 =================
 
    * [Requirement](#requirement)
+   * [Procedure](#procedure)
    * [Verify Jenkins](#verify-jenkins)
    * [Userful Command](#userful-command)
 
-![scenario-101-screenshot.png](../images/scenario-101-screenshot.png)
+![scenario-102-screenshot.png](../images/scenario-102-screenshot.png)
 
 # Requirement
+1. Use cloudformation to start an EC2 instance with Jenkins installed
+2. In CF, configure a dedicated VPC. Only one source ip can connect jenkins port(8080)
+3. Setup Cloudwatch for Jenkins service. If it's down, send out slack email alert.
 
-1. Use cloudformation to start an EC2 instance
-2. Start Jenkins inside the EC2 instance
+# Procedure
+
 - Get cookbooks
 ```
 docker exec -it my_chef sh

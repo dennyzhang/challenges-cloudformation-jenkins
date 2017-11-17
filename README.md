@@ -36,12 +36,23 @@ Case study using AWS techstack to setup Jenkins env
 ## Scenario-101: VM Single-Node Jenkins Deployment I
 - Objective: We need a live Jenkins env in public Cloud. Fast and easy.
 - Main Tech: Cloudformation, Chef
+- Tasks:
+```
+1. Use cloudformation to start an EC2 instance
+2. Start Jenkins inside the EC2 instance
+```
 - See more: [Scenario-101](./Scenario-101)
 
 ## Scenario-102: VM Single-Node Jenkins Deployment II
 - Objective: Besides Scenario-101, add an additional Jenkins user. And enable security and monitoring
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch
 - See more: [Scenario-102](./Scenario-102)
+- Tasks:
+```
+1. Use cloudformation to start an EC2 instance with Jenkins installed
+2. In CF, configure a dedicated VPC. Only one source ip can connect jenkins port(8080)
+3. Setup Cloudwatch for Jenkins service. If it's down, send out slack email alert.
+```
 - TODO
 
 ## Scenario-103: VM Single-Node Jenkins Deployment III

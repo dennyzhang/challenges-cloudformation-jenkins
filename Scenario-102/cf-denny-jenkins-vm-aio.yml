@@ -337,6 +337,7 @@ Mappings:
       PV64: ami-80707be2
       HVM64: ami-cb858fa9
       HVMG2: NOT_SUPPORTED
+
 Resources:
   JenkinsSecurityGroup:
     Type: AWS::EC2::SecurityGroup
