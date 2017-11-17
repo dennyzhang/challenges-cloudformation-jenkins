@@ -25,7 +25,6 @@ Table of Contents
       * [Scenario-502: ECS 2-Nodes Deployment II](#scenario-502-ecs-2-nodes-deployment-ii)
    * [Highlights](#highlights)
    * [Follow Up](#follow-up)
-   * [Useful Commands](#useful-commands)
    * [More Resources](#more-resources)
    * [License](#license)
 
@@ -145,30 +144,6 @@ Case study using AWS techstack to setup Jenkins env
 # Follow Up
 - TODO: What about backup, and Jenkins two-way sync
 - TODO: HA jenkins env
-
-# Useful Commands
-- Upload CF yaml files to AWS S3
-
-```
-s3cmd put cf-denny-jenkins-docker-aio.yml  s3://aws.dennyzhang.com/
-
-https://s3.amazonaws.com/aws.dennyzhang.com/cf-denny-jenkins-docker-aio.yml
-```
-- Use aws cli to create cloudformation stack
-
-```
-export stack_name="docker-cf-jenkins"
-export tmp_file="file://Scenario-104/cf-denny-jenkins-docker-aio.yml"
-aws cloudformation create-stack --template-body "$tmp_file" \
-    --stack-name "$stack_name" --parameters \
-    ParameterKey=KeyName,ParameterValue=tutorial \
-    ParameterKey=InstanceType,ParameterValue=t2.micro
-```
-
-```
-export stack_name="docker-cf-jenkins"
-aws cloudformation delete-stack --stack-name "$stack_name"
-```
 
 # More Resources
 - https://github.com/awslabs/startup-kit-templates
