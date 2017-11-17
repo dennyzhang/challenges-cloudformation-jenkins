@@ -7,13 +7,13 @@ File me [tickets](https://github.com/DennyZhang/chef-study/issues) or star [the 
 Table of Contents
 =================
 
-   * [Requirement](#requirement)
+   * [Requirements](#requirements)
    * [Verify Jenkins](#verify-jenkins)
    * [Userful Command](#userful-command)
 
 ![scenario-101-screenshot.png](../images/scenario-101-screenshot.png)
 
-# Requirement
+# Requirements
 
 1. Use cloudformation to start an EC2 instance
 2. Start Jenkins inside the EC2 instance

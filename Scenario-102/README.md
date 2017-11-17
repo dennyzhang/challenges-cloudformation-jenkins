@@ -7,14 +7,14 @@ File me [tickets](https://github.com/DennyZhang/chef-study/issues) or star [the 
 Table of Contents
 =================
 
-   * [Requirement](#requirement)
+   * [Requirements](#requirements)
    * [Procedure](#procedure)
    * [Verify Jenkins](#verify-jenkins)
    * [Userful Command](#userful-command)
 
 ![scenario-102-screenshot.png](../images/scenario-102-screenshot.png)
 
-# Requirement
+# Requirements
 1. Use cloudformation to start an EC2 instance with Jenkins installed
 2. In CF, configure a dedicated VPC. Only one source ip can connect jenkins port(8080)
 3. Setup Cloudwatch for Jenkins service. If it's down, send out slack email alert.
