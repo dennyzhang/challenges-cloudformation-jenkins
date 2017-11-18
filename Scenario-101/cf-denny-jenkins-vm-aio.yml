@@ -412,14 +412,16 @@ Resources:
             01_install_chef:
               # TODO: too long
               # TODO: better way to install chefdk
-              command: !Fn::Join
+              command:
+                !Join
                 - ''
                 - - 'wget -O /tmp/chefdk.rpm'
                   - 'https://packages.chef.io/files/stable/chefdk/2.3.4/el/7/chefdk-2.3.4-1.el7.x86_64.rpm'
                   - '&& sudo rpm -ivh /tmp/chefdk.rpm'
             02_chef_install_jenkins:
               # TODO: customize parameters
-              command: !Fn::Join
+              command:
+                !Join
                 - ''
                 - - 'sudo bash -ex /home/ec2-user/run_chef_solo.sh '
                   - '"jenkins-demo"'
