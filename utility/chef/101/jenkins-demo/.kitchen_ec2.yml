@@ -1,0 +1,30 @@
+---
+driver:
+  name: ec2
+  region: us-east-1
+
+transport:
+  ssh_key: ~/.ssh/<%= ENV.fetch('KEY_USER', "") %>
+  username: ["ec2-user"]
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 13.6.4
+  data_path: test/shared
+
+platforms:
+  - name: ubuntu-14.04
+    driver:
+      image_id: <%= ENV.fetch('EC2_IMAGE_ID', "ami-6869aa05") %>
+      instance_type: <%= ENV.fetch('EC2_INSTANCE_TYPE', "t2.micro") %>
+
+suites:
+  - name: default
+    run_list:
+      - recipe[apt::default]
+      - recipe[jenkins-demo::default]
+    attributes:
+        {jenkins_demo:
+                {
+                }
+        }

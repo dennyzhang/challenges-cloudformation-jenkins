@@ -1,0 +1,28 @@
+---
+driver:
+  name: digitalocean
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 13.6.4
+  data_path: test/shared
+
+platforms:
+  - name: jenkins-demo
+    driver_config:
+      region: sfo2
+      size: <%= ENV.fetch('DIGITALOCEAN_FLAVOR', "1gb") %>
+      private_networking: false
+      image: ubuntu-14-04-x64
+      server_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
+
+suites:
+  - name: default
+    run_list:
+      - recipe[apt::default]
+      - recipe[jenkins-demo::default]
+    attributes:
+        {jenkins_demo:
+                {
+                }
+        }

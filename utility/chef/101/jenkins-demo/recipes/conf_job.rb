@@ -9,7 +9,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-node['jenkins_mdm']['jenkins_jobs'].split(',').each do |job_name|
+node['jenkins_demo']['jenkins_jobs'].split(',').each do |job_name|
   config = File.join(Chef::Config[:file_cache_path], "#{job_name}.xml")
 
   template config do

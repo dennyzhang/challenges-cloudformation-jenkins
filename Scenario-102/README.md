@@ -13,7 +13,7 @@ Table of Contents
    * [Userful Command](#userful-command)
 
 ![scenario-102-screenshot.png](../images/scenario-102-screenshot.png)
-<a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns.png"></a>
+<a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
 # Requirements
 1. Use cloudformation to start an EC2 instance with Jenkins installed
@@ -58,4 +58,4 @@ curl -I http://localhost:8080
 
     aws cloudformation delete-stack --stack-name "$stack_name"
 ```
-<a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns.png"></a>
+<a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>

@@ -1,21 +1,10 @@
 ---
 driver:
-  name: docker
+  name: vagrant
 
 driver_config:
   instance_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
   hostname: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
-  use_sudo: false
-  privileged: true
-  remove_images: false
-  image: <%= ENV.fetch('IMAGE_NAME', "chef/chefdk") %>
-  forward:
-  - <%= ENV.fetch('DOCKER_PORT_FORWARD_PREFIX', "80") %>80:8080
-  # tls_verify: true
-  # tls_cacert: <%= ENV.fetch('TLS_FOLDER', "tls") %>/ca.pem
-  # tls_cert: <%= ENV.fetch('TLS_FOLDER', "tls") %>/cert.pem
-  # tls_key: <%= ENV.fetch('TLS_FOLDER', "tls") %>/key.pem
-  # socket: tcp://172.17.0.1:4243
 transport:
    username: kitchen
 
@@ -28,6 +17,10 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
+    # https://stackoverflow.com/questions/38677059/port-forwarding-not-working-with-test-kitchen-and-vagrant
+    driver_config:
+      network:
+        - ["forwarded_port", {guest: 8080, host: 8080}]
 
 suites:
   - name: default
