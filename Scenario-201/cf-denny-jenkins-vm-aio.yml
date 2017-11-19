@@ -428,7 +428,7 @@ Resources:
                 - - 'sudo bash -ex /home/ec2-user/run_chef_solo.sh '
                   - '"jenkins-demo"'
                   - ' '
-                  - '"/home/ec2-user/chef/aws-jenkins-study/utility/chef/101/jenkins-demo"'
+                  - '"/home/ec2-user/chef/aws-jenkins-study/utility/chef/201/jenkins-demo"'
               test: which chef-solo
 
     Properties:

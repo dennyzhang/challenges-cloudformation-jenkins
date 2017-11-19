@@ -1,61 +1,60 @@
-[![LinkedIn](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/linkedin.png)](https://www.linkedin.com/in/dennyzhang001) [![Slack](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/slack.png)](https://www.dennyzhang.com/slack) [![Github](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/github.png)](https://github.com/DennyZhang)
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Detail Requirements</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Hide port: Change to </a></li>
+<li><a href="#sec-1-2">1.2. For your scripts in UserData, create a dedicated folder. Thus we can better organize them</a></li>
+<li><a href="#sec-1-3">1.3. The whole process takes more than 10 minutes, I only acccept 5 minutes</a></li>
+<li><a href="#sec-1-4">1.4. Create a dedicated policy</a></li>
+<li><a href="#sec-1-5">1.5. Customize EC2 profile</a></li>
+<li><a href="#sec-1-6">1.6. Create Tags to manage the stack</a></li>
+<li><a href="#sec-1-7">1.7. When container restart/recreate, Jenkins configuration won't be lost</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Config Parameters</a></li>
+<li><a href="#sec-3">3. Useful Command</a></li>
+<li><a href="#sec-4">4. Tasks BreakDown</a></li>
+</ul>
+</div>
+</div>
 
-File me [tickets](https://github.com/DennyZhang/chef-study/issues) or star [the repo](https://github.com/DennyZhang/chef-study).
+-\*- mode:org; fill-column:70; coding:utf-8; -\*-  
 
-<a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
+# Detail Requirements<a id="sec-1" name="sec-1"></a>
 
-Table of Contents
-=================
+## Hide port: Change <http://XXX.XXX.XXX.XXX:8080> to <http://XXX.XXX.XXX.XXX:18080><a id="sec-1-1" name="sec-1-1"></a>
 
-   * [Requirements](#requirements)
-   * [Procedure](#procedure)
-   * [Verify Jenkins](#verify-jenkins)
-   * [Userful Command](#userful-command)
+## For your scripts in UserData, create a dedicated folder. Thus we can better organize them<a id="sec-1-2" name="sec-1-2"></a>
 
-![scenario-102-screenshot.png](../images/scenario-102-screenshot.png)
-<a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
+## The whole process takes more than 10 minutes, I only acccept 5 minutes<a id="sec-1-3" name="sec-1-3"></a>
 
-# Requirements
-1. Use cloudformation to start an EC2 instance with Jenkins installed
-2. In CF, configure a dedicated VPC. Only one source ip can connect jenkins port(8080)
-3. Setup Cloudwatch for Jenkins service. If it's down, send out slack email alert.
+## Create a dedicated policy<a id="sec-1-4" name="sec-1-4"></a>
 
-# Procedure
+## Customize EC2 profile<a id="sec-1-5" name="sec-1-5"></a>
 
-- Get cookbooks
-```
-docker exec -it my_chef sh
+## Create Tags to manage the stack<a id="sec-1-6" name="sec-1-6"></a>
 
-mkdir -p /tmp/berks_cookbooks
+## When container restart/recreate, Jenkins configuration won't be lost<a id="sec-1-7" name="sec-1-7"></a>
 
-cd /tmp/cookbooks/jenkins-demo/
-berks vendor /tmp/berks_cookbooks
-ls -lth /tmp/berks_cookbooks
-```
+# Config Parameters<a id="sec-2" name="sec-2"></a>
 
-- Apply Chef update
-```
-cd /tmp
-# From config/node.json, we specify to apply example cookbook
-chef-solo -c config/solo.rb -j config/node.json
+CF link: <https://s3.amazonaws.com/aws.dennyzhang.com/cf-denny-jenkins-docker-aio.yml>  
+Stack name: jenkins-docker-aio  
+JenkinsPassword:  
+JenkinsUser:  
 
-- After deployment, jenkins is up and running
-```
+# Useful Command<a id="sec-3" name="sec-3"></a>
 
-# Verify Jenkins
-curl -I http://localhost:8080
-
-# Userful Command
-- TODO: cleanup JenkinsUser and JenkinsPassword
-```
     export stack_name="docker-cf-jenkins"
-    export tmp_file="file://cf-denny-jenkins-vm-aio.yml"
+    export tmp_file="file://cf-denny-jenkins-docker-aio.yml"
     aws cloudformation create-stack --template-body "$tmp_file" \
         --stack-name "$stack_name" --parameters \
         ParameterKey=JenkinsUser,ParameterValue=username \
         ParameterKey=JenkinsPassword,ParameterValue=mypassword \
         ParameterKey=KeyName,ParameterValue=denny-ssh-key1
-
+    
     aws cloudformation delete-stack --stack-name "$stack_name"
-```
-<a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
+
+# Tasks BreakDown<a id="sec-4" name="sec-4"></a>
