@@ -153,19 +153,6 @@ Case study using AWS techstack to setup Jenkins env
 - https://github.com/awslabs/startup-kit-templates
 - https://github.com/awslabs
 
-Misc Requirements
-
-Setup Jenkins in AWS using cloud formation and your favorite config mgmt tool(Chef/Puppet)
-- Use cloud formation start EC2 VM
-- Use Chef to deploy Jenkins instance
-- Jenkins install sample jobs
-- [Optional] Setup ELB/ASG
-- [Optional] Security Hardening
-- [Optional] Monitoring/Alerting
-
-- TODO: create a minibook from this project
-- TODO: Update main doc for the detail requirements
-
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
