@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-18 23:20:51>
+## Updated: Time-stamp: <2017-11-18 23:42:07>
 ##-------------------------------------------------------------------
 set -e
 
@@ -39,8 +39,11 @@ function run_chef_solo() {
     cookbook_name=${3?}
     working_dir="/home/ec2-user/chef"
     cd "$working_dir"
+    # https://github.com/chef-cookbooks/jenkins/issues/659
+    # We need to reconfigure cache_path, due to an existing bug with jenkins cookbook
     cat > solo.rb << EOF
 cookbook_path [File.expand_path(File.join('$cookbook_folder', '..')), '$berks_cookbook_folder']
+cache_path '/tmp/cache'
 EOF
     cat > node.json <<EOF
 {

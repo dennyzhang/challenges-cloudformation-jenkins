@@ -51,7 +51,7 @@ curl -I http://localhost:8080
         ParameterKey=JenkinsUser,ParameterValue=username \
         ParameterKey=JenkinsPassword,ParameterValue=mypassword \
         ParameterKey=KeyName,ParameterValue=denny-ssh-key1
-u
-    aws cloudformation delete-stack --stack-name "$stack_name"
+
+     aws cloudformation delete-stack --stack-name "$stack_name"
 ```
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
