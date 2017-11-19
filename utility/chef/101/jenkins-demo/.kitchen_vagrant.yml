@@ -3,10 +3,11 @@ driver:
   name: vagrant
 
 driver_config:
-  instance_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
   hostname: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
+  # https://github.com/test-kitchen/kitchen-vagrant
+  memory: 1024
 transport:
-   username: kitchen
+  username: kitchen
 
 provisioner:
   name: chef_zero
@@ -16,11 +17,17 @@ provisioner:
       file_cache_path: "/var/chef/cache"
 
 platforms:
+  - name: centos-7
+    driver_config:
+      instance_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo-centos7") %>
+      network:
+        - ["forwarded_port", {guest: 8080, host: 18080}]
   - name: ubuntu-14.04
     # https://stackoverflow.com/questions/38677059/port-forwarding-not-working-with-test-kitchen-and-vagrant
     driver_config:
+      instance_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo-ubuntu1404") %>
       network:
-        - ["forwarded_port", {guest: 8080, host: 8080}]
+        - ["forwarded_port", {guest: 8080, host: 28080}]
 
 suites:
   - name: default

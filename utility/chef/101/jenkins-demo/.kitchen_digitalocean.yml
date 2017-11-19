@@ -8,13 +8,21 @@ provisioner:
   data_path: test/shared
 
 platforms:
-  - name: jenkins-demo
+  - name: jenkins-demo-centos7
+    driver_config:
+      region: sfo2
+      size: <%= ENV.fetch('DIGITALOCEAN_FLAVOR', "1gb") %>
+      private_networking: false
+      # https://github.com/test-kitchen/kitchen-digitalocean
+      image: centos-7-x64
+      server_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo-centos7") %>
+  - name: jenkins-demo-ubuntu1404
     driver_config:
       region: sfo2
       size: <%= ENV.fetch('DIGITALOCEAN_FLAVOR', "1gb") %>
       private_networking: false
       image: ubuntu-14-04-x64
-      server_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
+      server_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo-ubuntu1404") %>
 
 suites:
   - name: default

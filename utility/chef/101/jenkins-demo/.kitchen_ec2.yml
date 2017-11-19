@@ -5,7 +5,7 @@ driver:
 
 transport:
   ssh_key: ~/.ssh/<%= ENV.fetch('KEY_USER', "") %>
-  username: ["ec2-user"]
+  username: ec2-user
 
 provisioner:
   name: chef_zero
@@ -13,7 +13,22 @@ provisioner:
   data_path: test/shared
 
 platforms:
-  - name: ubuntu-14.04
+  - name: ubuntu-1404
+    driver:
+      # https://cloud-images.ubuntu.com/releases/14.04/release-20150506/
+      image_id: <%= ENV.fetch('EC2_IMAGE_ID', "ami-8d9e1cf7") %>
+      instance_type: <%= ENV.fetch('EC2_INSTANCE_TYPE', "t2.micro") %>
+    transport:
+      username: ubuntu
+  - name: centos-7
+    driver:
+      # https://wiki.centos.org/Cloud/AWS
+      # https://stackoverflow.com/questions/40835953/how-to-find-ami-id-of-centos-7-image-in-aws-marketplace
+      image_id: <%= ENV.fetch('EC2_IMAGE_ID', "ami-ae7bfdb8") %>
+      instance_type: <%= ENV.fetch('EC2_INSTANCE_TYPE', "t2.micro") %>
+    transport:
+      username: centos
+  - name: centos-ami
     driver:
       image_id: <%= ENV.fetch('EC2_IMAGE_ID', "ami-6869aa05") %>
       instance_type: <%= ENV.fetch('EC2_INSTANCE_TYPE', "t2.micro") %>

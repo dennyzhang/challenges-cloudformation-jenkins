@@ -3,14 +3,11 @@ driver:
   name: docker
 
 driver_config:
-  instance_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
-  hostname: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
   use_sudo: false
+  # because Docker and SystemD/Upstart
   privileged: true
   remove_images: false
-  image: <%= ENV.fetch('IMAGE_NAME', "chef/chefdk") %>
-  forward:
-  - <%= ENV.fetch('DOCKER_PORT_FORWARD_PREFIX', "80") %>80:8080
+  hostname: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo") %>
   # tls_verify: true
   # tls_cacert: <%= ENV.fetch('TLS_FOLDER', "tls") %>/ca.pem
   # tls_cert: <%= ENV.fetch('TLS_FOLDER', "tls") %>/cert.pem
@@ -27,7 +24,20 @@ provisioner:
       file_cache_path: "/var/chef/cache"
 
 platforms:
+  - name: centos-7
+    driver_config:
+      # https://hub.docker.com/r/dokken/centos-7/
+      instance_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo-centos7") %>
+      image: <%= ENV.fetch('IMAGE_NAME', "dokken/centos-7") %>
+      pid_one_command: /usr/lib/systemd/systemd
+      forward:
+        - <%= ENV.fetch('DOCKER_PORT_FORWARD_PREFIX', "180") %>80:8080
   - name: ubuntu-14.04
+    driver_config:
+      instance_name: <%= ENV.fetch('INSTANCE_NAME', "jenkins-demo-ubuntu1404") %>
+      image: <%= ENV.fetch('IMAGE_NAME', "ubuntu:14.04") %>
+      forward:
+        - <%= ENV.fetch('DOCKER_PORT_FORWARD_PREFIX', "280") %>80:8080
 
 suites:
   - name: default
