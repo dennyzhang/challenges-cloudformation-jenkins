@@ -40,7 +40,9 @@ Case study using AWS techstack to setup Jenkins env
 - See more: [Scenario-101](./Scenario-101)
 - Requirements:
 ```
-- TODO
+1. Start an EC2 instance by cloudformation
+2. Provision the instance as docker daemon
+3. Setup a docker container inside the instance
 ```
 
 ## Scenario-102: Docker Single-Node Deployment II
