@@ -43,7 +43,6 @@ Case study using AWS techstack to setup Jenkins env
 2. Start Jenkins inside the EC2 instance
 ```
 - See more: [Scenario-101](./Scenario-101)
-- TODO:
 
 ## Scenario-102: VM Single-Node Jenkins Deployment II
 - Objective: Besides Scenario-101, add an additional Jenkins user. And enable security and monitoring
