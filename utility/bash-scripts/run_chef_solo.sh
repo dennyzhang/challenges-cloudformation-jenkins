@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-18 23:42:07>
+## Updated: Time-stamp: <2017-11-18 23:44:40>
 ##-------------------------------------------------------------------
 set -e
 
@@ -43,7 +43,7 @@ function run_chef_solo() {
     # We need to reconfigure cache_path, due to an existing bug with jenkins cookbook
     cat > solo.rb << EOF
 cookbook_path [File.expand_path(File.join('$cookbook_folder', '..')), '$berks_cookbook_folder']
-cache_path '/tmp/cache'
+cache_path '/var/chef/cache'
 EOF
     cat > node.json <<EOF
 {
