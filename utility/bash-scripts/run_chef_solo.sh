@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-18 23:44:40>
+## Updated: Time-stamp: <2017-11-19 00:07:30>
 ##-------------------------------------------------------------------
 set -e
 
@@ -38,20 +38,22 @@ function run_chef_solo() {
     cookbook_folder=${2?}
     cookbook_name=${3?}
     working_dir="/home/ec2-user/chef"
+    parent_cookbook_folder=$(dirname "$cookbook_folder")
     cd "$working_dir"
     # https://github.com/chef-cookbooks/jenkins/issues/659
     # We need to reconfigure cache_path, due to an existing bug with jenkins cookbook
     cat > solo.rb << EOF
-cookbook_path [File.expand_path(File.join('$cookbook_folder', '..')), '$berks_cookbook_folder']
-cache_path '/var/chef/cache'
+cookbook_path ["$parent_cookbook_folder", "$berks_cookbook_folder"]
+file_cache_path "/var/chef/cache"
 EOF
     cat > node.json <<EOF
 {
-  "run_list": [ "recipe[$cookbook_name]" ]
+  "run_list": ["recipe[$cookbook_name]"]
 }
 EOF
-    log "Apply chef update: chef-solo -c solo.rb -j node.json"
-    sudo chef-solo -L "$LOG_FILE" -c solo.rb -j node.json
+    log "Apply chef-solo update"
+    chef-solo --config "${working_dir}/solo.rb" --log_level auto -L "$LOG_FILE" \
+              --force-formatter --no-color --json-attributes "${working_dir}/node.json"
 }
 
 [ -d /home/ec2-user/log ] || mkdir -p /home/ec2-user/log
