@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-19 00:07:30>
+## Updated: Time-stamp: <2017-11-19 00:14:58>
 ##-------------------------------------------------------------------
 set -e
 
@@ -52,7 +52,7 @@ EOF
 }
 EOF
     log "Apply chef-solo update"
-    chef-solo --config "${working_dir}/solo.rb" --log_level auto -L "$LOG_FILE" \
+    chef-solo --config "${working_dir}/solo.rb" -l debug -L "$LOG_FILE" \
               --force-formatter --no-color --json-attributes "${working_dir}/node.json"
 }
 
