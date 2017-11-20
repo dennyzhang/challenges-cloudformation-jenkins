@@ -34,7 +34,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2017-11-14 04:49:10 +0000</string>
+	<string>2017-11-20 00:29:10 +0000</string>
 	<key>Modifier</key>
 	<string>mac</string>
 	<key>NotesVisible</key>
@@ -897,8 +897,8 @@
 							<integer>43995</integer>
 							<key>Points</key>
 							<array>
-								<string>{424.55478445236554, 352.50551102775836}</string>
-								<string>{457.71917223298027, 352.41696128568901}</string>
+								<string>{424.55478445236554, 352.50551102775859}</string>
+								<string>{457.71917223298027, 352.416961285703}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -2751,8 +2751,8 @@ VM Deployment In AWS}</string>
 					<integer>44107</integer>
 					<key>Points</key>
 					<array>
-						<string>{443.82914346341778, 529.2576993796464}</string>
-						<string>{443.59072903512333, 493.4676794440353}</string>
+						<string>{443.82914346341778, 529.25769937964628}</string>
+						<string>{443.59405970024852, 493.96766835864275}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -2949,7 +2949,7 @@ VM Deployment In AWS}</string>
 					<key>Points</key>
 					<array>
 						<string>{244.38346088738348, 390.01548538602464}</string>
-						<string>{175.45330064946586, 470.15664021608819}</string>
+						<string>{175.45329611659861, 470.15664018473882}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -5382,8 +5382,8 @@ VM Deployment In AWS}</string>
 					<integer>44108</integer>
 					<key>Points</key>
 					<array>
-						<string>{403.66415808369635, 350.7539728424232}</string>
-						<string>{301.16857598255132, 350.97974431524386}</string>
+						<string>{403.73088893010555, 350.98944429229755}</string>
+						<string>{301.16846284599836, 353.10405906210997}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -5581,7 +5581,7 @@ VM Deployment In AWS}</string>
 					<key>Points</key>
 					<array>
 						<string>{232.52630936795236, 217.05120038258531}</string>
-						<string>{233.42075815080005, 281.61613094843534}</string>
+						<string>{233.40277285049982, 278.93756125525323}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -5620,8 +5620,8 @@ VM Deployment In AWS}</string>
 							<integer>44073</integer>
 							<key>Points</key>
 							<array>
-								<string>{206.714278482965, 351.04336686481332}</string>
-								<string>{243.40145686705344, 351.04336686481332}</string>
+								<string>{206.714278482965, 353.72193828198078}</string>
+								<string>{243.40145686705344, 353.72193828198078}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -5645,7 +5645,7 @@ VM Deployment In AWS}</string>
 						</dict>
 						<dict>
 							<key>Bounds</key>
-							<string>{{164.38403251128526, 340.42692895282602}, {42.330245971679723, 21.232875823974609}}</string>
+							<string>{{164.38403251128526, 343.10550036999348}, {42.330245971679723, 21.232875823974609}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>ID</key>
@@ -5683,7 +5683,7 @@ VM Deployment In AWS}</string>
 						</dict>
 						<dict>
 							<key>Bounds</key>
-							<string>{{243.90145685095322, 326.78571289443238}, {56.767120361328175, 48.515308380126953}}</string>
+							<string>{{243.90145685095322, 329.46428431159984}, {56.767120361328175, 48.515308380126953}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>ID</key>
@@ -5708,7 +5708,7 @@ VM Deployment In AWS}</string>
 						</dict>
 						<dict>
 							<key>Bounds</key>
-							<string>{{158.07388785208792, 299.38621278156137}, {150.10366821289062, 103.31430816650391}}</string>
+							<string>{{158.07388785208792, 306.83596339323401}, {150.10366821289062, 93.771949768066406}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FontInfo</key>
@@ -5724,6 +5724,8 @@ VM Deployment In AWS}</string>
 							<dict>
 								<key>ID</key>
 								<integer>44073</integer>
+								<key>Offset</key>
+								<real>4.7135699787759222e-09</real>
 								<key>Position</key>
 								<real>0.71990936994552612</real>
 								<key>RotationType</key>
@@ -6177,7 +6179,7 @@ VM Deployment In AWS}</string>
 						</dict>
 						<dict>
 							<key>Bounds</key>
-							<string>{{150.56389821449937, 282.11608262409067}, {167.64437866210938, 137.85456848144531}}</string>
+							<string>{{150.56389821449937, 279.43751111599568}, {167.64437866210938, 137.85456848144531}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>ID</key>
@@ -6186,6 +6188,8 @@ VM Deployment In AWS}</string>
 							<dict>
 								<key>ID</key>
 								<integer>44073</integer>
+								<key>Offset</key>
+								<real>5.3571429252624512</real>
 								<key>Position</key>
 								<real>0.75426375865936279</real>
 								<key>RotationType</key>
@@ -7427,8 +7431,8 @@ Docker Deployment In AWS}</string>
 					<integer>44107</integer>
 					<key>Points</key>
 					<array>
-						<string>{501.16586855515561, 443.11949990549175}</string>
-						<string>{501.94643532545592, 395.93196554877318}</string>
+						<string>{501.16586855515561, 443.11949990549164}</string>
+						<string>{501.9381655564647, 396.43189716672396}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -7586,8 +7590,8 @@ Docker Deployment In AWS}</string>
 					<integer>44103</integer>
 					<key>Points</key>
 					<array>
-						<string>{398.72866839117023, 376.18261706244817}</string>
-						<string>{460.21442056150971, 374.76320408975545}</string>
+						<string>{398.7286683968922, 376.18264044764595}</string>
+						<string>{460.71428810865905, 374.75169630744017}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -9435,7 +9439,7 @@ Docker Deployment In AWS}</string>
 	<key>WindowInfo</key>
 	<dict>
 		<key>CurrentSheet</key>
-		<integer>3</integer>
+		<integer>2</integer>
 		<key>ExpandedCanvases</key>
 		<array>
 			<dict>
