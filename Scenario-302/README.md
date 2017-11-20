@@ -10,20 +10,19 @@ Table of Contents
    * [Requirements](#requirements)
    * [Procedures](#procedures)
 
-![scenario-102-screenshot.png](../images/scenario-102-screenshot.png)
+![scenario-302-screenshot.png](../images/scenario-302-screenshot.png)
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
 # Requirements
-1. Finish Scenario-201, create a jenkins user by code.
-2. Anonymous user can't open the jenkins. Only login user can.
-3. When Jenkins is down, get slack notification
-4. Make sure Jenkins GUI changes can be seamless tracked in git repo.
+1. Start 1 jenkins master and 1 jenkins slave
+2. Enable autoscaling
+3. Customized VPC to allow limited network acess
 
 # Procedures
 - Use CF to setup the env
 ```
     export stack_name="docker-cf-jenkins"
-    export tmp_file="file://cf-denny-jenkins-vm-aio.yml"
+    export tmp_file="file://cf-denny-jenkins-vm-2node2.yml"
     aws cloudformation create-stack --template-body "$tmp_file" \
         --stack-name "$stack_name" --parameters \
         ParameterKey=JenkinsUser,ParameterValue=username \

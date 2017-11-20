@@ -13,19 +13,16 @@ Table of Contents
 
    * [aws-jenkins-study](#aws-jenkins-study)
    * [Scenarios](#scenarios)
-      * [Scenario-101: Docker Single-Node Deployment I](#scenario-101-docker-single-node-deployment-i)
-      * [Scenario-102: Docker Single-Node Deployment II](#scenario-102-docker-single-node-deployment-ii)
+      * [Scenario-101: Docker Single-Node Jenkins Deployment I](#scenario-101-docker-single-node-jenkins-deployment-i)
+      * [Scenario-102: Docker Single-Node Jenkins Deployment II](#scenario-102-docker-single-node-jenkins-deployment-ii)
       * [Scenario-201: VM Single-Node Jenkins Deployment I](#scenario-201-vm-single-node-jenkins-deployment-i)
       * [Scenario-202: VM Single-Node Jenkins Deployment II](#scenario-202-vm-single-node-jenkins-deployment-ii)
       * [Scenario-203: VM Single-Node Jenkins Deployment III](#scenario-203-vm-single-node-jenkins-deployment-iii)
-      * [Scenario-301: VM 2-Nodes Deployment I](#scenario-301-vm-2-nodes-deployment-i)
-      * [Scenario-302: VM 2-Nodes Deployment II](#scenario-302-vm-2-nodes-deployment-ii)
-      * [Scenario-401: ECS Single-Node Deployment](#scenario-401-ecs-single-node-deployment)
-      * [Scenario-501: ECS 2-Nodes Deployment I](#scenario-501-ecs-2-nodes-deployment-i)
-      * [Scenario-502: ECS 2-Nodes Deployment II](#scenario-502-ecs-2-nodes-deployment-ii)
-   * [Highlights](#highlights)
+      * [Scenario-301: VM 2-Nodes Jenkins Deployment I](#scenario-301-vm-2-nodes-jenkins-deployment-i)
+      * [Scenario-302: VM 2-Nodes Jenkins Deployment II](#scenario-302-vm-2-nodes-jenkins-deployment-ii)
+      * [Scenario-401: ECS Jenkins Deployment I](#scenario-401-ecs-jenkins-deployment-i)
+      * [Scenario-402: ECS Jenkins Deployment II](#scenario-402-ecs-jenkins-deployment-ii)
    * [Follow Up](#follow-up)
-   * [More Resources](#more-resources)
    * [License](#license)
 
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
@@ -34,48 +31,52 @@ Case study using AWS techstack to setup Jenkins env
 
 # Scenarios
 
-## Scenario-101: Docker Single-Node Deployment I
-- Objective: Immutable infra would be faster and reliable, compared to conf mgmt tool.
-- Main Tech: Cloudformation, Docker
-- See more: [Scenario-101](./Scenario-101)
+## Scenario-101: Docker Single-Node Jenkins Deployment I
+- Objective: Deploy Docker container in AWS
 - Requirements:
 ```
 1. Start an EC2 instance by cloudformation
 2. Provision the instance as docker daemon
-3. Setup a docker container inside the instance
+3. Setup Jenkins container inside the instance
 ```
-
-## Scenario-102: Docker Single-Node Deployment II
-- Objective: Use docker to deploy customized Jenkins
 - Main Tech: Cloudformation, Docker
-- See more: [Scenario-102](./Scenario-102)
+- See more: [Scenario-101](./Scenario-101)
+
+## Scenario-102: Docker Single-Node Jenkins Deployment II
+- Objective: Customize Jenkins docker deployment in AWS
 - Requirements:
 ```
-- TODO
+1. Finish Scenario-101, create a jenkins user by code.
+2. Anonymous user can't open the jenkins. Only login user can.
+3. When Jenkins is down, get alerts
+4. Make sure Jenkins GUI changes can be seamless tracked in git repo.
 ```
+- Main Tech: Cloudformation, Docker
+- See more: [Scenario-102](./Scenario-102)
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_aio.png)
 
 ## Scenario-201: VM Single-Node Jenkins Deployment I
 - Objective: We need a live Jenkins env in public Cloud. Fast and easy.
-- Main Tech: Cloudformation, Chef
 - Requirements:
 ```
 1. Use cloudformation to start an EC2 instance
 2. Start Jenkins inside the EC2 instance
 ```
+- Main Tech: Cloudformation, Chef
 - See more: [Scenario-201](./Scenario-201)
 
 ## Scenario-202: VM Single-Node Jenkins Deployment II
-- Objective: Besides Scenario-201, add an additional Jenkins user. And enable security and monitoring
-- Main Tech: Cloudformation, Chef, VPC, CloudWatch
-- See more: [Scenario-202](./Scenario-202)
+- Objective: Customize Jenkins docker deployment in AWS
 - Requirements:
 ```
-1. Use cloudformation to start an EC2 instance with Jenkins installed
-2. In CF, configure a dedicated VPC. Only one source ip can connect jenkins port(8080)
-3. Setup Cloudwatch for Jenkins service. If it's down, send out slack email alert.
+1. Finish Scenario-201, create a jenkins user by code.
+2. Anonymous user can't open the jenkins. Only login user can.
+3. When Jenkins is down, get slack notification
+4. Make sure Jenkins GUI changes can be seamless tracked in git repo.
 ```
+- Main Tech: Cloudformation, Chef, VPC, CloudWatch
+- See more: [Scenario-202](./Scenario-202)
 - TODO
 
 ## Scenario-203: VM Single-Node Jenkins Deployment III
@@ -89,69 +90,70 @@ Case study using AWS techstack to setup Jenkins env
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_aio.png)
 
-## Scenario-301: VM 2-Nodes Deployment I
+## Scenario-301: VM 2-Nodes Jenkins Deployment I
 - Objective: Avoid SPOF by adding 2 Jenkins instance
-- Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
-- See more: [Scenario-301](./Scenario-301)
 - Requirements:
 ```
-- TODO
+1. Start 2 Jenkins instance behind one ALB
+2. Enable autoscaling with mininum instance 2 and max 4.
 ```
+- Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
+- See more: [Scenario-301](./Scenario-301)
+- TODO
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png)
 
-## Scenario-302: VM 2-Nodes Deployment II
-- Objective: Besides Scenario-106, share volume for Jenkins HOME for 2 instances
+## Scenario-302: VM 2-Nodes Jenkins Deployment II
+- Objective: Jenkins cluster deployment
+- Requirements:
+```
+1. Start 1 jenkins master and 1 jenkins slave
+2. Enable autoscaling
+3. Customized VPC to allow limited network acess
+```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration, ALB
 - See more: [Scenario-302](./Scenario-302)
+- TODO
+
+## Scenario-401: ECS Jenkins Deployment I
+- Objective: Get exposed to docker orchestration service.
 - Requirements:
 ```
-- TODO
+1. Start ECS with 1 node
+2. Install a single Jenkins instance
 ```
-
-## Scenario-401: ECS Single-Node Deployment
-- Objective: Get exposed to docker orchestration service.
 - Main Tech: Cloudformation, ECS, EBS
 - See more: [Scenario-401](./Scenario-401)
-- Requirements:
-```
 - TODO
-```
 
-## Scenario-501: ECS 2-Nodes Deployment I
-- Objective: Deploy 2 nodes Jenkins cluster. With 3 Jenkins instance
-- Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, ALB
-- See more: [Scenario-501](./Scenario-501)
+## Scenario-402: ECS Jenkins Deployment II
+- Objective: Deploy a 2-nodes Jenkins cluster
 - Requirements:
 ```
-- TODO
+1. Start ECS with 2 node
+2. Start Jenkins service with 2 instances managed by ECS
+3. Enable ALB for two Jenkins instances
 ```
+- Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, ALB
+- See more: [Scenario-402](./Scenario-402)
+- TODO
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_2nodes.png)
 
-## Scenario-502: ECS 2-Nodes Deployment II
-- Objective: Deploy Jenkins cluster. Stable: make sure no SPOF. Scalable: when users grow autoscaling take effect
-- Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, EFS, ALB
-- See more: [Scenario-502](./Scenario-502)
-- Requirements:
-```
-- TODO
-```
-
-# Highlights
+# Follow Up
 - **Principle**: 1. Fully automated. 2. Improve availability
 - TODO: How to verify deployment quickly: use docker
 - TODO: How to verify the Jenkins deployment: use serverspec
 - TODO: How to test cluster env: use kitchen converge
 - TODO: How to test customization: multiple kitchen
-
-# Follow Up
 - TODO: What about backup, and Jenkins two-way sync
 - TODO: HA jenkins env
 
-# More Resources
-- https://github.com/awslabs/startup-kit-templates
-- https://github.com/awslabs
+- More Resources:
+```
+https://github.com/awslabs/startup-kit-templates
+https://github.com/awslabs
+```
 
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>

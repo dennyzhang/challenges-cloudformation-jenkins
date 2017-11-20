@@ -7,15 +7,15 @@ Table of Contents
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
 # Requirements
-1. Start an EC2 instance by cloudformation
-2. Provision the instance as docker daemon
-3. Setup Jenkins container inside the instance
+1. Start ECS with 2 node
+2. Start Jenkins service with 2 instances managed by ECS
+3. Enable ALB for two Jenkins instances
 
 # Procedures
 - Use CF to setup the env
 ```
     export stack_name="docker-cf-jenkins"
-    export tmp_file="file://cf-denny-jenkins-docker-aio.yml"
+    export tmp_file="file://cf-denny-jenkins-ecs-2nodes.yml"
     aws cloudformation create-stack --template-body "$tmp_file" \
         --stack-name "$stack_name" --parameters \
         ParameterKey=JenkinsUser,ParameterValue=username \
