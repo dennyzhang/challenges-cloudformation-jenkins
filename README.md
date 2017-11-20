@@ -130,6 +130,7 @@ Case study using AWS techstack to setup Jenkins env
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_2nodes.png"/> </a>
 
+<a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 # Follow Up
 - **Principle**:
 ```
@@ -148,8 +149,6 @@ Case study using AWS techstack to setup Jenkins env
 https://github.com/awslabs/startup-kit-templates
 https://github.com/awslabs
 ```
-
-<a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
