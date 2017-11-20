@@ -402,7 +402,7 @@ Resources:
             yum:
               tmux: []
           sources:
-              /home/ec2-user/chef/aws-jenkins-study: 'https://github.com/DennyZhang/aws-jenkins-study/tarball/master'
+              /home/ec2-user/chef/chef-study: 'https://github.com/DennyZhang/chef-study/tarball/master'
           files:
             /home/ec2-user/run_chef_solo.sh:
               source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
@@ -425,7 +425,7 @@ Resources:
                 - - 'sudo bash -ex /home/ec2-user/run_chef_solo.sh '
                   - '"jenkins-demo"'
                   - ' '
-                  - '"/home/ec2-user/chef/aws-jenkins-study/utility/chef/101/jenkins-demo"'
+                  - '"/home/ec2-user/chef/chef-study/Scenario-301/cookbooks/jenkins-demo"'
               test: which chef-solo
 
     Properties:
