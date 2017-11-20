@@ -90,6 +90,7 @@ Case study using AWS techstack to setup Jenkins env
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
 - See more: [Scenario-301](./Scenario-301)
 - TODO
+- TODO: how the 2 Jenkins instance gonna to coordinate with each other?
 
 ## Scenario-302: VM 2-Nodes Jenkins Deployment II
 - Objective: Jenkins cluster deployment
