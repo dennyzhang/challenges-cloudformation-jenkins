@@ -141,10 +141,17 @@ Case study using AWS techstack to setup Jenkins env
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_2nodes.png)
 
 # Follow Up
-- **Principle**: 1. Fully automated. 2. Improve availability
+- **Principle**:
+```
+1. Fully automated. 2. Improve availability
+```
+
+- Future Improvements:
+```
 - TODO: What about backup, and Jenkins two-way sync
 - TODO: HA jenkins env
 - TODO: How to test customization: multiple kitchen
+```
 
 - More Resources:
 ```
