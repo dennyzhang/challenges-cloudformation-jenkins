@@ -6,6 +6,8 @@ Table of Contents
 
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
+![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_aio.png)
+
 # Requirements
 1. Start an EC2 instance by cloudformation
 2. Provision the instance as docker daemon
