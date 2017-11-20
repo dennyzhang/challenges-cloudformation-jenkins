@@ -124,7 +124,7 @@ Case study using AWS techstack to setup Jenkins env
 2. Start Jenkins service with 2 instances managed by ECS
 3. Enable ALB for two Jenkins instances
 ```
-- Main Tech: Cloudformation, ECS, ELB, CloudWatch, Lambda, ALB
+- Main Tech: Cloudformation, ECS, ELB, CloudWatch, ALB
 - See more: [Scenario-402](./Scenario-402)
 - TODO
 
