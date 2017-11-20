@@ -17,7 +17,6 @@ Table of Contents
       * [Scenario-102: Docker Single-Node Jenkins Deployment II](#scenario-102-docker-single-node-jenkins-deployment-ii)
       * [Scenario-201: VM Single-Node Jenkins Deployment I](#scenario-201-vm-single-node-jenkins-deployment-i)
       * [Scenario-202: VM Single-Node Jenkins Deployment II](#scenario-202-vm-single-node-jenkins-deployment-ii)
-      * [Scenario-203: VM Single-Node Jenkins Deployment III](#scenario-203-vm-single-node-jenkins-deployment-iii)
       * [Scenario-301: VM 2-Nodes Jenkins Deployment I](#scenario-301-vm-2-nodes-jenkins-deployment-i)
       * [Scenario-302: VM 2-Nodes Jenkins Deployment II](#scenario-302-vm-2-nodes-jenkins-deployment-ii)
       * [Scenario-401: ECS Jenkins Deployment I](#scenario-401-ecs-jenkins-deployment-i)
@@ -78,15 +77,6 @@ Case study using AWS techstack to setup Jenkins env
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch
 - See more: [Scenario-202](./Scenario-202)
 - TODO
-
-## Scenario-203: VM Single-Node Jenkins Deployment III
-- Objective: Besides Scenario-202, get slack notification when Jenkins server is down.
-- Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration
-- See more: [Scenario-203](./Scenario-203)
-- Requirements:
-```
-- TODO
-```
 
 ![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_aio.png)
 
