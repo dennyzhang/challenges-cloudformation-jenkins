@@ -53,7 +53,7 @@ Case study using AWS techstack to setup Jenkins env
 - Main Tech: Cloudformation, Docker
 - See more: [Scenario-102](./Scenario-102)
 
-![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_aio.png)
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_aio.png"/> </a>
 
 ## Scenario-201: VM Single-Node Jenkins Deployment I
 - Objective: We need a live Jenkins env in public Cloud. Fast and easy.
@@ -78,7 +78,7 @@ Case study using AWS techstack to setup Jenkins env
 - See more: [Scenario-202](./Scenario-202)
 - TODO
 
-![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_aio.png)
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_aio.png"/> </a>
 
 ## Scenario-301: VM 2-Nodes Jenkins Deployment I
 - Objective: Avoid SPOF by adding 2 Jenkins instance
@@ -103,7 +103,7 @@ Case study using AWS techstack to setup Jenkins env
 - See more: [Scenario-302](./Scenario-302)
 - TODO
 
-![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png)
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png"/> </a>
 
 ## Scenario-401: ECS Jenkins Deployment I
 - Objective: Get exposed to docker orchestration service.

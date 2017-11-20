@@ -10,7 +10,7 @@ Table of Contents
    * [Requirements](#requirements)
    * [Procedures](#procedures)
 
-![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png)
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png"/> </a>
 
 # Requirements
 1. Start 1 jenkins master and 1 jenkins slave
