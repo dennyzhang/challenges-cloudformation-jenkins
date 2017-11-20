@@ -127,6 +127,7 @@ Case study using AWS techstack to setup Jenkins env
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, ALB
 - See more: [Scenario-402](./Scenario-402)
 - TODO
+- TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_2nodes.png"/> </a>
 
