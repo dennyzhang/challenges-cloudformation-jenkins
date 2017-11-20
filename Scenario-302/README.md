@@ -15,8 +15,8 @@ Table of Contents
 
 # Requirements
 1. Start 1 jenkins master and 1 jenkins slave
-2. Enable autoscaling
-3. Customized VPC to allow limited network acess
+2. Enable auto-scaling
+3. Customized VPC to allow limited network access
 
 # Procedures
 - Use CF to setup the env

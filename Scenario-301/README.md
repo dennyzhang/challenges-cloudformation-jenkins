@@ -14,9 +14,8 @@ Table of Contents
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
 # Requirements
-
 1. Start 2 Jenkins instance behind one ALB
-2. Enable autoscaling with mininum instance 2 and max 4.
+2. Enable autoscaling with minimum instance 2 and max 4.
 
 # Procedures
 - Use CF to setup the env

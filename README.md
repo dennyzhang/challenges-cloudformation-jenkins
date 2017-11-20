@@ -95,7 +95,7 @@ Case study using AWS techstack to setup Jenkins env
 - Requirements:
 ```
 1. Start 2 Jenkins instance behind one ALB
-2. Enable autoscaling with mininum instance 2 and max 4.
+2. Enable autoscaling with minimum instance 2 and max 4.
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
 - See more: [Scenario-301](./Scenario-301)
@@ -108,8 +108,8 @@ Case study using AWS techstack to setup Jenkins env
 - Requirements:
 ```
 1. Start 1 jenkins master and 1 jenkins slave
-2. Enable autoscaling
-3. Customized VPC to allow limited network acess
+2. Enable auto-scaling
+3. Customized VPC to allow limited network access
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration, ALB
 - See more: [Scenario-302](./Scenario-302)
@@ -142,12 +142,9 @@ Case study using AWS techstack to setup Jenkins env
 
 # Follow Up
 - **Principle**: 1. Fully automated. 2. Improve availability
-- TODO: How to verify deployment quickly: use docker
-- TODO: How to verify the Jenkins deployment: use serverspec
-- TODO: How to test cluster env: use kitchen converge
-- TODO: How to test customization: multiple kitchen
 - TODO: What about backup, and Jenkins two-way sync
 - TODO: HA jenkins env
+- TODO: How to test customization: multiple kitchen
 
 - More Resources:
 ```
