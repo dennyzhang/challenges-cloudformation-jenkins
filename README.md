@@ -134,7 +134,8 @@ Case study using AWS techstack to setup Jenkins env
 # Follow Up
 - **Principle**:
 ```
-1. Fully automated. 2. Improve availability
+1. Fully automated
+2. Improve HA
 ```
 
 - Future Improvements:
