@@ -91,8 +91,6 @@ Case study using AWS techstack to setup Jenkins env
 - See more: [Scenario-301](./Scenario-301)
 - TODO
 
-![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png)
-
 ## Scenario-302: VM 2-Nodes Jenkins Deployment II
 - Objective: Jenkins cluster deployment
 - Requirements:
@@ -104,6 +102,8 @@ Case study using AWS techstack to setup Jenkins env
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration, ALB
 - See more: [Scenario-302](./Scenario-302)
 - TODO
+
+![](https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png)
 
 ## Scenario-401: ECS Jenkins Deployment I
 - Objective: Get exposed to docker orchestration service.
