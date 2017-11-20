@@ -10,7 +10,7 @@ Table of Contents
    * [Requirements](#requirements)
    * [Procedures](#procedures)
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_aio.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_aio.png"/> </a>
 
 # Requirements
 1. Start 2 Jenkins instance behind one ALB

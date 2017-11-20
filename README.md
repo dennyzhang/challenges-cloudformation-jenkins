@@ -53,7 +53,7 @@ Case study using AWS techstack to setup Jenkins env
 - Main Tech: Cloudformation, Docker
 - See more: [Scenario-102](./Scenario-102)
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_aio.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_docker_aio.png"/> </a>
 
 ## Scenario-201: VM Single-Node Jenkins Deployment I
 - Objective: We need a live Jenkins env in public Cloud. Fast and easy.
@@ -78,7 +78,7 @@ Case study using AWS techstack to setup Jenkins env
 - See more: [Scenario-202](./Scenario-202)
 - TODO
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_aio.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_aio.png"/> </a>
 
 ## Scenario-301: VM 2-Nodes Jenkins Deployment I
 - Objective: Avoid SPOF by adding 2 Jenkins instance
@@ -104,7 +104,7 @@ Case study using AWS techstack to setup Jenkins env
 - See more: [Scenario-302](./Scenario-302)
 - TODO
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_vm_2nodes.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_2nodes.png"/> </a>
 
 ## Scenario-401: ECS Jenkins Deployment I
 - Objective: Get exposed to docker orchestration service.
@@ -130,7 +130,7 @@ Case study using AWS techstack to setup Jenkins env
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/misc/jenkins_docker_2nodes.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_docker_2nodes.png"/> </a>
 
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 # Follow Up
