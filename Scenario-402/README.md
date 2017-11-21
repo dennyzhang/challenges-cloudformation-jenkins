@@ -4,7 +4,7 @@ Table of Contents
    * [Requirements](#requirements)
    * [Procedures](#procedures)
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_docker_2nodes.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes.png"/> </a>
 
 # Requirements
 1. Start ECS with 2 node

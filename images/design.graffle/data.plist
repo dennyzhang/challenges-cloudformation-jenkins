@@ -34,7 +34,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2017-11-20 00:44:26 +0000</string>
+	<string>2017-11-21 16:07:13 +0000</string>
 	<key>Modifier</key>
 	<string>mac</string>
 	<key>NotesVisible</key>
@@ -733,8 +733,8 @@
 					<integer>44118</integer>
 					<key>Points</key>
 					<array>
-						<string>{452.00319437760834, 349.0790716397791}</string>
-						<string>{450.90579187592169, 311.7234109460336}</string>
+						<string>{452.00343353570901, 349.07927102480818}</string>
+						<string>{450.90665947978272, 311.72341043715107}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4626,6 +4626,84 @@ VM Deployment In AWS}</string>
 			<key>GraphicsList</key>
 			<array>
 				<dict>
+					<key>Bounds</key>
+					<string>{{296.14285594163817, 541.90511654697468}, {60.538604736328125, 16.877662658691406}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>ID</key>
+					<integer>44110</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\fs22 \cf0 Slave}</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{137.46428516309354, 541.90513397038603}, {60.538604736328125, 16.877662658691406}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>ID</key>
+					<integer>44109</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\fs22 \cf0 Master}</string>
+					</dict>
+				</dict>
+				<dict>
 					<key>Class</key>
 					<string>LineGraphic</string>
 					<key>Head</key>
@@ -4674,8 +4752,8 @@ VM Deployment In AWS}</string>
 					<integer>44107</integer>
 					<key>Points</key>
 					<array>
-						<string>{443.82914346341778, 529.25769937964628}</string>
-						<string>{443.59405970024852, 493.96766835864275}</string>
+						<string>{443.82914346341778, 529.2576993796464}</string>
+						<string>{443.59072903512333, 493.4676794440353}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4872,7 +4950,7 @@ VM Deployment In AWS}</string>
 					<key>Points</key>
 					<array>
 						<string>{244.38346088738348, 390.01548538602464}</string>
-						<string>{175.45329611659861, 470.15664018473882}</string>
+						<string>{177.35126117260694, 470.15219451588132}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4906,8 +4984,8 @@ VM Deployment In AWS}</string>
 					<integer>44061</integer>
 					<key>Points</key>
 					<array>
-						<string>{244.5890156202818, 390.47127838978571}</string>
-						<string>{280.49111506209255, 470.0798844052282}</string>
+						<string>{244.38346088738348, 390.01548538602464}</string>
+						<string>{279.49793059864385, 470.07778211231033}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4947,7 +5025,7 @@ VM Deployment In AWS}</string>
 							<key>Points</key>
 							<array>
 								<string>{110.13600489628865, 521.85041143554793}</string>
-								<string>{144.42354937291736, 522.08543237998629}</string>
+								<string>{144.42354336703124, 522.0223941231086}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -5016,7 +5094,7 @@ VM Deployment In AWS}</string>
 							<array>
 								<dict>
 									<key>Bounds</key>
-									<string>{{144.92353763897563, 502.86470106607396}, {46.438350677490234, 38.766624450683594}}</string>
+									<string>{{144.92353763897563, 501.12132495451579}, {46.438350677490234, 42.029345740923823}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>ID</key>
@@ -5041,7 +5119,7 @@ VM Deployment In AWS}</string>
 								</dict>
 								<dict>
 									<key>Bounds</key>
-									<string>{{69.642856846354448, 470.53571228242043}, {140.95889282226562, 81.396499633789062}}</string>
+									<string>{{69.642856846354448, 470.53571228242038}, {140.95889282226562, 88.247085571289006}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>FontInfo</key>
@@ -5618,7 +5696,7 @@ VM Deployment In AWS}</string>
 								</dict>
 								<dict>
 									<key>Bounds</key>
-									<string>{{228.57142759829145, 470.53567740898922}, {140.95889282226562, 81.396499633789062}}</string>
+									<string>{{228.57142759829145, 470.53567740898916}, {140.95889282226562, 88.247085571289062}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>FontInfo</key>
@@ -7305,8 +7383,8 @@ VM Deployment In AWS}</string>
 					<integer>44108</integer>
 					<key>Points</key>
 					<array>
-						<string>{403.73088893010555, 350.98944429229755}</string>
-						<string>{301.16846284599836, 353.10405906210997}</string>
+						<string>{403.73179279448721, 350.9913610909714}</string>
+						<string>{301.16846920509897, 353.12150986384745}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -7504,7 +7582,7 @@ VM Deployment In AWS}</string>
 					<key>Points</key>
 					<array>
 						<string>{232.52630936795236, 217.05120038258531}</string>
-						<string>{233.40277285049982, 278.93756125525323}</string>
+						<string>{233.40279823001279, 278.93756124975221}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -9304,6 +9382,84 @@ Docker Deployment In AWS}</string>
 			<key>GraphicsList</key>
 			<array>
 				<dict>
+					<key>Bounds</key>
+					<string>{{319.64285578198576, 418.6355683525382}, {60.538604736328125, 16.877662658691406}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>ID</key>
+					<integer>44110</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\fs22 \cf0 Slave}</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{143.6785708849805, 418.63555528497238}, {60.538604736328125, 16.877662658691406}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>ID</key>
+					<integer>44109</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\fs22 \cf0 Master}</string>
+					</dict>
+				</dict>
+				<dict>
 					<key>Class</key>
 					<string>LineGraphic</string>
 					<key>Head</key>
@@ -9354,8 +9510,8 @@ Docker Deployment In AWS}</string>
 					<integer>44107</integer>
 					<key>Points</key>
 					<array>
-						<string>{501.16586855515561, 443.11949990549164}</string>
-						<string>{501.9381655564647, 396.43189716672396}</string>
+						<string>{501.16586855515561, 443.11949990549175}</string>
+						<string>{501.94643532545592, 395.93196554877318}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -9513,8 +9669,8 @@ Docker Deployment In AWS}</string>
 					<integer>44103</integer>
 					<key>Points</key>
 					<array>
-						<string>{398.7286683968922, 376.18264044764595}</string>
-						<string>{460.71428810865905, 374.75169630744017}</string>
+						<string>{398.72866839689215, 376.18264044764595}</string>
+						<string>{460.21442127104689, 374.76323578265215}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -11362,7 +11518,7 @@ Docker Deployment In AWS}</string>
 	<key>WindowInfo</key>
 	<dict>
 		<key>CurrentSheet</key>
-		<integer>0</integer>
+		<integer>4</integer>
 		<key>ExpandedCanvases</key>
 		<array/>
 		<key>Frame</key>
