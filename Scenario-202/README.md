@@ -28,7 +28,7 @@ Table of Contents
     export JENKINS_USER="jenkins123"
     export JENKINS_PASSWORD="password123"
     # The IP address range that can be used to Access Jenkins URL
-    [ -n "$JENKINS_LOCATION" ] || export SSH_KEY_NAME="0.0.0.0/0"
+    [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
     # Slack Token for Jenkins jobs. If empty, no slack notifications
     [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
     # ssh key name to access EC2 instance
