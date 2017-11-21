@@ -14,7 +14,7 @@ Table of Contents
 
 # Requirements
 1. Start 2 Jenkins instance behind one ALB
-2. Enable autoscaling with minimum instance 2 and max 4.
+2. Enable auto-scaling with minimum instance 2 and max 4.
 
 # Procedures
 - Use CF to setup the env

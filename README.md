@@ -29,7 +29,7 @@ Table of Contents
 
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
-Case study using AWS techstack to setup Jenkins env
+Case study using AWS TechStack to setup Jenkins env
 
 # Scenarios
 
@@ -100,7 +100,7 @@ Case study using AWS techstack to setup Jenkins env
 - Requirements:
 ```
 1. Start 2 Jenkins instance behind one ALB
-2. Enable autoscaling with minimum instance 2 and max 4.
+2. Enable auto-scaling with minimum instance 2 and max 4.
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
 - See more: [Scenario-301](./Scenario-301)
@@ -164,7 +164,7 @@ Case study using AWS techstack to setup Jenkins env
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes_4instances.png"/> </a>
 
 ## Scenario-501: Large Scale Jenkins Deployment I
-- Objective: Suppose you have 1K developers to use your Jenkins. Improve scalabity, availablity, security, etc.
+- Objective: Suppose you have 1K developers to use your Jenkins. Improve scalability, availability, security, etc.
 - Requirements:
 ```
 1. Scalability: multiple Jenkins master instances
@@ -177,7 +177,7 @@ Case study using AWS techstack to setup Jenkins env
 
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 # Highlights
-- **Principle**:
+- **Principles**:
 ```
 1. Fully automated
 2. Improve HA
