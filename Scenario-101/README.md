@@ -18,8 +18,6 @@ Table of Contents
     export tmp_file="file://cf-denny-jenkins-docker-aio.yml"
     aws cloudformation create-stack --template-body "$tmp_file" \
         --stack-name "$stack_name" --parameters \
-        ParameterKey=JenkinsUser,ParameterValue=username \
-        ParameterKey=JenkinsPassword,ParameterValue=mypassword \
         ParameterKey=KeyName,ParameterValue=denny-ssh-key1
 
      aws cloudformation delete-stack --stack-name "$stack_name"

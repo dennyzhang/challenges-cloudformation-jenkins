@@ -52,6 +52,7 @@ Case study using AWS techstack to setup Jenkins env
 ```
 - Main Tech: Cloudformation, Docker
 - See more: [Scenario-102](./Scenario-102)
+- TODO
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_docker_aio.png"/> </a>
 

@@ -406,20 +406,14 @@ Resources:
               docker:
                 enabled: 'true'
                 ensureRunning: 'true'
-          files:
-            /home/ec2-user/docker_start_jenkins.sh:
-              source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/docker_start_jenkins.sh
-              mode: 755
-              owner: ec2-user
-              group: ec2-user
           commands:
             01_config_docker:
               command: usermod -a -G docker ec2-user
             02_start_docker:
               command: service docker start
             03_start_jenkins:
-              # TODO: add parameters
-              command: bash /home/ec2-user/docker_start_jenkins.sh
+              # Docker Image: https://hub.docker.com/r/denny/jenkins_image/~/dockerfile/
+              command: docker run -d -t -p 8080:8080 --name my-jenkins --restart=always denny/jenkins_image:latest
               test: docker ps -a | grep -v jenkins
 
     Properties:
