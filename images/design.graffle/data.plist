@@ -34,7 +34,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2017-11-21 16:21:35 +0000</string>
+	<string>2017-11-21 16:23:46 +0000</string>
 	<key>Modifier</key>
 	<string>mac</string>
 	<key>NotesVisible</key>
@@ -12958,7 +12958,7 @@ Docker Deployment In AWS}</string>
 					<integer>44108</integer>
 					<key>Points</key>
 					<array>
-						<string>{262.4922142513845, 343.62969671797907}</string>
+						<string>{267.84935708571942, 343.62969671797907}</string>
 						<string>{478.0878277271986, 464.53724774277333}</string>
 					</array>
 					<key>Style</key>
@@ -13691,8 +13691,8 @@ Docker Deployment In AWS}</string>
 					<integer>44078</integer>
 					<key>Points</key>
 					<array>
-						<string>{207.02605443082786, 367.18796812605945}</string>
-						<string>{210.49512106040916, 433.42925907712646}</string>
+						<string>{212.39247017046759, 367.68788211223131}</string>
+						<string>{213.61189598721703, 433.42866138831818}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -13831,7 +13831,7 @@ Network/Security}</string>
 					<integer>44002</integer>
 					<key>Points</key>
 					<array>
-						<string>{262.97613104842202, 343.50390111760134}</string>
+						<string>{268.33217591706608, 343.49975073060716}</string>
 						<string>{419.42855221093907, 302.83363223837063}</string>
 					</array>
 					<key>Style</key>
@@ -13866,7 +13866,7 @@ Network/Security}</string>
 					<integer>44003</integer>
 					<key>Points</key>
 					<array>
-						<string>{262.98747709516209, 343.69836054348946}</string>
+						<string>{267.84935708571942, 343.62969671797907}</string>
 						<string>{419.42856741650974, 365.38753804477392}</string>
 					</array>
 					<key>Style</key>
@@ -13901,8 +13901,8 @@ Network/Security}</string>
 					<integer>44004</integer>
 					<key>Points</key>
 					<array>
-						<string>{86.06996002036098, 342.82446158290747}</string>
-						<string>{151.55989461027121, 343.62969671797907}</string>
+						<string>{86.070934756483112, 342.81165727829261}</string>
+						<string>{156.91703744460614, 343.62969671797907}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14002,7 +14002,7 @@ Network/Security}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{151.55989461027121, 320.0714253098987}, {110.93231964111328, 47.116542816160745}}</string>
+					<string>{{156.91703744460614, 320.0714253098987}, {110.93231964111328, 47.116542816160745}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
