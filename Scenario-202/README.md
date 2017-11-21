@@ -14,9 +14,10 @@ Table of Contents
 
 # Requirements
 1. Finish Scenario-201, create a jenkins user by code.
-2. Anonymous user can't open the jenkins. Only login user can.
-3. When Jenkins is down, get slack notification
-4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
+2. Create a dedicated VPC for the jenkins. And allow selective source IP to access.
+3. Anonymous user can't open the jenkins. Only login user can.
+4. When Jenkins is down, get slack notification
+5. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
 
 # Procedures
 - Use CF to setup the env
