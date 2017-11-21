@@ -26,8 +26,8 @@ Table of Contents
     export JENKINS_USER="jenkins123"
     export JENKINS_PASSWORD="password123"
     # Notice: customize the slack token for Jenkins jobs
-    [ -z "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
-    [ -z "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
+    [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
+    [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
     aws cloudformation create-stack --template-body "$TMP_FILE" \
         --stack-name "$STACK_NAME" --parameters \
         ParameterKey=JenkinsUser,ParameterValue=$JENKINS_USER \

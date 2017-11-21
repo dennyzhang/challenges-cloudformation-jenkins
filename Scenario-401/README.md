@@ -15,7 +15,7 @@ Table of Contents
 ```
     export STACK_NAME="docker-cf-jenkins"
     export TMP_FILE="file://cf-denny-jenkins-ecs-aio.yml"
-    [ -z "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
+    [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
     aws cloudformation create-stack --template-body "$TMP_FILE" \
         --stack-name "$STACK_NAME" --parameters \
         ParameterKey=JenkinsUser,ParameterValue=username \
