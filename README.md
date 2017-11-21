@@ -23,6 +23,7 @@ Table of Contents
       * [Scenario-401: ECS Jenkins Deployment I](#scenario-401-ecs-jenkins-deployment-i)
       * [Scenario-402: ECS Jenkins Deployment II](#scenario-402-ecs-jenkins-deployment-ii)
       * [Scenario-403: ECS Jenkins Deployment III](#scenario-403-ecs-jenkins-deployment-iii)
+      * [Scenario-501: Large Scale Jenkins Deployment I](#scenario-501-large-scale-jenkins-deployment-i)
    * [Follow Up](#follow-up)
    * [License](#license)
 
@@ -161,6 +162,18 @@ Case study using AWS techstack to setup Jenkins env
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes_4instances.png"/> </a>
+
+## Scenario-501: Large Scale Jenkins Deployment I
+- Objective: Suppose you have 1K developers to use your Jenkins. Improve scalabity, availablity, security, etc.
+- Requirements:
+```
+1. Scalability: multiple Jenkins master instances
+2. Availability: Jenkins slave; Jenkins Master
+2. Security: VPC, Jenkins authentication integration
+```
+- Main Tech: Cloudformation, ECS, EBS, ALB
+- See more: [Scenario-501](./Scenario-501)
+- TODO
 
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 # Follow Up

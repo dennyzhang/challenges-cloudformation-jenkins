@@ -14276,7 +14276,7 @@ Docker Deployment In AWS}</string>
 	<key>WindowInfo</key>
 	<dict>
 		<key>CurrentSheet</key>
-		<integer>5</integer>
+		<integer>4</integer>
 		<key>ExpandedCanvases</key>
 		<array/>
 		<key>Frame</key>
@@ -14294,7 +14294,7 @@ Docker Deployment In AWS}</string>
 		<key>SidebarWidth</key>
 		<integer>119</integer>
 		<key>VisibleRegion</key>
-		<string>{{-247, 148.21428508326716}, {1069.64285258888, 583.92856894251031}}</string>
+		<string>{{-247, 0}, {1069.64285258888, 583.92856894251031}}</string>
 		<key>Zoom</key>
 		<real>1.1200000047683716</real>
 		<key>ZoomValues</key>
