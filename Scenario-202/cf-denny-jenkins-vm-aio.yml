@@ -197,14 +197,14 @@ Resources:
   SubnetA:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: us-east-1a
+      AvailabilityZone: !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"]
       VpcId: !Ref VPC
       CidrBlock: 172.31.0.0/20
       MapPublicIpOnLaunch: true
   SubnetB:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: us-east-1b
+      AvailabilityZone: !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]
       VpcId: !Ref VPC
       CidrBlock: 172.31.16.0/20
       MapPublicIpOnLaunch: true
@@ -346,7 +346,7 @@ Resources:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
       InstanceType: !Ref 'InstanceType'
-      SecurityGroups:
+      SecurityGroupIds:
         - !Ref 'JenkinsSecurityGroup'
       SubnetId: !Ref SubnetA
       Monitoring: true
