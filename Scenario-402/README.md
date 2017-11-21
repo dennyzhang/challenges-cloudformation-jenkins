@@ -3,6 +3,7 @@ Table of Contents
 
    * [Requirements](#requirements)
    * [Procedures](#procedures)
+   * [More Resources](#more-resources)
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes.png"/> </a>
 
@@ -29,3 +30,6 @@ Table of Contents
 
 - Verify Jenkins
 curl -I http://$server_ip:8080
+
+# More Resources
+- https://shuaib.me/ecs-jenkins/
