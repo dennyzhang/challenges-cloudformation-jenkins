@@ -9,7 +9,7 @@ Table of Contents
 
 # Requirements
 1. Start ECS with 2 node
-2. Start Jenkins service with 2 instances in ECS. One for master, one for slave.
+2. Start Jenkins service within ECS. 1 Master and 3 Slaves
 3. Enable ALB for Jenkins master
 
 # Procedures
