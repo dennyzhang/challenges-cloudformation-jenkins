@@ -242,13 +242,13 @@ Resources:
               owner: ec2-user
               group: ec2-user
             /home/ec2-user/chef/node.json:
-              # TODO: customize more parameter
+              # TODO: customize more parameter: slack teamdomain, jenkins_jobs
               content: !Sub | 
                 {"jenkins_demo":
                   {"default_username":"${JenkinsUser}",
-                   "default_password":"${JenkinsPassword}"
-                   "slack_authtoken":"${SlackAuthToken}",
+                   "default_password":"${JenkinsPassword}",
                    "jenkins_jobs":"CommonServerCheckRepo",
+                   "slack_authtoken":"${SlackAuthToken}",
                    "slack_teamdomain":"mywechat",
                    "slack_buildserverurl":"http://localhost:18080/",
                    "slack_room":"#denny-alerts"
