@@ -20,13 +20,14 @@ Table of Contents
 # Procedures
 - Use CF to setup the env
 ```
-    export stack_name="docker-cf-jenkins"
-    export tmp_file="file://cf-denny-jenkins-vm-aio.yml"
-    aws cloudformation create-stack --template-body "$tmp_file" \
-        --stack-name "$stack_name" --parameters \
-        ParameterKey=KeyName,ParameterValue=denny-ssh-key1
+    export STACK_NAME="docker-cf-jenkins"
+    export TMP_FILE="file://cf-denny-jenkins-vm-aio.yml"
+    [ -z "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
+    aws cloudformation create-stack --template-body "$TMP_FILE" \
+        --stack-name "$STACK_NAME" --parameters \
+        ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME
 
-     aws cloudformation delete-stack --stack-name "$stack_name"
+     aws cloudformation delete-stack --stack-name "$STACK_NAME"
 ```
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
