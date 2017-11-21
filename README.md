@@ -77,7 +77,6 @@ Case study using AWS techstack to setup Jenkins env
 ```
 - Main Tech: Cloudformation, Chef, VPC, Slack
 - See more: [Scenario-202](./Scenario-202)
-- TODO
 
 ## Scenario-203: VM Single-Node Jenkins Deployment III
 - Objective: Customize Jenkins docker deployment in AWS
