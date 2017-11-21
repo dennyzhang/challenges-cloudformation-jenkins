@@ -53,7 +53,7 @@ Parameters:
     NoEcho: 'true'
     Description: Slack Token For Jenkins Jobs. If empty, slack notification is muted.
     Type: String
-    MinLength: '8'
+    MinLength: '0'
     MaxLength: '41'
     AllowedPattern: '[a-zA-Z0-9]*'
     ConstraintDescription: must contain only alphanumeric characters.
