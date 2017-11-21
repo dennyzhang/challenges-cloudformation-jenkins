@@ -17,6 +17,7 @@ Table of Contents
       * [Scenario-102: Docker Single-Node Jenkins Deployment II](#scenario-102-docker-single-node-jenkins-deployment-ii)
       * [Scenario-201: VM Single-Node Jenkins Deployment I](#scenario-201-vm-single-node-jenkins-deployment-i)
       * [Scenario-202: VM Single-Node Jenkins Deployment II](#scenario-202-vm-single-node-jenkins-deployment-ii)
+      * [Scenario-203: VM Single-Node Jenkins Deployment III](#scenario-203-vm-single-node-jenkins-deployment-iii)
       * [Scenario-301: VM 2-Nodes Jenkins Deployment I](#scenario-301-vm-2-nodes-jenkins-deployment-i)
       * [Scenario-302: VM 2-Nodes Jenkins Deployment II](#scenario-302-vm-2-nodes-jenkins-deployment-ii)
       * [Scenario-401: ECS Jenkins Deployment I](#scenario-401-ecs-jenkins-deployment-i)
@@ -72,12 +73,23 @@ Case study using AWS techstack to setup Jenkins env
 ```
 1. Finish Scenario-201, create a jenkins user by code.
 2. Create a dedicated VPC for the jenkins. And allow selective source IP to access.
+3. When Jenkins is down, get slack notification
+```
+- Main Tech: Cloudformation, Chef, VPC, Slack
+- See more: [Scenario-202](./Scenario-202)
+- TODO
+
+## Scenario-203: VM Single-Node Jenkins Deployment III
+- Objective: Customize Jenkins docker deployment in AWS
+- Requirements:
+```
+1. Finish Scenario-202
+2. Enable CloudWatch monitoring for Jenkins
 3. Anonymous user can't open the jenkins. Only login user can.
-4. When Jenkins is down, get slack notification
-5. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
+4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
-- See more: [Scenario-202](./Scenario-202)
+- See more: [Scenario-203](./Scenario-203)
 - TODO
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_aio.png"/> </a>
