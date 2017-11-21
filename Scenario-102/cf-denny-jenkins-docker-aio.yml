@@ -31,6 +31,24 @@ Parameters:
     AllowedPattern: '[a-zA-Z][a-zA-Z0-9:_/]*'
     ConstraintDescription: must begin with a letter and contain only alphanumeric
       characters.
+  JenkinsUser:
+    # TODO: feed JenkinsUser and JenkinsPassword to the script
+    NoEcho: 'true'
+    Description: The Jenkins username
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric
+      characters.
+  JenkinsPassword:
+    NoEcho: 'true'
+    Description: The Jenkins password
+    Type: String
+    MinLength: '8'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
   SSHLocation:
     Description: The IP address range that can be used to SSH to the EC2 instances
     Type: String
@@ -394,6 +412,7 @@ Resources:
             02_start_docker:
               command: service docker start
             03_start_jenkins:
+              # TOOD: add jenkins user
               # Docker Image: https://hub.docker.com/r/denny/jenkins_image/~/dockerfile/
               command: docker run -d -t -p 8080:8080 --name my-jenkins --restart=always denny/jenkins_image:latest
               test: docker ps -a | grep -v jenkins
