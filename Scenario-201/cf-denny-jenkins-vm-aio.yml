@@ -410,8 +410,6 @@ Resources:
               group: ec2-user
           commands:
             01_install_chef:
-              # TODO: too long
-              # TODO: better way to install chefdk
               command:
                 !Join
                 - ''
@@ -428,7 +426,7 @@ Resources:
                 - - 'sudo bash -ex /home/ec2-user/run_chef_solo.sh '
                   - '"jenkins-demo"'
                   - ' '
-                  - '"/home/ec2-user/chef/aws-jenkins-study/utility/chef/201/jenkins-demo"'
+                  - '"/home/ec2-user/chef/aws-jenkins-study/Scenario-301/cookbooks/jenkins-demo"'
               test: which chef-solo
 
     Properties:
