@@ -57,6 +57,15 @@ Parameters:
     MaxLength: '41'
     AllowedPattern: '[a-zA-Z0-9]*'
     ConstraintDescription: must contain only alphanumeric characters.
+  JenkinsLocation:
+    Description: The IP address range that can be used to Access Jenkins URL
+    Default: '0.0.0.0/0'
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
   SSHLocation:
     Description: The IP address range that can be used to SSH to the EC2 instances
     Type: String
@@ -180,7 +189,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: '8080'
           ToPort: '8080'
-          CidrIp: 0.0.0.0/0
+          CidrIp: !Ref 'JenkinsLocation'
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
