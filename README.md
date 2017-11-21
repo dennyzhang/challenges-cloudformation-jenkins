@@ -25,6 +25,7 @@ Table of Contents
       * [Scenario-403: ECS Jenkins Deployment III](#scenario-403-ecs-jenkins-deployment-iii)
       * [Scenario-501: Large Scale Jenkins Deployment I](#scenario-501-large-scale-jenkins-deployment-i)
    * [Highlights](#highlights)
+   * [Contributors: Give People Credits](#contributors-give-people-credits)
    * [License](#license)
 
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
@@ -191,6 +192,9 @@ Case study using AWS TechStack to setup Jenkins env
 https://github.com/awslabs/startup-kit-templates
 https://github.com/awslabs
 ```
+
+# Contributors: Give People Credits
+Below are folks who have contributed via GitHub!
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
