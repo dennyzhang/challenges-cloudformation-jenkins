@@ -406,7 +406,6 @@ Resources:
               docker:
                 enabled: 'true'
                 ensureRunning: 'true'
-          files:
           commands:
             01_config_docker:
               command: usermod -a -G docker ec2-user
