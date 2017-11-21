@@ -24,7 +24,7 @@ Table of Contents
       * [Scenario-402: ECS Jenkins Deployment II](#scenario-402-ecs-jenkins-deployment-ii)
       * [Scenario-403: ECS Jenkins Deployment III](#scenario-403-ecs-jenkins-deployment-iii)
       * [Scenario-501: Large Scale Jenkins Deployment I](#scenario-501-large-scale-jenkins-deployment-i)
-   * [Follow Up](#follow-up)
+   * [Highlights](#highlights)
    * [License](#license)
 
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
@@ -176,19 +176,15 @@ Case study using AWS techstack to setup Jenkins env
 - TODO
 
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
-# Follow Up
+# Highlights
 - **Principle**:
 ```
 1. Fully automated
 2. Improve HA
 ```
 
-- Future Improvements:
-```
-- TODO: What about backup, and Jenkins two-way sync
-- TODO: HA jenkins env
-- TODO: How to test customization: multiple kitchen
-```
+- Really like container deployments over VM deployments.
+- Jenkins community don't have HA solution for Jenkins master yet.
 
 - More Resources:
 ```
