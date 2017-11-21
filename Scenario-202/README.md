@@ -16,7 +16,7 @@ Table of Contents
 1. Finish Scenario-201, create a jenkins user by code.
 2. Anonymous user can't open the jenkins. Only login user can.
 3. When Jenkins is down, get slack notification
-4. Make sure Jenkins GUI changes can be seamless tracked in git repo.
+4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
 
 # Procedures
 - Use CF to setup the env
