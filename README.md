@@ -111,8 +111,9 @@ Case study using AWS techstack to setup Jenkins env
 - Requirements:
 ```
 1. Start 1 jenkins master and 1 jenkins slave
-2. Enable auto-scaling
-3. Customized VPC to allow limited network access
+2. Enable auto-scaling for Jenkins master. With instance count 1
+3. Enable auto-scaling for Jenkins slaves. With instance count range from 1 to 3
+4. Customized VPC to allow limited network access
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration, ALB
 - See more: [Scenario-302](./Scenario-302)
