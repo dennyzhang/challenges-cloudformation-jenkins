@@ -32,7 +32,6 @@ Parameters:
     ConstraintDescription: must begin with a letter and contain only alphanumeric
       characters.
   JenkinsUser:
-    # TODO: feed JenkinsUser and JenkinsPassword to the script
     NoEcho: 'true'
     Description: The Jenkins username
     Type: String
@@ -44,6 +43,15 @@ Parameters:
   JenkinsPassword:
     NoEcho: 'true'
     Description: The Jenkins password
+    Type: String
+    MinLength: '8'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  SlackAuthToken:
+    Default: ''
+    NoEcho: 'true'
+    Description: Slack Token For Jenkins Jobs. If empty, slack notification is muted.
     Type: String
     MinLength: '8'
     MaxLength: '41'
@@ -233,6 +241,26 @@ Resources:
               mode: 755
               owner: ec2-user
               group: ec2-user
+            /home/ec2-user/chef/node.json:
+              # TODO: customize more parameter
+              content: !Sub | 
+                {"jenkins_demo":
+                  {"default_username":"${JenkinsUser}",
+                   "default_password":"${JenkinsPassword}"
+                   "slack_authtoken":"${SlackAuthToken}",
+                   "jenkins_jobs":"CommonServerCheckRepo",
+                   "slack_teamdomain":"mywechat",
+                   "slack_buildserverurl":"http://localhost:18080/",
+                   "slack_room":"#denny-alerts"
+                   },
+                 "run_list":["recipe[apt::default]",
+                             "recipe[jenkins-demo::default]",
+                             "recipe[jenkins-demo::conf_job]"
+                            ]
+                }
+              mode: 755
+              owner: ec2-user
+              group: ec2-user
           commands:
             01_install_chef:
               command:
@@ -244,7 +272,6 @@ Resources:
                   - ' '
                   - '&& sudo rpm -ivh /tmp/chefdk.rpm'
             02_chef_install_jenkins:
-              # TODO: customize parameters
               command:
                 !Join
                 - ''
@@ -252,6 +279,8 @@ Resources:
                   - '"jenkins-demo"'
                   - ' '
                   - '"/home/ec2-user/chef/chef-study/Scenario-302/cookbooks/jenkins-demo"'
+                  - ' '
+                  - '"/home/ec2-user/chef/node.json"'
               test: which chef-solo
 
     Properties:

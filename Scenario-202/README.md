@@ -23,10 +23,15 @@ Table of Contents
 ```
     export stack_name="docker-cf-jenkins"
     export tmp_file="file://cf-denny-jenkins-vm-aio.yml"
+    export JENKINS_USER="jenkins123"
+    export JENKINS_PASSWORD="password123"
+    # Notice: customize the slack token for Jenkins jobs
+    [ -z "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
     aws cloudformation create-stack --template-body "$tmp_file" \
         --stack-name "$stack_name" --parameters \
-        ParameterKey=JenkinsUser,ParameterValue=username \
-        ParameterKey=JenkinsPassword,ParameterValue=mypassword \
+        ParameterKey=JenkinsUser,ParameterValue=$JENKINS_USER \
+        ParameterKey=JenkinsPassword,ParameterValue=$JENKINS_PASSWORD \
+        ParameterKey=SlackAuthToken,ParameterValue=$SLACK_TOKEN \
         ParameterKey=KeyName,ParameterValue=denny-ssh-key1
 
      aws cloudformation delete-stack --stack-name "$stack_name"
