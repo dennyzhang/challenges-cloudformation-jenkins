@@ -348,7 +348,7 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       SecurityGroups:
         - !Ref 'JenkinsSecurityGroup'
-      SubnetId: !Ref 'SubnetA'
+      SubnetId: !Ref SubnetA
       Monitoring: true
       KeyName: !Ref 'KeyName'
       UserData: !Base64
