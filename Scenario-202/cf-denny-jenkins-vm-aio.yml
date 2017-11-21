@@ -59,7 +59,6 @@ Parameters:
     ConstraintDescription: must contain only alphanumeric characters.
   JenkinsLocation:
     Description: The IP address range that can be used to Access Jenkins URL
-    Default: '0.0.0.0/0'
     Type: String
     MinLength: '9'
     MaxLength: '18'
@@ -349,6 +348,8 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       SecurityGroups:
         - !Ref 'JenkinsSecurityGroup'
+      SubnetId: !Ref 'SubnetA'
+      Monitoring: true
       KeyName: !Ref 'KeyName'
       UserData: !Base64
         Fn::Join:
