@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 15:02:22>
+## Updated: Time-stamp: <2017-11-22 15:03:39>
 ##-------------------------------------------------------------------
 set -e
 
@@ -29,9 +29,10 @@ function prepare_files() {
     log "prepare files"
     [ -d "$working_dir" ] || mkdir -p "$working_dir"
     cd "$working_dir"
+    # TODO: improve this
     wget -O master.tar https://github.com/DennyZhang/chef-study/tarball/master
     tar -xf master.tar
-    mv DennyZhang-chef-study-* DennyZhang-chef-study
+    mv DennyZhang-chef-study-* chef-study
 
     wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
     # TODO: how to pass the parameters?
