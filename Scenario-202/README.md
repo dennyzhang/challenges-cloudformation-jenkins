@@ -15,8 +15,8 @@ Table of Contents
 # Requirements
 1. Finish Scenario-201, create a jenkins user by code.
 2. Create a dedicated VPC for the jenkins. And allow selective source IP to access.
-3. When Jenkins is down, get slack notification
-4. In case Jenkins master crash, create an auto-scaling group. And configure the instance count as 1
+3. Anonymous user can't open the jenkins. Only login user can.
+4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
 
 # Procedures
 - Use CF to setup the env

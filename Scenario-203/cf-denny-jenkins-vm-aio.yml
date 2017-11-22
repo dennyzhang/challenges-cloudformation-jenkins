@@ -22,15 +22,13 @@ Parameters:
       - m3.medium
       - c1.medium
     ConstraintDescription: must be a valid EC2 instance type.
-  DockerImage:
-    Default: denny/jenkins_image:latest
-    Description: Docker Image Name
-    Type: String
-    MinLength: '1'
-    MaxLength: '64'
-    AllowedPattern: '[a-zA-Z][a-zA-Z0-9:_/]*'
-    ConstraintDescription: must begin with a letter and contain only alphanumeric
-      characters.
+  JenkinsPort:
+    Default: 8080
+    Description: The Jenkins Port
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
   JenkinsUser:
     NoEcho: 'true'
     Description: The Jenkins username
@@ -232,13 +230,13 @@ Resources:
   JenkinsSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enable HTTP access via port 8080 locked down to the load balancer
+      GroupDescription: Enable HTTP access via port Jenkins port locked down to the load balancer
         + SSH access
       VpcId: !Ref VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: '8080'
-          ToPort: '8080'
+          FromPort: !Ref JenkinsPort
+          ToPort: !Ref JenkinsPort
           CidrIp: !Ref 'JenkinsLocation'
         - IpProtocol: tcp
           FromPort: '22'
@@ -304,12 +302,13 @@ Resources:
               # TODO: customize more parameter: slack teamdomain, jenkins_jobs
               content: !Sub | 
                 {"jenkins_demo":
-                  {"default_username":"${JenkinsUser}",
+                  {"jenkins_port":"${JenkinsPort}",
+                  "default_username":"${JenkinsUser}",
                    "default_password":"${JenkinsPassword}",
                    "jenkins_jobs":"CommonServerCheckRepo",
                    "slack_authtoken":"${SlackAuthToken}",
                    "slack_teamdomain":"mywechat",
-                   "slack_buildserverurl":"http://localhost:18080/",
+                   "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
                    "slack_room":"#denny-alerts"
                    },
                  "run_list":["recipe[apt::default]",
@@ -384,5 +383,5 @@ Resources:
         Timeout: PT15M
 Outputs:
   WebsiteURL:
-    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':8080']]
+    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':', !Ref JenkinsPort]]
     Description: Jenkins Website

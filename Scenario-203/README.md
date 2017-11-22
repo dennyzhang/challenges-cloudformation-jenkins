@@ -13,9 +13,10 @@ Table of Contents
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_aio.png"/> </a>
 
 # Requirements
-1. Finish Scenario-201, create a jenkins user by code.
-2. Create a dedicated VPC for the jenkins. And allow selective source IP to access.
+1. Finish Scenario-202
+2. Enable CloudWatch monitoring for Jenkins
 3. When Jenkins is down, get slack notification
+4. In case Jenkins master crash, create an auto-scaling group. And configure the instance count as 1
 
 # Procedures
 - Use CF to setup the env
@@ -25,6 +26,7 @@ Table of Contents
     # Test jenkins username and password
     export JENKINS_USER="jenkins123"
     export JENKINS_PASSWORD="password123"
+    [ -n "$JENKINS_PORT" ] || export JENKINS_PORT='8081'
     # The IP address range that can be used to Access Jenkins URL
     [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
     # Slack Token for Jenkins jobs. If empty, no slack notifications
@@ -37,6 +39,7 @@ Table of Contents
         ParameterKey=JenkinsPassword,ParameterValue=$JENKINS_PASSWORD \
         ParameterKey=SlackAuthToken,ParameterValue=$SLACK_TOKEN \
         ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
+        ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT \
         ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME
 
      aws cloudformation delete-stack --stack-name "$STACK_NAME"
@@ -45,3 +48,13 @@ Table of Contents
 
 - Verify Jenkins
 curl -I http://$server_ip:8080
+
+TODO: enable ThinBackup for config changes
+
+TODO: remove two jenkins warnings
+
+```
+Allowing Jenkins CLI to work in -remoting mode is considered dangerous and usually unnecessary. You are advised to disable this mode. Please refer to the CLI documentation for details. 
+
+Agent to master security subsystem is currently off. Please read the documentation and consider turning it on
+```
