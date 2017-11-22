@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 15:07:54>
+## Updated: Time-stamp: <2017-11-22 15:16:18>
 ##-------------------------------------------------------------------
 set -e
 
@@ -44,21 +44,21 @@ function prepare_files() {
     JenkinsPassword="password123"
     SlackAuthToken="DUMMYTOKEN"
     cat > /home/ec2-user/chef/node.json << EOF
- {"jenkins_demo":
- {"jenkins_port":"${JenkinsPort}",
- "default_username":"${JenkinsUser}",
- "default_password":"${JenkinsPassword}",
- "jenkins_jobs":"CommonServerCheckRepo",
- "slack_authtoken":"${SlackAuthToken}",
- "slack_teamdomain":"mywechat",
- "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
- "slack_room":"#denny-alerts"
- },
- "run_list":["recipe[apt::default]",
- "recipe[jenkins-demo::default]",
- "recipe[jenkins-demo::conf_job]"
- ]
- }
+{"jenkins_demo":
+     {"jenkins_port":"${JenkinsPort}",
+     "default_username":"${JenkinsUser}",
+     "default_password":"${JenkinsPassword}",
+     "jenkins_jobs":"CommonServerCheckRepo",
+     "slack_authtoken":"${SlackAuthToken}",
+     "slack_teamdomain":"mywechat",
+     "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
+     "slack_room":"#denny-alerts"
+     },
+     "run_list":["recipe[apt::default]",
+                 "recipe[jenkins-demo::default]",
+                 "recipe[jenkins-demo::conf_job]"
+                ]
+}
 EOF
     chown -R ec2-user:ec2-user /home/ec2-user/
 }
