@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 15:16:18>
+## Updated: Time-stamp: <2017-11-22 15:42:27>
 ##-------------------------------------------------------------------
 set -e
 
@@ -33,8 +33,8 @@ function prepare_files() {
     repo_name="chef-study"
     if [ ! -d "$repo_name" ]; then
         wget -O master.tar https://github.com/DennyZhang/chef-study/tarball/master
-        tar -xf master.tar
-        mv "DennyZhang-${repo_name}-*" "$repo_name"
+        tar -xf ./master.tar && rm -rf ./master.tar
+        mv DennyZhang-${repo_name}-* "$repo_name"
     fi
 
     wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
