@@ -236,7 +236,7 @@ Resources:
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: !Ref JenkinsPort
-          ToPort: '8080'
+          ToPort: !Ref JenkinsPort
           CidrIp: !Ref 'JenkinsLocation'
         - IpProtocol: tcp
           FromPort: '22'
