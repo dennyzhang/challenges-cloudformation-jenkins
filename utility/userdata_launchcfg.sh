@@ -9,9 +9,19 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 14:08:18>
+## Updated: Time-stamp: <2017-11-22 15:02:22>
 ##-------------------------------------------------------------------
 set -e
+
+function log() {
+    local msg=$*
+    date_timestamp=$(date +['%Y-%m-%d %H:%M:%S'])
+    echo -ne "$date_timestamp $msg\n"
+
+    if [ -n "$LOG_FILE" ]; then
+        echo -ne "$date_timestamp $msg\n" >> "$LOG_FILE"
+    fi
+}
 
 function prepare_files() {
     local working_dir=${1?}
@@ -22,7 +32,6 @@ function prepare_files() {
     wget -O master.tar https://github.com/DennyZhang/chef-study/tarball/master
     tar -xf master.tar
     mv DennyZhang-chef-study-* DennyZhang-chef-study
-    wget /home/ec2-user/run_chef_solo.sh
 
     wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
     # TODO: how to pass the parameters?
@@ -52,7 +61,7 @@ function prepare_files() {
                              "recipe[jenkins-demo::conf_job]"
                             ]
                 }
-    EOF
+EOF
     chown -R ec2-user:ec2-user /home/ec2-user/
 }
 
