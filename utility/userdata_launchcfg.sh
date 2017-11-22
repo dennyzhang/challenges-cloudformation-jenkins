@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 15:03:39>
+## Updated: Time-stamp: <2017-11-22 15:05:35>
 ##-------------------------------------------------------------------
 set -e
 
@@ -30,9 +30,12 @@ function prepare_files() {
     [ -d "$working_dir" ] || mkdir -p "$working_dir"
     cd "$working_dir"
     # TODO: improve this
-    wget -O master.tar https://github.com/DennyZhang/chef-study/tarball/master
-    tar -xf master.tar
-    mv DennyZhang-chef-study-* chef-study
+    repo_name="chef-study"
+    if [ ! -d "$repo_name" ]; then
+        wget -O master.tar https://github.com/DennyZhang/chef-study/tarball/master
+        tar -xf master.tar
+        mv "DennyZhang-${repo_name}-*" "$repo_name"
+    fi
 
     wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
     # TODO: how to pass the parameters?
@@ -47,30 +50,32 @@ function prepare_files() {
     [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
 
     cat > /home/ec2-user/chef/node.json << EOF
-                {"jenkins_demo":
-                  {"jenkins_port":"${JenkinsPort}",
-                  "default_username":"${JenkinsUser}",
-                   "default_password":"${JenkinsPassword}",
-                   "jenkins_jobs":"CommonServerCheckRepo",
-                   "slack_authtoken":"${SlackAuthToken}",
-                   "slack_teamdomain":"mywechat",
-                   "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
-                   "slack_room":"#denny-alerts"
-                   },
-                 "run_list":["recipe[apt::default]",
-                             "recipe[jenkins-demo::default]",
-                             "recipe[jenkins-demo::conf_job]"
-                            ]
-                }
+ {"jenkins_demo":
+ {"jenkins_port":"${JenkinsPort}",
+ "default_username":"${JenkinsUser}",
+ "default_password":"${JenkinsPassword}",
+ "jenkins_jobs":"CommonServerCheckRepo",
+ "slack_authtoken":"${SlackAuthToken}",
+ "slack_teamdomain":"mywechat",
+ "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
+ "slack_room":"#denny-alerts"
+ },
+ "run_list":["recipe[apt::default]",
+ "recipe[jenkins-demo::default]",
+ "recipe[jenkins-demo::conf_job]"
+ ]
+ }
 EOF
     chown -R ec2-user:ec2-user /home/ec2-user/
 }
 
 function install_chef() {
-    log "Install chef"
-    wget -O /tmp/chefdk.rpm \
-         https://packages.chef.io/files/stable/chefdk/2.3.4/el/7/chefdk-2.3.4-1.el7.x86_64.rpm
-    rpm -ivh /tmp/chefdk.rpm
+    if ! which chef-solo 1>/dev/null 2>&1; then
+        log "Install chef"
+        wget -O /tmp/chefdk.rpm \
+             https://packages.chef.io/files/stable/chefdk/2.3.4/el/7/chefdk-2.3.4-1.el7.x86_64.rpm
+        rpm -ivh /tmp/chefdk.rpm
+    fi
 }
 
 function run_chef_update() {
