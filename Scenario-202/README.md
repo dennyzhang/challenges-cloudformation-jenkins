@@ -50,3 +50,11 @@ Table of Contents
 curl -I http://$server_ip:8080
 
 TODO: enable ThinBackup for config changes
+
+TODO: remove two jenkins warnings
+
+```
+Allowing Jenkins CLI to work in -remoting mode is considered dangerous and usually unnecessary. You are advised to disable this mode. Please refer to the CLI documentation for details. 
+
+Agent to master security subsystem is currently off. Please read the documentation and consider turning it on
+```

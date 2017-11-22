@@ -382,5 +382,5 @@ Resources:
         Timeout: PT15M
 Outputs:
   WebsiteURL:
-    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', !Ref JenkinsPort]]
+    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':', !Ref JenkinsPort]]
     Description: Jenkins Website
