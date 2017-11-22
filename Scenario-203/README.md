@@ -23,16 +23,19 @@ Table of Contents
 ```
     export STACK_NAME="docker-cf-jenkins"
     export TMP_FILE="file://cf-denny-jenkins-vm-aio.yml"
+
+    # The IP address range that can be used to Access Jenkins URL
+    [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
     # Test jenkins username and password
     export JENKINS_USER="jenkins123"
     export JENKINS_PASSWORD="password123"
     [ -n "$JENKINS_PORT" ] || export JENKINS_PORT='8081'
-    # The IP address range that can be used to Access Jenkins URL
-    [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
+
     # Slack Token for Jenkins jobs. If empty, no slack notifications
     [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
     # ssh key name to access EC2 instance
     [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
+
     aws cloudformation create-stack --template-body "$TMP_FILE" \
         --stack-name "$STACK_NAME" --parameters \
         ParameterKey=JenkinsUser,ParameterValue=$JENKINS_USER \
