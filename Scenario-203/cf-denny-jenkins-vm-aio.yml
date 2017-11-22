@@ -308,6 +308,7 @@ Resources:
                    "jenkins_jobs":"CommonServerCheckRepo",
                    "slack_authtoken":"${SlackAuthToken}",
                    "slack_teamdomain":"mywechat",
+                   # TODO: replace localhost with instance public ip
                    "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
                    "slack_room":"#denny-alerts"
                    },
