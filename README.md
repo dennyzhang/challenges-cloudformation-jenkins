@@ -77,6 +77,7 @@ Case study using AWS TechStack to setup Jenkins env
 1. Finish Scenario-201, create a jenkins user by code.
 2. Create a dedicated VPC for the jenkins. And allow selective source IP to access.
 3. When Jenkins is down, get slack notification
+4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
 ```
 - Main Tech: Cloudformation, Chef, VPC, Slack
 - See more: [Scenario-202](./Scenario-202)
@@ -88,7 +89,7 @@ Case study using AWS TechStack to setup Jenkins env
 1. Finish Scenario-202
 2. Enable CloudWatch monitoring for Jenkins
 3. Anonymous user can't open the jenkins. Only login user can.
-4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
+4. In case Jenkins master crash, create an auto-scaling group. And configure the instance count as 1
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
 - See more: [Scenario-203](./Scenario-203)
