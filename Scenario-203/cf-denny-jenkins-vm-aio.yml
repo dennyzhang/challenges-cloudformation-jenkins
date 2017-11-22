@@ -300,6 +300,7 @@ Resources:
               group: ec2-user
             /home/ec2-user/chef/node.json:
               # TODO: customize more parameter: slack teamdomain, jenkins_jobs
+              # TODO: replace localhost with instance public ip
               content: !Sub | 
                 {"jenkins_demo":
                   {"jenkins_port":"${JenkinsPort}",
@@ -308,7 +309,6 @@ Resources:
                    "jenkins_jobs":"CommonServerCheckRepo",
                    "slack_authtoken":"${SlackAuthToken}",
                    "slack_teamdomain":"mywechat",
-                   # TODO: replace localhost with instance public ip
                    "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
                    "slack_room":"#denny-alerts"
                    },

@@ -188,6 +188,9 @@ Case study using AWS TechStack to setup Jenkins env
 - Really like container deployments over VM deployments.
 - Jenkins community don't have HA solution for Jenkins master yet.
 
+- TODO: speed up the whole setup process
+- TODO: reduce the deployment failure rate
+
 - More Resources:
 ```
 https://github.com/awslabs/startup-kit-templates
