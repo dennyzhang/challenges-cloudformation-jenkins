@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 15:05:35>
+## Updated: Time-stamp: <2017-11-22 15:07:54>
 ##-------------------------------------------------------------------
 set -e
 
@@ -39,16 +39,10 @@ function prepare_files() {
 
     wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
     # TODO: how to pass the parameters?
-    # The IP address range that can be used to Access Jenkins URL
-    [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
-    # Test jenkins username and password
-    export JENKINS_USER="jenkins123"
-    export JENKINS_PASSWORD="password123"
-    [ -n "$JENKINS_PORT" ] || export JENKINS_PORT='8081'
-
-    # Slack Token for Jenkins jobs. If empty, no slack notifications
-    [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
-
+    JenkinsPort="8081"
+    JenkinsUser="user123"
+    JenkinsPassword="password123"
+    SlackAuthToken="DUMMYTOKEN"
     cat > /home/ec2-user/chef/node.json << EOF
  {"jenkins_demo":
  {"jenkins_port":"${JenkinsPort}",
