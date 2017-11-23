@@ -30,7 +30,6 @@ Parameters:
     MaxValue: 65535
     ConstraintDescription: TCP ports must be between 0 - 65535
   JenkinsUser:
-    NoEcho: 'true'
     Description: The Jenkins username
     Type: String
     MinLength: '1'

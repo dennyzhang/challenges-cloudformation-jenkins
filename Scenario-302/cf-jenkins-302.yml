@@ -33,7 +33,6 @@ Parameters:
       characters.
   JenkinsUser:
     # TODO: feed JenkinsUser and JenkinsPassword to the script
-    NoEcho: 'true'
     Description: The Jenkins username
     Type: String
     MinLength: '1'
