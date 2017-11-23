@@ -35,15 +35,6 @@ export JENKINS_PASSWORD="password123"
 ```
 
 ```
-export TMP_FILE="file://cf-jenkins-vpc-301.yml"
-aws cloudformation create-stack --template-body "$TMP_FILE" \
-    --stack-name "$STACK_NAME" --parameters \
-    ParameterKey=StackName,ParameterValue=$STACK_NAME \
-    ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
-    ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT
-```
-
-```
 export TMP_FILE="file://cf-jenkins-301.yml"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
     --stack-name "$STACK_NAME" --parameters \

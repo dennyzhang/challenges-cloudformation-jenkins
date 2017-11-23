@@ -73,6 +73,20 @@ Parameters:
     Default: 0.0.0.0/0
     AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  MinSize:
+    Default: 1
+    Description: Mininum instance count
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
+  MaxSize:
+    Default: 1
+    Description: Maximum instance count
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
 Mappings:
   AWSInstanceType2Arch:
     t1.micro:
@@ -182,154 +196,25 @@ Resources:
   VPC:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-vpc-203.yml
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-vpc-301.yml
       Parameters:
         StackName: !Ref AWS::StackName
         JenkinsPort: !Ref JenkinsPort
         JenkinsLocation: !Ref JenkinsLocation
         SSHLocation: !Ref SSHLocation
-  Jenkins:
-    Type: AWS::EC2::Instance
-    Metadata:
-      AWS::CloudFormation::Init:
-        configSets:
-          jenkins_install:
-            - install_cfn
-            - setup_jenkins
-        install_cfn:
-          files:
-            /etc/cfn/cfn-hup.conf:
-              content: !Join ['', ['[main]
-
-                    ', stack=, !Ref 'AWS::StackId', '
-
-                    ', region=, !Ref 'AWS::Region', '
-
-                    ']]
-              mode: '000400'
-              owner: root
-              group: root
-            /etc/cfn/hooks.d/cfn-auto-reloader.conf:
-              content: !Join ['', ['[cfn-auto-reloader-hook]
-
-                    ', 'triggers=post.update
-
-                    ', 'path=Resources.Jenkins.Metadata.AWS::CloudFormation::Init
-
-                    ', 'action=/opt/aws/bin/cfn-init -v ', '         --stack ', !Ref 'AWS::StackName',
-                  '         --resource Jenkins ', '         --configsets jenkins_install ',
-                  '         --region ', !Ref 'AWS::Region', '
-
-                    ']]
-              mode: '000400'
-              owner: root
-              group: root
-          services:
-            sysvinit:
-              cfn-hup:
-                enabled: 'true'
-                ensureRunning: 'true'
-                files:
-                  - /etc/cfn/cfn-hup.conf
-                  - /etc/cfn/hooks.d/cfn-auto-reloader.conf
-        setup_jenkins:
-          packages:
-            yum:
-              tmux: []
-          sources:
-              /home/ec2-user/chef/chef-study: 'https://github.com/DennyZhang/chef-study/tarball/master'
-          files:
-            /home/ec2-user/run_chef_solo.sh:
-              source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/run_chef_solo.sh
-              mode: 755
-              owner: ec2-user
-              group: ec2-user
-            /home/ec2-user/chef/node.json:
-              # TODO: customize more parameter: slack teamdomain, jenkins_jobs
-              # TODO: replace localhost with instance public ip
-              content: !Sub | 
-                {"jenkins_demo":
-                  {"jenkins_port":"${JenkinsPort}",
-                  "default_username":"${JenkinsUser}",
-                   "default_password":"${JenkinsPassword}",
-                   "jenkins_jobs":"CommonServerCheckRepo",
-                   "slack_authtoken":"${SlackAuthToken}",
-                   "slack_teamdomain":"mywechat",
-                   "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
-                   "slack_room":"#denny-alerts"
-                   },
-                 "run_list":["recipe[apt::default]",
-                             "recipe[jenkins-demo::default]",
-                             "recipe[jenkins-demo::conf_job]"
-                            ]
-                }
-              mode: 755
-              owner: ec2-user
-              group: ec2-user
-          commands:
-            01_install_chef:
-              command:
-                !Join
-                - ''
-                - - 'wget -O /tmp/chefdk.rpm'
-                  - ' '
-                  - 'https://packages.chef.io/files/stable/chefdk/2.3.4/el/7/chefdk-2.3.4-1.el7.x86_64.rpm'
-                  - ' '
-                  - '&& sudo rpm -ivh /tmp/chefdk.rpm'
-            02_chef_install_jenkins:
-              command:
-                !Join
-                - ''
-                - - 'sudo bash -ex /home/ec2-user/run_chef_solo.sh '
-                  - '"jenkins-demo"'
-                  - ' '
-                  - '"/home/ec2-user/chef/chef-study/Scenario-302/cookbooks/jenkins-demo"'
-                  - ' '
-                  - '"/home/ec2-user/chef/node.json"'
-              test: which chef-solo
-
+  ELB:
+    Type: AWS::CloudFormation::Stack
     Properties:
-      ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
-          !Ref 'InstanceType', Arch]]
-      InstanceType: !Ref 'InstanceType'
-      SecurityGroupIds:
-        - !GetAtt ["VPC","Outputs.JenkinsSecurityGroupId"]
-      # TODO: customize the subnet
-      SubnetId: !GetAtt ["VPC","Outputs.PublicSubnet1"]
-      Monitoring: true
-      KeyName: !Ref 'KeyName'
-      UserData: !Base64
-        Fn::Join:
-          - ''
-          - - '#!/bin/bash -xe
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-elb-301.yml
+      Parameters:
+        EC2HostSecurityGroup: !GetAtt ["VPC", "Outputs.JenkinsSecurityGroupId"]
+        StackName: !Ref AWS::StackName
+        KeyName: !Ref AWS::KeyName
+        InstanceType: !Ref AWS::InstanceType
+        MinSize: !Ref AWS::MinSize
+        MaxSize: !Ref AWS::MaxSize
 
-              '
-            - 'yum update -y aws-cfn-bootstrap
-
-              '
-            - '/opt/aws/bin/cfn-init -v '
-            - '         --stack '
-            - !Ref 'AWS::StackName'
-            - '         --resource Jenkins '
-            - '         --configsets jenkins_install '
-            - '         --region '
-            - !Ref 'AWS::Region'
-            - '
-
-              '
-            - '/opt/aws/bin/cfn-signal -e $? '
-            - '         --stack '
-            - !Ref 'AWS::StackName'
-            - '         --resource Jenkins '
-            - '         --region '
-            - !Ref 'AWS::Region'
-            - '
-
-              '
-    CreationPolicy:
-      ResourceSignal:
-        Timeout: PT15M
-Outputs:
-  WebsiteURL:
-    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':', !Ref JenkinsPort]]
-    Description: Jenkins Website
+# Outputs:
+#   WebsiteURL:
+#     Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':', !Ref JenkinsPort]]
+#     Description: Jenkins Website
