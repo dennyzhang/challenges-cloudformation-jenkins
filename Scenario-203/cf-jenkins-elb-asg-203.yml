@@ -1,386 +1,100 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'AWS CloudFormation Sample Template: Jenkins is web software you can use to CI/CD. 
-             This template installs Jenkins configured by Chef'
+Description: 'AWS CloudFormation Sample Template: Create ELB and Auto Scaling Group'
 Parameters:
-  KeyName:
-    Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
-    Type: AWS::EC2::KeyPair::KeyName
-    ConstraintDescription: must be the name of an existing EC2 KeyPair.
-  InstanceType:
-    Description: Jenkins EC2 instance type
+  StackName:
+    Description: An environment name that will be prefixed to resource names
     Type: String
-    Default: t2.micro
-    AllowedValues:
-      - t1.micro
-      - t2.nano
-      - t2.micro
-      - t2.small
-      - t2.medium
-      - m1.small
-      - m1.medium
-      - m3.medium
-      - c1.medium
-    ConstraintDescription: must be a valid EC2 instance type.
-  JenkinsPort:
-    Default: 8080
-    Description: The Jenkins Port
-    Type: Number
-    MinValue: 0
-    MaxValue: 65535
-    ConstraintDescription: TCP ports must be between 0 - 65535
-  JenkinsUser:
-    Description: The Jenkins username
-    Type: String
-    MinLength: '1'
-    MaxLength: '16'
-    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
-    ConstraintDescription: must begin with a letter and contain only alphanumeric
-      characters.
-  JenkinsPassword:
-    NoEcho: 'true'
-    Description: The Jenkins password
-    Type: String
-    MinLength: '8'
-    MaxLength: '41'
-    AllowedPattern: '[a-zA-Z0-9]*'
-    ConstraintDescription: must contain only alphanumeric characters.
-  SlackAuthToken:
-    Default: ''
-    NoEcho: 'true'
-    Description: Slack Token For Jenkins Jobs. If empty, slack notification is muted.
-    Type: String
-    MinLength: '0'
-    MaxLength: '41'
-    AllowedPattern: '[a-zA-Z0-9]*'
-    ConstraintDescription: must contain only alphanumeric characters.
-  JenkinsLocation:
-    Description: The IP address range that can be used to Access Jenkins URL
-    Type: String
-    MinLength: '9'
-    MaxLength: '18'
-    Default: 0.0.0.0/0
-    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
-    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
-  SSHLocation:
-    Description: The IP address range that can be used to SSH to the EC2 instances
-    Type: String
-    MinLength: '9'
-    MaxLength: '18'
-    Default: 0.0.0.0/0
-    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
-    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
-Mappings:
-  AWSInstanceType2Arch:
-    t1.micro:
-      Arch: PV64
-    t2.nano:
-      Arch: HVM64
-    t2.micro:
-      Arch: HVM64
-    t2.small:
-      Arch: HVM64
-    t2.medium:
-      Arch: HVM64
-    m1.small:
-      Arch: PV64
-    m1.medium:
-      Arch: PV64
-    m3.medium:
-      Arch: HVM64
-    c1.medium:
-      Arch: PV64
-  AWSInstanceType2NATArch:
-    t1.micro:
-      Arch: NATPV64
-    t2.nano:
-      Arch: NATHVM64
-    t2.micro:
-      Arch: NATHVM64
-    t2.small:
-      Arch: NATHVM64
-    t2.medium:
-      Arch: NATHVM64
-    m1.small:
-      Arch: NATPV64
-    m1.medium:
-      Arch: NATPV64
-    m3.medium:
-      Arch: NATHVM64
-    c1.medium:
-      Arch: NATPV64
-  AWSRegionArch2AMI:
-    us-east-1:
-      PV64: ami-2a69aa47
-      HVM64: ami-6869aa05
-      HVMG2: ami-1f12e965
-    us-west-2:
-      PV64: ami-7f77b31f
-      HVM64: ami-7172b611
-      HVMG2: ami-5c9b6124
-    us-west-1:
-      PV64: ami-a2490dc2
-      HVM64: ami-31490d51
-      HVMG2: ami-7291a112
-    eu-west-1:
-      PV64: ami-4cdd453f
-      HVM64: ami-f9dd458a
-      HVMG2: ami-b411c5cd
-    eu-west-2:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-886369ec
-      HVMG2: NOT_SUPPORTED
-    eu-central-1:
-      PV64: ami-6527cf0a
-      HVM64: ami-ea26ce85
-      HVMG2: ami-be40f2d1
-    ap-northeast-1:
-      PV64: ami-3e42b65f
-      HVM64: ami-374db956
-      HVMG2: ami-3efd2c58
-    ap-northeast-2:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-2b408b45
-      HVMG2: NOT_SUPPORTED
-    ap-southeast-1:
-      PV64: ami-df9e4cbc
-      HVM64: ami-a59b49c6
-      HVMG2: ami-3e91ed5d
-    ap-southeast-2:
-      PV64: ami-63351d00
-      HVM64: ami-dc361ebf
-      HVMG2: ami-84a142e6
-    ap-south-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-ffbdd790
-      HVMG2: ami-25ffbe4a
-    us-east-2:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-f6035893
-      HVMG2: NOT_SUPPORTED
-    ca-central-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-730ebd17
-      HVMG2: NOT_SUPPORTED
-    sa-east-1:
-      PV64: ami-1ad34676
-      HVM64: ami-6dd04501
-      HVMG2: NOT_SUPPORTED
-    cn-north-1:
-      PV64: ami-77559f1a
-      HVM64: ami-8e6aa0e3
-      HVMG2: NOT_SUPPORTED
-    cn-northwest-1:
-      PV64: ami-80707be2
-      HVM64: ami-cb858fa9
-      HVMG2: NOT_SUPPORTED
+
+  VPC:
+    Type: AWS::EC2::VPC::Id
+    Description: Choose which VPC the Application Load Balancer should be deployed to
+
+  Subnets:
+    Description: Choose which subnets the Application Load Balancer should be deployed to
+    Type: List<AWS::EC2::Subnet::Id>
+
+  SecurityGroup:
+    Description: Select the Security Group to apply to the Application Load Balancer
+    Type: AWS::EC2::SecurityGroup::Id
 
 Resources:
   # Create VPC: https://sookocheff.com/post/aws/how-to-create-a-vpc-using-cloudformation/
-  VPC:
-    Type: AWS::EC2::VPC
+  # https://github.com/humank/20171116-cfn-lab/blob/master/infrastructure/vpc.yml
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      CidrBlock: 172.31.0.0/16
-      EnableDnsSupport: true
-      EnableDnsHostnames: true
-      InstanceTenancy: default
-  InternetGateway:
-    Type: AWS::EC2::InternetGateway
-  VPCGatewayAttachment:
-    Type: AWS::EC2::VPCGatewayAttachment
+      Name:
+        "Fn::Sub":
+          - "ALB-${StackName}"
+          - StackName: !Ref AWS::StackName
+      Subnets: !Ref Subnets
+      SecurityGroups: 
+        - !Ref SecurityGroup
+        Tags: 
+          - Key: Name
+            Value: !Ref StackName
+
+  LoadBalancerListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP 
+      DefaultActions: 
+        - Type: forward
+          TargetGroupArn: !Ref ALBTargetGroup
+
+  ALBTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name:
+        "Fn::Sub":
+          - "TG-${StackName}"
+          - StackName: !Ref AWS::StackName
       VpcId: !Ref VPC
-      InternetGatewayId: !Ref InternetGateway
-  SubnetA:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"]
-      VpcId: !Ref VPC
-      CidrBlock: 172.31.0.0/20
-      MapPublicIpOnLaunch: true
-  SubnetB:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]
-      VpcId: !Ref VPC
-      CidrBlock: 172.31.16.0/20
-      MapPublicIpOnLaunch: true
-  RouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref VPC
-  InternetRoute:
-    Type: AWS::EC2::Route
-    DependsOn: InternetGateway
-    Properties:
-      DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref InternetGateway
-      RouteTableId: !Ref RouteTable
-  SubnetARouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId: !Ref RouteTable
-      SubnetId: !Ref SubnetA
-  SubnetBRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId: !Ref RouteTable
-      SubnetId: !Ref SubnetB
-  JenkinsSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Enable HTTP access via port Jenkins port locked down to the load balancer
-        + SSH access
-      VpcId: !Ref VPC
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: !Ref JenkinsPort
-          ToPort: !Ref JenkinsPort
-          CidrIp: !Ref 'JenkinsLocation'
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: !Ref 'SSHLocation'
-  Jenkins:
-    Type: AWS::EC2::Instance
-    Metadata:
-      AWS::CloudFormation::Init:
-        configSets:
-          jenkins_install:
-            - install_cfn
-            - setup_jenkins
-        install_cfn:
-          files:
-            /etc/cfn/cfn-hup.conf:
-              content: !Join ['', ['[main]
-
-                    ', stack=, !Ref 'AWS::StackId', '
-
-                    ', region=, !Ref 'AWS::Region', '
-
-                    ']]
-              mode: '000400'
-              owner: root
-              group: root
-            /etc/cfn/hooks.d/cfn-auto-reloader.conf:
-              content: !Join ['', ['[cfn-auto-reloader-hook]
-
-                    ', 'triggers=post.update
-
-                    ', 'path=Resources.Jenkins.Metadata.AWS::CloudFormation::Init
-
-                    ', 'action=/opt/aws/bin/cfn-init -v ', '         --stack ', !Ref 'AWS::StackName',
-                  '         --resource Jenkins ', '         --configsets jenkins_install ',
-                  '         --region ', !Ref 'AWS::Region', '
-
-                    ']]
-              mode: '000400'
-              owner: root
-              group: root
-          services:
-            sysvinit:
-              cfn-hup:
-                enabled: 'true'
-                ensureRunning: 'true'
-                files:
-                  - /etc/cfn/cfn-hup.conf
-                  - /etc/cfn/hooks.d/cfn-auto-reloader.conf
-        setup_jenkins:
-          packages:
-            yum:
-              tmux: []
-          sources:
-              /home/ec2-user/chef/chef-study: 'https://github.com/DennyZhang/chef-study/tarball/master'
-          files:
-            /home/ec2-user/run_chef_solo.sh:
-              source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/run_chef_solo.sh
-              mode: 755
-              owner: ec2-user
-              group: ec2-user
-            /home/ec2-user/chef/node.json:
-              # TODO: customize more parameter: slack teamdomain, jenkins_jobs
-              # TODO: replace localhost with instance public ip
-              content: !Sub | 
-                {"jenkins_demo":
-                  {"jenkins_port":"${JenkinsPort}",
-                  "default_username":"${JenkinsUser}",
-                   "default_password":"${JenkinsPassword}",
-                   "jenkins_jobs":"CommonServerCheckRepo",
-                   "slack_authtoken":"${SlackAuthToken}",
-                   "slack_teamdomain":"mywechat",
-                   "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
-                   "slack_room":"#denny-alerts"
-                   },
-                 "run_list":["recipe[apt::default]",
-                             "recipe[jenkins-demo::default]",
-                             "recipe[jenkins-demo::conf_job]"
-                            ]
-                }
-              mode: 755
-              owner: ec2-user
-              group: ec2-user
-          commands:
-            01_install_chef:
-              command:
-                !Join
-                - ''
-                - - 'wget -O /tmp/chefdk.rpm'
-                  - ' '
-                  - 'https://packages.chef.io/files/stable/chefdk/2.3.4/el/7/chefdk-2.3.4-1.el7.x86_64.rpm'
-                  - ' '
-                  - '&& sudo rpm -ivh /tmp/chefdk.rpm'
-            02_chef_install_jenkins:
-              command:
-                !Join
-                - ''
-                - - 'sudo bash -ex /home/ec2-user/run_chef_solo.sh '
-                  - '"jenkins-demo"'
-                  - ' '
-                  - '"/home/ec2-user/chef/chef-study/Scenario-302/cookbooks/jenkins-demo"'
-                  - ' '
-                  - '"/home/ec2-user/chef/node.json"'
-              test: which chef-solo
-
-    Properties:
-      ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
-          !Ref 'InstanceType', Arch]]
-      InstanceType: !Ref 'InstanceType'
-      SecurityGroupIds:
-        - !Ref 'JenkinsSecurityGroup'
-      SubnetId: !Ref SubnetA
-      Monitoring: true
-      KeyName: !Ref 'KeyName'
-      UserData: !Base64
-        Fn::Join:
-          - ''
-          - - '#!/bin/bash -xe
-
-              '
-            - 'yum update -y aws-cfn-bootstrap
-
-              '
-            - '/opt/aws/bin/cfn-init -v '
-            - '         --stack '
-            - !Ref 'AWS::StackName'
-            - '         --resource Jenkins '
-            - '         --configsets jenkins_install '
-            - '         --region '
-            - !Ref 'AWS::Region'
-            - '
-
-              '
-            - '/opt/aws/bin/cfn-signal -e $? '
-            - '         --stack '
-            - !Ref 'AWS::StackName'
-            - '         --resource Jenkins '
-            - '         --region '
-            - !Ref 'AWS::Region'
-            - '
-
-              '
-    CreationPolicy:
-      ResourceSignal:
-        Timeout: PT15M
+      Port: 80
+      Protocol: HTTP
+      HealthCheckPort: 80
+      HealthCheckProtocol: HTTP
+      HealthCheckPath: /index.php
+           
 Outputs:
-  WebsiteURL:
-    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':', !Ref JenkinsPort]]
-    Description: Jenkins Website
+  StackName:
+    Value:
+      !Ref AWS::StackName
+
+  ALBLoadBalancer:
+    Description: A reference to the Application Load Balancer
+    Value: !Ref LoadBalancer
+    Export:
+      Name: 
+        "Fn::Sub": 
+          - ${StackName}-ALBLoadBalancer
+          - StackName: !Ref AWS::StackName
+
+  LoadBalancerUrl:
+    Description: The URL of the ALB
+    Value: !Sub
+      - http://${alburl}
+      - alburl: !GetAtt LoadBalancer.DNSName
+    Export:
+      Name: 
+        "Fn::Sub": 
+          - ${StackName}-LoadBalancerUrl
+          - StackName: !Ref AWS::StackName
+  LoadBalancerListener:
+    Description: A reference to a port 80 listener
+    Value: !Ref LoadBalancerListener  
+    Export:
+      Name: 
+        "Fn::Sub": 
+          - ${StackName}-LoadBalancerListener
+          - StackName: !Ref AWS::StackName
+  ALBTargetGroup:
+    Description: A reference to ALB TargetGroup
+    Value: !Ref ALBTargetGroup
+    Export:
+      Name:
+        "Fn::Sub":
+          - ${StackName}-ALBTargetGroup
+          - StackName: !Ref AWS::StackName

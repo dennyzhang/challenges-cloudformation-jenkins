@@ -113,9 +113,9 @@ Resources:
           FromPort: '22'
           ToPort: '22'
           CidrIp: !Ref 'SSHLocation'
-      Tags: 
-        - Key: Name 
-          Value: !Sub ${StackName}-SecurityGroup
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName}-secgroup
 
 Outputs:
   StackName:
@@ -146,7 +146,7 @@ Outputs:
     Export:
       Name:
         "Fn::Sub": 
-          - ${StackName}-pub-subnet1
+          - ${StackName}-PubSubnet1
           - StackName: !Ref AWS::StackName
 
   PublicSubnet2: 
@@ -155,13 +155,13 @@ Outputs:
     Export:
       Name:
         "Fn::Sub": 
-          - ${StackName}-pub-subnet2
+          - ${StackName}-PubSubnet2
           - StackName: !Ref AWS::StackName
   JenkinsSecurityGroup: 
     Description: A reference to the security group for Jenkins service
-    Value: !Ref JenkinsSecurityGroup
+    Value: !GetAtt JenkinsSecurityGroup.GroupId
     Export:
       Name: 
-        "Fn::Sub": 
+        "Fn::Sub":
           - ${StackName}-SecurityGroup
           - StackName: !Ref AWS::StackName
