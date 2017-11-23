@@ -35,7 +35,7 @@ Resources:
     Type: AWS::EC2::VPC
     Properties:
       # CidrBlock: 172.31.0.0/16
-      # public: 172.31.8.0/24, 172.31.16.0/24
+      # public: 172.31.0.0/20, 172.31.16.0/20
       CidrBlock: 172.31.0.0/16
       EnableDnsSupport: true
       EnableDnsHostnames: true
@@ -59,7 +59,7 @@ Resources:
     Properties:
       AvailabilityZone: !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"]
       VpcId: !Ref VPC
-      CidrBlock: 172.31.8.0/24
+      CidrBlock: 172.31.0.0/20
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
@@ -69,7 +69,7 @@ Resources:
     Properties:
       AvailabilityZone: !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]
       VpcId: !Ref VPC
-      CidrBlock: 172.31.16.0/24
+      CidrBlock: 172.31.16.0/20
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
