@@ -56,7 +56,7 @@ Case study using AWS TechStack to setup Jenkins env
 4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
 ```
 - Main Tech: Cloudformation, Docker
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-102.yml)
+- [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-102.yml)
 - See more: [Scenario-102](./Scenario-102)
 - TODO
 
