@@ -61,10 +61,9 @@ Resources:
       VpcId: !Ref VPC
       CidrBlock: 172.31.8.0/24
       MapPublicIpOnLaunch: true
-      Properties:
-        Tags:
-          - Key: Name
-            Value: !Sub ${StackName} Public Subnet1
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName} Public Subnet1
   PublicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -72,10 +71,9 @@ Resources:
       VpcId: !Ref VPC
       CidrBlock: 172.31.16.0/24
       MapPublicIpOnLaunch: true
-      Properties:
-        Tags:
-          - Key: Name
-            Value: !Sub ${StackName} Public Subnet2
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName} Public Subnet2
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
