@@ -22,7 +22,7 @@ Table of Contents
 - Use CF to setup the env
 ```
     export STACK_NAME="docker-cf-jenkins"
-    export TMP_FILE="file://cf-denny-jenkins-vm-aio.yml"
+    export TMP_FILE="file://cf-jenkins-203.yml"
 
     # The IP address range that can be used to Access Jenkins URL
     [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"

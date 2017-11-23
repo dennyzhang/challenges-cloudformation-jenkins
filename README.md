@@ -43,6 +43,7 @@ Case study using AWS TechStack to setup Jenkins env
 3. Setup Jenkins container inside the instance
 ```
 - Main Tech: Cloudformation, Docker
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-101.yml)
 - See more: [Scenario-101](./Scenario-101)
 
 ## Scenario-102: Docker Single-Node Jenkins Deployment II
@@ -55,6 +56,7 @@ Case study using AWS TechStack to setup Jenkins env
 4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
 ```
 - Main Tech: Cloudformation, Docker
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-102.yml)
 - See more: [Scenario-102](./Scenario-102)
 - TODO
 
@@ -199,6 +201,10 @@ https://github.com/awslabs
 
 # Contributors: Give People Credits
 Below are folks who have contributed via GitHub!
+- Critical Info
+```
+CentOS Jenkins conf: /etc/sysconfig/jenkins
+```
 
 # License
 - Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).

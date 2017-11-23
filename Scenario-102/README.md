@@ -16,7 +16,7 @@ Table of Contents
 - Use CF to setup the env
 ```
     export STACK_NAME="docker-cf-jenkins"
-    export TMP_FILE="file://cf-denny-jenkins-docker-aio.yml"
+    export TMP_FILE="file://cf-jenkins-102.yml"
     [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
     aws cloudformation create-stack --template-body "$TMP_FILE" \
         --stack-name "$STACK_NAME" --parameters \
