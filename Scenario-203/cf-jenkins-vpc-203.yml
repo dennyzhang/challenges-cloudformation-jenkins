@@ -108,6 +108,7 @@ Resources:
   JenkinsSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
+      GroupName: !Sub ${StackName}-secgroup
       GroupDescription: Enable HTTP access via port Jenkins port locked down to the load balancer
         + SSH access
       VpcId: !Ref VPC
@@ -120,6 +121,9 @@ Resources:
           FromPort: '22'
           ToPort: '22'
           CidrIp: !Ref 'SSHLocation'
+      Tags: 
+        - Key: Name 
+          Value: !Sub ${StackName}
 
 Outputs:
   StackName:
