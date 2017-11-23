@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'AWS CloudFormation Sample Template Jenkins_Single_Instance: Jenkins
-  is web software you can use to CI/CD. This template installs Jenkins configured
-  by Chef'
+Description: 'AWS CloudFormation Sample Template: Jenkins is web software you can use to CI/CD. 
+             This template installs Jenkins configured by Chef'
 Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
