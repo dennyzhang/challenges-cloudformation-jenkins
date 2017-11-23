@@ -95,9 +95,9 @@ Case study using AWS TechStack to setup Jenkins env
 - Requirements:
 ```
 1. Finish Scenario-202
-2. Enable CloudWatch monitoring for Jenkins
-3. When Jenkins is down, get slack notification
-4. In case Jenkins master crash, create an auto-scaling group. And configure the instance count as 1
+2. Use CF to create a dedicated VPC and start an EC2
+3. Use CF to create ASG and ELB. And monitor ELB
+4. Start Jenkins master by ELB. Configure instance count to 1
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
 
