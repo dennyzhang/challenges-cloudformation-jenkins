@@ -2,6 +2,10 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'AWS CloudFormation Sample Template: Jenkins is web software you can use to CI/CD. 
              This template installs Jenkins configured by Chef'
 Parameters:
+  StackName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+    Default: 'aws-jenkins'
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
     Type: AWS::EC2::KeyPair::KeyName
@@ -21,17 +25,14 @@ Parameters:
       - m3.medium
       - c1.medium
     ConstraintDescription: must be a valid EC2 instance type.
-  DockerImage:
-    Default: denny/jenkins_image:latest
-    Description: Docker Image Name
-    Type: String
-    MinLength: '1'
-    MaxLength: '64'
-    AllowedPattern: '[a-zA-Z][a-zA-Z0-9:_/]*'
-    ConstraintDescription: must begin with a letter and contain only alphanumeric
-      characters.
+  JenkinsPort:
+    Default: 8080
+    Description: The Jenkins Port
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
   JenkinsUser:
-    # TODO: feed JenkinsUser and JenkinsPassword to the script
     Description: The Jenkins username
     Type: String
     MinLength: '1'
@@ -47,6 +48,23 @@ Parameters:
     MaxLength: '41'
     AllowedPattern: '[a-zA-Z0-9]*'
     ConstraintDescription: must contain only alphanumeric characters.
+  SlackAuthToken:
+    Default: ''
+    NoEcho: 'true'
+    Description: Slack Token For Jenkins Jobs. If empty, slack notification is muted.
+    Type: String
+    MinLength: '0'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  JenkinsLocation:
+    Description: The IP address range that can be used to Access Jenkins URL
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
   SSHLocation:
     Description: The IP address range that can be used to SSH to the EC2 instances
     Type: String
@@ -67,102 +85,14 @@ Mappings:
       Arch: HVM64
     t2.medium:
       Arch: HVM64
-    t2.large:
-      Arch: HVM64
     m1.small:
       Arch: PV64
     m1.medium:
       Arch: PV64
-    m1.large:
-      Arch: PV64
-    m1.xlarge:
-      Arch: PV64
-    m2.xlarge:
-      Arch: PV64
-    m2.2xlarge:
-      Arch: PV64
-    m2.4xlarge:
-      Arch: PV64
     m3.medium:
-      Arch: HVM64
-    m3.large:
-      Arch: HVM64
-    m3.xlarge:
-      Arch: HVM64
-    m3.2xlarge:
-      Arch: HVM64
-    m4.large:
-      Arch: HVM64
-    m4.xlarge:
-      Arch: HVM64
-    m4.2xlarge:
-      Arch: HVM64
-    m4.4xlarge:
-      Arch: HVM64
-    m4.10xlarge:
       Arch: HVM64
     c1.medium:
       Arch: PV64
-    c1.xlarge:
-      Arch: PV64
-    c3.large:
-      Arch: HVM64
-    c3.xlarge:
-      Arch: HVM64
-    c3.2xlarge:
-      Arch: HVM64
-    c3.4xlarge:
-      Arch: HVM64
-    c3.8xlarge:
-      Arch: HVM64
-    c4.large:
-      Arch: HVM64
-    c4.xlarge:
-      Arch: HVM64
-    c4.2xlarge:
-      Arch: HVM64
-    c4.4xlarge:
-      Arch: HVM64
-    c4.8xlarge:
-      Arch: HVM64
-    g2.2xlarge:
-      Arch: HVMG2
-    g2.8xlarge:
-      Arch: HVMG2
-    r3.large:
-      Arch: HVM64
-    r3.xlarge:
-      Arch: HVM64
-    r3.2xlarge:
-      Arch: HVM64
-    r3.4xlarge:
-      Arch: HVM64
-    r3.8xlarge:
-      Arch: HVM64
-    i2.xlarge:
-      Arch: HVM64
-    i2.2xlarge:
-      Arch: HVM64
-    i2.4xlarge:
-      Arch: HVM64
-    i2.8xlarge:
-      Arch: HVM64
-    d2.xlarge:
-      Arch: HVM64
-    d2.2xlarge:
-      Arch: HVM64
-    d2.4xlarge:
-      Arch: HVM64
-    d2.8xlarge:
-      Arch: HVM64
-    hi1.4xlarge:
-      Arch: HVM64
-    hs1.8xlarge:
-      Arch: HVM64
-    cr1.8xlarge:
-      Arch: HVM64
-    cc2.8xlarge:
-      Arch: HVM64
   AWSInstanceType2NATArch:
     t1.micro:
       Arch: NATPV64
@@ -174,102 +104,14 @@ Mappings:
       Arch: NATHVM64
     t2.medium:
       Arch: NATHVM64
-    t2.large:
-      Arch: NATHVM64
     m1.small:
       Arch: NATPV64
     m1.medium:
       Arch: NATPV64
-    m1.large:
-      Arch: NATPV64
-    m1.xlarge:
-      Arch: NATPV64
-    m2.xlarge:
-      Arch: NATPV64
-    m2.2xlarge:
-      Arch: NATPV64
-    m2.4xlarge:
-      Arch: NATPV64
     m3.medium:
-      Arch: NATHVM64
-    m3.large:
-      Arch: NATHVM64
-    m3.xlarge:
-      Arch: NATHVM64
-    m3.2xlarge:
-      Arch: NATHVM64
-    m4.large:
-      Arch: NATHVM64
-    m4.xlarge:
-      Arch: NATHVM64
-    m4.2xlarge:
-      Arch: NATHVM64
-    m4.4xlarge:
-      Arch: NATHVM64
-    m4.10xlarge:
       Arch: NATHVM64
     c1.medium:
       Arch: NATPV64
-    c1.xlarge:
-      Arch: NATPV64
-    c3.large:
-      Arch: NATHVM64
-    c3.xlarge:
-      Arch: NATHVM64
-    c3.2xlarge:
-      Arch: NATHVM64
-    c3.4xlarge:
-      Arch: NATHVM64
-    c3.8xlarge:
-      Arch: NATHVM64
-    c4.large:
-      Arch: NATHVM64
-    c4.xlarge:
-      Arch: NATHVM64
-    c4.2xlarge:
-      Arch: NATHVM64
-    c4.4xlarge:
-      Arch: NATHVM64
-    c4.8xlarge:
-      Arch: NATHVM64
-    g2.2xlarge:
-      Arch: NATHVMG2
-    g2.8xlarge:
-      Arch: NATHVMG2
-    r3.large:
-      Arch: NATHVM64
-    r3.xlarge:
-      Arch: NATHVM64
-    r3.2xlarge:
-      Arch: NATHVM64
-    r3.4xlarge:
-      Arch: NATHVM64
-    r3.8xlarge:
-      Arch: NATHVM64
-    i2.xlarge:
-      Arch: NATHVM64
-    i2.2xlarge:
-      Arch: NATHVM64
-    i2.4xlarge:
-      Arch: NATHVM64
-    i2.8xlarge:
-      Arch: NATHVM64
-    d2.xlarge:
-      Arch: NATHVM64
-    d2.2xlarge:
-      Arch: NATHVM64
-    d2.4xlarge:
-      Arch: NATHVM64
-    d2.8xlarge:
-      Arch: NATHVM64
-    hi1.4xlarge:
-      Arch: NATHVM64
-    hs1.8xlarge:
-      Arch: NATHVM64
-    cr1.8xlarge:
-      Arch: NATHVM64
-    cc2.8xlarge:
-      Arch: NATHVM64
   AWSRegionArch2AMI:
     us-east-1:
       PV64: ami-2a69aa47
@@ -335,21 +177,17 @@ Mappings:
       PV64: ami-80707be2
       HVM64: ami-cb858fa9
       HVMG2: NOT_SUPPORTED
+
 Resources:
-  JenkinsSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
+  VPC:
+    Type: AWS::CloudFormation::Stack
     Properties:
-      GroupDescription: Enable HTTP access via port 8080 locked down to the load balancer
-        + SSH access
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '8080'
-          ToPort: '8080'
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: !Ref 'SSHLocation'
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-vpc-203.yml
+      Parameters:
+        StackName: !Ref AWS::StackName
+        JenkinsPort: !Ref JenkinsPort
+        JenkinsLocation: !Ref JenkinsLocation
+        SSHLocation: !Ref SSHLocation
   Jenkins:
     Type: AWS::EC2::Instance
     Metadata:
@@ -399,17 +237,37 @@ Resources:
             yum:
               tmux: []
           sources:
-              /home/ec2-user/chef/aws-jenkins-study: 'https://github.com/DennyZhang/aws-jenkins-study/tarball/master'
+              /home/ec2-user/chef/chef-study: 'https://github.com/DennyZhang/chef-study/tarball/master'
           files:
             /home/ec2-user/run_chef_solo.sh:
               source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/run_chef_solo.sh
               mode: 755
               owner: ec2-user
               group: ec2-user
+            /home/ec2-user/chef/node.json:
+              # TODO: customize more parameter: slack teamdomain, jenkins_jobs
+              # TODO: replace localhost with instance public ip
+              content: !Sub | 
+                {"jenkins_demo":
+                  {"jenkins_port":"${JenkinsPort}",
+                  "default_username":"${JenkinsUser}",
+                   "default_password":"${JenkinsPassword}",
+                   "jenkins_jobs":"CommonServerCheckRepo",
+                   "slack_authtoken":"${SlackAuthToken}",
+                   "slack_teamdomain":"mywechat",
+                   "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
+                   "slack_room":"#denny-alerts"
+                   },
+                 "run_list":["recipe[apt::default]",
+                             "recipe[jenkins-demo::default]",
+                             "recipe[jenkins-demo::conf_job]"
+                            ]
+                }
+              mode: 755
+              owner: ec2-user
+              group: ec2-user
           commands:
             01_install_chef:
-              # TODO: too long
-              # TODO: better way to install chefdk
               command:
                 !Join
                 - ''
@@ -419,22 +277,26 @@ Resources:
                   - ' '
                   - '&& sudo rpm -ivh /tmp/chefdk.rpm'
             02_chef_install_jenkins:
-              # TODO: customize parameters
               command:
                 !Join
                 - ''
                 - - 'sudo bash -ex /home/ec2-user/run_chef_solo.sh '
                   - '"jenkins-demo"'
                   - ' '
-                  - '"/home/ec2-user/chef/aws-jenkins-study/utility/chef/201/jenkins-demo"'
+                  - '"/home/ec2-user/chef/chef-study/Scenario-302/cookbooks/jenkins-demo"'
+                  - ' '
+                  - '"/home/ec2-user/chef/node.json"'
               test: which chef-solo
 
     Properties:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
       InstanceType: !Ref 'InstanceType'
-      SecurityGroups:
-        - !Ref 'JenkinsSecurityGroup'
+      SecurityGroupIds:
+        - !GetAtt ["VPC","Outputs.JenkinsSecurityGroupId"]
+      # TODO: customize the subnet
+      SubnetId: !GetAtt ["VPC","Outputs.PublicSubnet1"]
+      Monitoring: true
       KeyName: !Ref 'KeyName'
       UserData: !Base64
         Fn::Join:
@@ -469,5 +331,5 @@ Resources:
         Timeout: PT15M
 Outputs:
   WebsiteURL:
-    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':8080']]
+    Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':', !Ref JenkinsPort]]
     Description: Jenkins Website

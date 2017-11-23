@@ -18,12 +18,12 @@ Table of Contents
       * [Scenario-201: VM Single-Node Jenkins Deployment I](#scenario-201-vm-single-node-jenkins-deployment-i)
       * [Scenario-202: VM Single-Node Jenkins Deployment II](#scenario-202-vm-single-node-jenkins-deployment-ii)
       * [Scenario-203: VM Single-Node Jenkins Deployment III](#scenario-203-vm-single-node-jenkins-deployment-iii)
-      * [Scenario-301: VM 2-Nodes Jenkins Deployment I](#scenario-301-vm-2-nodes-jenkins-deployment-i)
-      * [Scenario-302: VM 2-Nodes Jenkins Deployment II](#scenario-302-vm-2-nodes-jenkins-deployment-ii)
-      * [Scenario-401: ECS Jenkins Deployment I](#scenario-401-ecs-jenkins-deployment-i)
-      * [Scenario-402: ECS Jenkins Deployment II](#scenario-402-ecs-jenkins-deployment-ii)
-      * [Scenario-403: ECS Jenkins Deployment III](#scenario-403-ecs-jenkins-deployment-iii)
-      * [Scenario-501: Large Scale Jenkins Deployment I](#scenario-501-large-scale-jenkins-deployment-i)
+      * [Scenario-401: VM 2-Nodes Jenkins Deployment I](#scenario-401-vm-2-nodes-jenkins-deployment-i)
+      * [Scenario-402: VM 2-Nodes Jenkins Deployment II](#scenario-402-vm-2-nodes-jenkins-deployment-ii)
+      * [Scenario-501: ECS Jenkins Deployment I](#scenario-501-ecs-jenkins-deployment-i)
+      * [Scenario-502: ECS Jenkins Deployment II](#scenario-502-ecs-jenkins-deployment-ii)
+      * [Scenario-503: ECS Jenkins Deployment III](#scenario-503-ecs-jenkins-deployment-iii)
+      * [Scenario-601: Large Scale Jenkins Deployment I](#scenario-601-large-scale-jenkins-deployment-i)
    * [Highlights](#highlights)
    * [Contributors: Give People Credits](#contributors-give-people-credits)
    * [License](#license)
@@ -96,8 +96,6 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 1. Finish Scenario-202
 2. Use CF to create a dedicated VPC and start an EC2
-3. Use CF to create ASG and ELB. And monitor ELB
-4. Start Jenkins master by ELB. Configure instance count to 1
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
 
@@ -107,7 +105,20 @@ Case study using AWS TechStack to setup Jenkins env
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_aio.png"/> </a>
 
-## Scenario-301: VM 2-Nodes Jenkins Deployment I
+## Scenario-301: VM ASG/ELB Jenkins Deployment I
+- Objective: Customize Jenkins docker deployment in AWS
+- Requirements:
+```
+1. Use CF to create ASG and ELB. And monitor ELB
+2. Start Jenkins master by ELB. Configure instance count to 1
+```
+- Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-301.yml)
+- See more: [Scenario-301](./Scenario-301)
+- TODO
+
+## Scenario-401: VM 2-Nodes Jenkins Deployment I
 - Objective: Avoid SPOF by adding 2 Jenkins instance
 - Requirements:
 ```
@@ -116,12 +127,12 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
 
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-301.yml)
-- See more: [Scenario-301](./Scenario-301)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-401.yml)
+- See more: [Scenario-401](./Scenario-401)
 - TODO
 - TODO: how the 2 Jenkins instance gonna to coordinate with each other?
 
-## Scenario-302: VM 2-Nodes Jenkins Deployment II
+## Scenario-402: VM 2-Nodes Jenkins Deployment II
 - Objective: Jenkins cluster deployment
 - Requirements:
 ```
@@ -132,13 +143,13 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration, ALB
 
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-302.yml)
-- See more: [Scenario-302](./Scenario-302)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-402.yml)
+- See more: [Scenario-402](./Scenario-402)
 - TODO
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_2nodes.png"/> </a>
 
-## Scenario-401: ECS Jenkins Deployment I
+## Scenario-501: ECS Jenkins Deployment I
 - Objective: Get exposed to docker orchestration service.
 - Requirements:
 ```
@@ -147,11 +158,11 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 - Main Tech: Cloudformation, ECS, EBS
 
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-401.yml)
-- See more: [Scenario-401](./Scenario-401)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-501.yml)
+- See more: [Scenario-501](./Scenario-501)
 - TODO
 
-## Scenario-402: ECS Jenkins Deployment II
+## Scenario-502: ECS Jenkins Deployment II
 - Objective: Deploy a 2-nodes Jenkins cluster
 - Requirements:
 ```
@@ -161,14 +172,14 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, ALB
 
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-402.yml)
-- See more: [Scenario-402](./Scenario-402)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-502.yml)
+- See more: [Scenario-502](./Scenario-502)
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes.png"/> </a>
 
-## Scenario-403: ECS Jenkins Deployment III
+## Scenario-503: ECS Jenkins Deployment III
 - Objective: Deploy Jenkins 1 Master 3 Slaves with 2 nodes in ECS2
 - Requirements:
 ```
@@ -178,14 +189,14 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, ALB
 
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-403.yml)
-- See more: [Scenario-403](./Scenario-403)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-503.yml)
+- See more: [Scenario-503](./Scenario-503)
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes_4instances.png"/> </a>
 
-## Scenario-501: Large Scale Jenkins Deployment I
+## Scenario-601: Large Scale Jenkins Deployment I
 - Objective: Suppose you have 1K developers to use your Jenkins. Improve scalability, availability, security, etc.
 - Requirements:
 ```
@@ -195,8 +206,8 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 - Main Tech: Cloudformation, ECS, EBS, ALB
 
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-501.yml)
-- See more: [Scenario-501](./Scenario-501)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-601.yml)
+- See more: [Scenario-601](./Scenario-601)
 - TODO
 
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>

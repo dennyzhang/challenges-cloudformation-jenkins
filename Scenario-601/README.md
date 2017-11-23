@@ -3,20 +3,22 @@ Table of Contents
 
    * [Requirements](#requirements)
    * [Procedures](#procedures)
+   * [More Resources](#more-resources)
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes.png"/> </a>
 
 # Requirements
-1. Start ECS with 1 node
-2. Install a single Jenkins instance
+1. Scalability: multiple Jenkins master instances
+2. Availability: Jenkins slave; Jenkins Master
+2. Security: VPC, Jenkins authentication integration
 
 # Procedures
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-501.yml)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-601.yml)
 
 - Use CF to setup the env
 ```
 export STACK_NAME="aws-jenkins"
-export TMP_FILE="file://cf-jenkins-501.yml"
+export TMP_FILE="file://cf-jenkins-601.yml"
 
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
@@ -33,3 +35,6 @@ aws cloudformation delete-stack --stack-name "$STACK_NAME"
 
 - Verify Jenkins
 curl -I http://$server_ip:8080
+
+# More Resources
+- https://shuaib.me/ecs-jenkins/

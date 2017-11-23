@@ -15,8 +15,6 @@ Table of Contents
 # Requirements
 1. Finish Scenario-202
 2. Use CF to create a dedicated VPC and start an EC2
-3. Use CF to create ASG and ELB. And monitor ELB
-4. Start Jenkins master by ELB. Configure instance count to 1
 
 # Procedures
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-203.yml)

@@ -1,16 +1,22 @@
+[![LinkedIn](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/linkedin.png)](https://www.linkedin.com/in/dennyzhang001) <a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="http://slack.dennyzhang.com/badge.svg" alt="slack"/></a> [![Github](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/github.png)](https://github.com/DennyZhang)
+
+File me [tickets](https://github.com/DennyZhang/chef-study/issues) or star [the repo](https://github.com/DennyZhang/chef-study).
+
+<a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
+
 Table of Contents
 =================
 
    * [Requirements](#requirements)
    * [Procedures](#procedures)
-   * [More Resources](#more-resources)
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_2nodes.png"/> </a>
 
 # Requirements
-1. Start ECS with 2 node
-2. Start Jenkins service with 2 instances in ECS. One for master, one for slave.
-3. Enable ALB for Jenkins master
+1. Start 1 jenkins master and 1 jenkins slave
+2. Enable auto-scaling for Jenkins master. With instance count 1
+3. Enable auto-scaling for Jenkins slaves. With instance count range from 1 to 3
+4. Customized VPC to allow limited network access
 
 # Procedures
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-402.yml)
@@ -35,6 +41,3 @@ aws cloudformation delete-stack --stack-name "$STACK_NAME"
 
 - Verify Jenkins
 curl -I http://$server_ip:8080
-
-# More Resources
-- https://shuaib.me/ecs-jenkins/
