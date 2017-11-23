@@ -21,7 +21,7 @@ Table of Contents
 # Procedures
 - Use CF to setup the env
 ```
-export STACK_NAME="docker-cf-jenkins"
+export STACK_NAME="aws-jenkins"
 export TMP_FILE="file://cf-jenkins-203.yml"
 
 # The IP address range that can be used to Access Jenkins URL

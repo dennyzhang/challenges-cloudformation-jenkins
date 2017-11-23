@@ -21,8 +21,9 @@ Table of Contents
 # Procedures
 - Use CF to setup the env
 ```
-export STACK_NAME="docker-cf-jenkins"
+export STACK_NAME="aws-jenkins"
 export TMP_FILE="file://cf-jenkins-202.yml"
+
 # Test jenkins username and password
 export JENKINS_USER="jenkins123"
 export JENKINS_PASSWORD="password123"
