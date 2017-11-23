@@ -20,7 +20,9 @@ Table of Contents
     aws cloudformation create-stack --template-body "$TMP_FILE" \
         --stack-name "$STACK_NAME" --parameters \
         ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME
+```
 
+```
      aws cloudformation delete-stack --stack-name "$STACK_NAME"
 ```
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
