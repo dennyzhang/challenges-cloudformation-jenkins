@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 15:42:27>
+## Updated: Time-stamp: <2017-11-22 21:52:16>
 ##-------------------------------------------------------------------
 set -e
 
@@ -37,7 +37,7 @@ function prepare_files() {
         mv DennyZhang-${repo_name}-* "$repo_name"
     fi
 
-    wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
+    wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/run_chef_solo.sh
     # TODO: how to pass the parameters?
     JenkinsPort="8081"
     JenkinsUser="user123"

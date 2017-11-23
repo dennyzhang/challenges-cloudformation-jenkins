@@ -377,7 +377,7 @@ Resources:
               /home/ec2-user/chef/chef-study: 'https://github.com/DennyZhang/chef-study/tarball/master'
           files:
             /home/ec2-user/run_chef_solo.sh:
-              source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/bash-scripts/run_chef_solo.sh
+              source: https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/run_chef_solo.sh
               mode: 755
               owner: ec2-user
               group: ec2-user
