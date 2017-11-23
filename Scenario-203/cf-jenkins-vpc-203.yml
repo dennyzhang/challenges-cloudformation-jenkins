@@ -146,7 +146,7 @@ Outputs:
     Export:
       Name:
         "Fn::Sub": 
-          - ${StackName}-pub-subnet2
+          - ${StackName}-pub-subnet1
           - StackName: !Ref AWS::StackName
 
   PublicSubnet2: 
