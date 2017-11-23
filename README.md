@@ -18,6 +18,7 @@ Table of Contents
       * [Scenario-201: VM Single-Node Jenkins Deployment I](#scenario-201-vm-single-node-jenkins-deployment-i)
       * [Scenario-202: VM Single-Node Jenkins Deployment II](#scenario-202-vm-single-node-jenkins-deployment-ii)
       * [Scenario-203: VM Single-Node Jenkins Deployment III](#scenario-203-vm-single-node-jenkins-deployment-iii)
+      * [Scenario-301: VM ASG/ELB Jenkins Deployment I](#scenario-301-vm-asgelb-jenkins-deployment-i)
       * [Scenario-401: VM 2-Nodes Jenkins Deployment I](#scenario-401-vm-2-nodes-jenkins-deployment-i)
       * [Scenario-402: VM 2-Nodes Jenkins Deployment II](#scenario-402-vm-2-nodes-jenkins-deployment-ii)
       * [Scenario-501: ECS Jenkins Deployment I](#scenario-501-ecs-jenkins-deployment-i)
