@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'AWS CloudFormation Sample Template: LaunchConfiguration and AutoScaling'
 Parameters:
-  EC2HostSecurityGroup:
-    Description: WebServer EC2 assigned with VPC Security Group
-    Type: List<AWS::EC2::SecurityGroup::Id>
+  SecurityGroupId:
+    Description: Security Group
+    Type: List<AWS::VPC::SecurityGroup::Id>
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
@@ -127,7 +127,7 @@ Mappings:
 
 Resources:
   # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html
-  LaunchConfig: 
+  JenkinsLaunchConfig: 
     Type: "AWS::AutoScaling::LaunchConfiguration"
     Properties:
       # TODO: support metadata
@@ -162,17 +162,23 @@ Resources:
             - '
 
               '
-    SecurityGroups: !Ref 'EC2HostSecurityGroup'
+    Tags: 
+      - Key: Name 
+        Value: !Sub ${StackName}-LaunchCfg
+    SecurityGroups: !Ref 'SecurityGroupId'
     InstanceType: !Ref 'InstanceType'
 
-  WebServerGroup: 
+  JenkinsScalingGroup: 
     Type: "AWS::AutoScaling::AutoScalingGroup"
-    Properties: 
+    Properties:
+      # TODO change this
       AvailabilityZones: 
         Fn::GetAZs: ""
-      LaunchConfigurationName: 
-        Ref: "LaunchConfig"
+      LaunchConfigurationName:  !Ref 'JenkinsLaunchConfig'
       MinSize: !Ref 'MinSize'
       MaxSize: !Ref 'MaxSize'
       LoadBalancerNames: 
         - Ref: "ElasticLoadBalancer"
+      Tags: 
+        - Key: Name 
+          Value: !Sub ${StackName}-LaunchCfg

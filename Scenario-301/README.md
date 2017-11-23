@@ -18,6 +18,9 @@ Table of Contents
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-301.yml)
 
 - Use CF to setup the env
+
+Here we use nested CF, to organize code in small modules.
+
 ```
 export STACK_NAME="aws-jenkins"
 
@@ -66,4 +69,9 @@ mode. Please refer to the CLI documentation for details.
 
 Agent to master security subsystem is currently off. Please read the
 documentation and consider turning it on
+```
+
+- Useful Commands
+```
+s3cmd put "cf-jenkins-elb-301.yml" s3://aws.dennyzhang.com/
 ```
