@@ -24,7 +24,6 @@ Table of Contents
 - Use CF to setup the env
 ```
 export STACK_NAME="aws-jenkins"
-export TMP_FILE="file://cf-jenkins-203.yml"
 
 # The IP address range that can be used to Access Jenkins URL
 [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
@@ -37,9 +36,22 @@ export JENKINS_PASSWORD="password123"
 [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
 # ssh key name to access EC2 instance
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
+```
 
+```
+export TMP_FILE="file://cf-jenkins-vpc-203.yml"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
     --stack-name "$STACK_NAME" --parameters \
+    ParameterKey=StackName,ParameterValue=$STACK_NAME \
+    ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
+    ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT
+```
+
+```
+export TMP_FILE="file://cf-jenkins-203.yml"
+aws cloudformation create-stack --template-body "$TMP_FILE" \
+    --stack-name "$STACK_NAME" --parameters \
+    ParameterKey=StackName,ParameterValue=$STACK_NAME \
     ParameterKey=JenkinsUser,ParameterValue=$JENKINS_USER \
     ParameterKey=JenkinsPassword,ParameterValue=$JENKINS_PASSWORD \
     ParameterKey=SlackAuthToken,ParameterValue=$SLACK_TOKEN \

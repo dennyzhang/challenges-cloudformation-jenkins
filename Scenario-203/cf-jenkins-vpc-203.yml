@@ -1,19 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'AWS CloudFormation Sample Template: Jenkins is web software you can use to CI/CD. 
-             This template installs Jenkins configured by Chef'
+Description: 'AWS CloudFormation Sample Template: Create VPC, Security group'
 Parameters:
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
-  VPC:
-    Type: AWS::EC2::VPC::Id
-    Description: Choose which VPC the Application Load Balancer should be deployed to
-  Subnets:
-    Description: Choose which subnets the Application Load Balancer should be deployed to
-    Type: List<AWS::EC2::Subnet::Id>
-  SecurityGroup:
-    Description: Select the Security Group to apply to the Application Load Balancer
-    Type: AWS::EC2::SecurityGroup::Id
   JenkinsPort:
     Default: 8080
     Description: The Jenkins Port
@@ -40,55 +30,83 @@ Parameters:
 
 Resources:
   # Create VPC: https://sookocheff.com/post/aws/how-to-create-a-vpc-using-cloudformation/
+  # https://github.com/humank/20171116-cfn-lab/blob/master/infrastructure/vpc.yml
   VPC:
     Type: AWS::EC2::VPC
     Properties:
+      # CidrBlock: 172.31.0.0/16
+      # public: 172.31.8.0/24, 172.31.16.0/24
       CidrBlock: 172.31.0.0/16
       EnableDnsSupport: true
       EnableDnsHostnames: true
       InstanceTenancy: default
+      Tags: 
+        - Key: Name 
+          Value: !Ref StackName
   InternetGateway:
     Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Ref StackName
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       VpcId: !Ref VPC
       InternetGatewayId: !Ref InternetGateway
-  SubnetA:
+  PublicSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"]
       VpcId: !Ref VPC
-      CidrBlock: 172.31.0.0/20
+      CidrBlock: 172.31.8.0/24
       MapPublicIpOnLaunch: true
-  SubnetB:
+      Properties:
+        Tags:
+          - Key: Name
+            Value: !Sub ${StackName} Public Subnet1
+  PublicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]
       VpcId: !Ref VPC
-      CidrBlock: 172.31.16.0/20
+      CidrBlock: 172.31.16.0/24
       MapPublicIpOnLaunch: true
-  RouteTable:
+      Properties:
+        Tags:
+          - Key: Name
+            Value: !Sub ${StackName} Public Subnet2
+  PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
+      Tags: 
+        - Key: Name 
+          Value: !Sub ${StackName} Public Routes
   InternetRoute:
     Type: AWS::EC2::Route
     DependsOn: InternetGateway
     Properties:
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
-      RouteTableId: !Ref RouteTable
-  SubnetARouteTableAssociation:
+      RouteTableId: !Ref PublicRouteTable
+  PublicSubnet1RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref RouteTable
-      SubnetId: !Ref SubnetA
-  SubnetBRouteTableAssociation:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet1
+  PublicSubnet2RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref RouteTable
-      SubnetId: !Ref SubnetB
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet2
+  PrivateRouteTable1:
+    Type: AWS::EC2::RouteTable
+    Properties: 
+      VpcId: !Ref VPC
+      Tags: 
+        - Key: Name 
+          Value: !Sub ${StackName} Private Routes1
   JenkinsSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -104,84 +122,44 @@ Resources:
           FromPort: '22'
           ToPort: '22'
           CidrIp: !Ref 'SSHLocation'
-  # https://github.com/humank/20171116-cfn-lab/blob/master/infrastructure/load-balancers.yml
-  LoadBalancer:
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-    Properties:
-      Name:
-        "Fn::Sub":
-          - "ALB-${StackName}"
-          - StackName: !Ref AWS::StackName
-      Subnets: !Ref Subnets
-      SecurityGroups: 
-        - !Ref SecurityGroup
-      Tags: 
-        - Key: Name
-          Value: !Ref StackName
-
-  LoadBalancerListener:
-    Type: AWS::ElasticLoadBalancingV2::Listener
-    Properties:
-      LoadBalancerArn: !Ref LoadBalancer
-      Port: 80
-      Protocol: HTTP 
-      DefaultActions: 
-        - Type: forward
-          TargetGroupArn: !Ref ALBTargetGroup
-
-  ALBTargetGroup:
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
-    Properties:
-      Name:
-        "Fn::Sub":
-          - "TG-${StackName}"
-          - StackName: !Ref AWS::StackName
-            VpcId: !Ref VPC
-            Port: 80
-            Protocol: HTTP
-            HealthCheckPort: 80
-            HealthCheckProtocol: HTTP
-            HealthCheckPath: /index.php
 
 Outputs:
   StackName:
     Value:
       !Ref AWS::StackName
 
-  ALBLoadBalancer:
-    Description: A reference to the Application Load Balancer
-    Value: !Ref LoadBalancer
+  VpcId: 
+    Description: A reference to the created VPC
+    Value: !Ref VPC
     Export:
       Name: 
         "Fn::Sub": 
-          - ${StackName}-ALBLoadBalancer
+          - ${StackName}-VpcId
           - StackName: !Ref AWS::StackName
 
-  LoadBalancerUrl:
-    Description: The URL of the ALB
-    Value: !Sub
-      - http://${alburl}
-      - alburl: !GetAtt LoadBalancer.DNSName
-    Export:
-      Name: 
-        "Fn::Sub": 
-          - ${StackName}-LoadBalancerUrl
-          - StackName: !Ref AWS::StackName
-
-  LoadBalancerListener:
-    Description: A reference to a port 80 listener
-    Value: !Ref LoadBalancerListener  
-    Export:
-      Name: 
-        "Fn::Sub": 
-          - ${StackName}-LoadBalancerListener
-          - StackName: !Ref AWS::StackName
-
-  ALBTargetGroup:
-    Description: A reference to ALB TargetGroup
-    Value: !Ref ALBTargetGroup
+  PublicSubnets:
+    Description: A list of the public subnets
+    Value: !Join [ ",", [ !Ref PublicSubnet1, !Ref PublicSubnet2 ]]
     Export:
       Name:
-        "Fn::Sub":
-          - ${StackName}-ALBTargetGroup
+        "Fn::Sub": 
+          - ${StackName}-PublicSubnetSets
+          - StackName: !Ref AWS::StackName
+
+  PublicSubnet1:
+    Description: A reference to the public subnet in the 1st Availability Zone
+    Value: !Ref PublicSubnet1
+    Export:
+      Name:
+        "Fn::Sub": 
+          - ${StackName}-PublicSubnet1
+          - StackName: !Ref AWS::StackName
+
+  PublicSubnet2: 
+    Description: A reference to the public subnet in the 2nd Availability Zone
+    Value: !Ref PublicSubnet2
+    Export:
+      Name:
+        "Fn::Sub": 
+          - ${StackName}-PublicSubnet2
           - StackName: !Ref AWS::StackName
