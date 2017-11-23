@@ -2,6 +2,10 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'AWS CloudFormation Sample Template: Jenkins is web software you can use to CI/CD. 
              This template installs Jenkins configured by Chef'
 Parameters:
+  StackName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+    Default: 'aws-jenkins'
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
     Type: AWS::EC2::KeyPair::KeyName
@@ -175,71 +179,15 @@ Mappings:
       HVMG2: NOT_SUPPORTED
 
 Resources:
-  # Create VPC: https://sookocheff.com/post/aws/how-to-create-a-vpc-using-cloudformation/
   VPC:
-    Type: AWS::EC2::VPC
+    Type: AWS::CloudFormation::Stack
     Properties:
-      CidrBlock: 172.31.0.0/16
-      EnableDnsSupport: true
-      EnableDnsHostnames: true
-      InstanceTenancy: default
-  InternetGateway:
-    Type: AWS::EC2::InternetGateway
-  VPCGatewayAttachment:
-    Type: AWS::EC2::VPCGatewayAttachment
-    Properties:
-      VpcId: !Ref VPC
-      InternetGatewayId: !Ref InternetGateway
-  SubnetA:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"]
-      VpcId: !Ref VPC
-      CidrBlock: 172.31.0.0/20
-      MapPublicIpOnLaunch: true
-  SubnetB:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]
-      VpcId: !Ref VPC
-      CidrBlock: 172.31.16.0/20
-      MapPublicIpOnLaunch: true
-  RouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref VPC
-  InternetRoute:
-    Type: AWS::EC2::Route
-    DependsOn: InternetGateway
-    Properties:
-      DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref InternetGateway
-      RouteTableId: !Ref RouteTable
-  SubnetARouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId: !Ref RouteTable
-      SubnetId: !Ref SubnetA
-  SubnetBRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId: !Ref RouteTable
-      SubnetId: !Ref SubnetB
-  JenkinsSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Enable HTTP access via port Jenkins port locked down to the load balancer
-        + SSH access
-      VpcId: !Ref VPC
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: !Ref JenkinsPort
-          ToPort: !Ref JenkinsPort
-          CidrIp: !Ref 'JenkinsLocation'
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: !Ref 'SSHLocation'
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-vpc-203.yml
+      Parameters:
+        StackName: !Ref AWS::StackName
+        JenkinsPort: !Ref JenkinsPort
+        JenkinsLocation: !Ref JenkinsLocation
+        SSHLocation: !Ref SSHLocation
   Jenkins:
     Type: AWS::EC2::Instance
     Metadata:
@@ -344,9 +292,9 @@ Resources:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
       InstanceType: !Ref 'InstanceType'
-      SecurityGroupIds:
-        - !Ref 'JenkinsSecurityGroup'
-      SubnetId: !Ref SubnetA
+      SecurityGroups:
+        - !ImportValue ${StackName}-SecurityGroup
+      SubnetId: !ImportValue ${StackName}-PubSubnet1
       Monitoring: true
       KeyName: !Ref 'KeyName'
       UserData: !Base64

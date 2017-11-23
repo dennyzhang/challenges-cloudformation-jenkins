@@ -4,6 +4,7 @@ Parameters:
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
+    Default: 'aws-jenkins'
   JenkinsPort:
     Default: 8080
     Description: The Jenkins Port
