@@ -63,7 +63,7 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: !Sub ${StackName} Public Subnet1
+          Value: !Sub ${StackName}-public-subnet1
   PublicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -73,14 +73,14 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: !Sub ${StackName} Public Subnet2
+          Value: !Sub ${StackName}-public-subnet2
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
       Tags: 
         - Key: Name 
-          Value: !Sub ${StackName} Public Routes
+          Value: !Sub ${StackName}-public-routes
   InternetRoute:
     Type: AWS::EC2::Route
     DependsOn: InternetGateway
@@ -98,13 +98,6 @@ Resources:
     Properties:
       RouteTableId: !Ref PublicRouteTable
       SubnetId: !Ref PublicSubnet2
-  PrivateRouteTable1:
-    Type: AWS::EC2::RouteTable
-    Properties: 
-      VpcId: !Ref VPC
-      Tags: 
-        - Key: Name 
-          Value: !Sub ${StackName} Private Routes1
   JenkinsSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -164,4 +157,12 @@ Outputs:
       Name:
         "Fn::Sub": 
           - ${StackName}-PublicSubnet2
+          - StackName: !Ref AWS::StackName
+  JenkinsSecurityGroup: 
+    Description: A reference to the security group for Jenkins service
+    Value: !Ref JenkinsSecurityGroup
+    Export:
+      Name: 
+        "Fn::Sub": 
+          - ${StackName}-JenkinsSecurityGroupID
           - StackName: !Ref AWS::StackName
