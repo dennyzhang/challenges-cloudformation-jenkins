@@ -43,6 +43,7 @@ Case study using AWS TechStack to setup Jenkins env
 3. Setup Jenkins container inside the instance
 ```
 - Main Tech: Cloudformation, Docker
+
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-101.yml)
 - See more: [Scenario-101](./Scenario-101)
 
@@ -71,6 +72,8 @@ Case study using AWS TechStack to setup Jenkins env
 2. Start Jenkins inside the EC2 instance
 ```
 - Main Tech: Cloudformation, Chef
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-201.yml)
 - See more: [Scenario-201](./Scenario-201)
 
 ## Scenario-202: VM Single-Node Jenkins Deployment II
@@ -83,6 +86,8 @@ Case study using AWS TechStack to setup Jenkins env
 4. Make sure Jenkins GUI changes can be seamlessly tracked in git repo.
 ```
 - Main Tech: Cloudformation, Chef, VPC, Slack
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-202.yml)
 - See more: [Scenario-202](./Scenario-202)
 
 ## Scenario-203: VM Single-Node Jenkins Deployment III
@@ -95,6 +100,8 @@ Case study using AWS TechStack to setup Jenkins env
 4. In case Jenkins master crash, create an auto-scaling group. And configure the instance count as 1
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-203.yml)
 - See more: [Scenario-203](./Scenario-203)
 - TODO
 
@@ -108,6 +115,8 @@ Case study using AWS TechStack to setup Jenkins env
 2. Enable auto-scaling with minimum instance 2 and max 4.
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-301.yml)
 - See more: [Scenario-301](./Scenario-301)
 - TODO
 - TODO: how the 2 Jenkins instance gonna to coordinate with each other?
@@ -122,6 +131,8 @@ Case study using AWS TechStack to setup Jenkins env
 4. Customized VPC to allow limited network access
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration, ALB
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-302.yml)
 - See more: [Scenario-302](./Scenario-302)
 - TODO
 
@@ -135,6 +146,8 @@ Case study using AWS TechStack to setup Jenkins env
 2. Install a single Jenkins instance
 ```
 - Main Tech: Cloudformation, ECS, EBS
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-401.yml)
 - See more: [Scenario-401](./Scenario-401)
 - TODO
 
@@ -147,6 +160,8 @@ Case study using AWS TechStack to setup Jenkins env
 3. Enable ALB for Jenkins master
 ```
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, ALB
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-402.yml)
 - See more: [Scenario-402](./Scenario-402)
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
@@ -162,6 +177,8 @@ Case study using AWS TechStack to setup Jenkins env
 3. Enable ALB for Jenkins master
 ```
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, ALB
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-403.yml)
 - See more: [Scenario-403](./Scenario-403)
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
@@ -177,6 +194,8 @@ Case study using AWS TechStack to setup Jenkins env
 2. Security: VPC, Jenkins authentication integration
 ```
 - Main Tech: Cloudformation, ECS, EBS, ALB
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-501.yml)
 - See more: [Scenario-501](./Scenario-501)
 - TODO
 
