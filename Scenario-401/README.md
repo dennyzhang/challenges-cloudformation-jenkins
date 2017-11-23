@@ -11,6 +11,8 @@ Table of Contents
 2. Install a single Jenkins instance
 
 # Procedures
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-401.yml)
+
 - Use CF to setup the env
 ```
 export STACK_NAME="aws-jenkins"

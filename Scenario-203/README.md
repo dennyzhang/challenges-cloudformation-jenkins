@@ -19,6 +19,8 @@ Table of Contents
 4. In case Jenkins master crash, create an auto-scaling group. And configure the instance count as 1
 
 # Procedures
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-203.yml)
+
 - Use CF to setup the env
 ```
 export STACK_NAME="aws-jenkins"

@@ -17,6 +17,8 @@ Table of Contents
 2. Enable auto-scaling with minimum instance 2 and max 4.
 
 # Procedures
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-301.yml)
+
 - Use CF to setup the env
 ```
 export STACK_NAME="aws-jenkins"
