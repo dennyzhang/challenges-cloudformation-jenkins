@@ -209,10 +209,10 @@ Resources:
       Parameters:
         EC2HostSecurityGroup: !GetAtt ["VPC", "Outputs.JenkinsSecurityGroupId"]
         StackName: !Ref AWS::StackName
-        KeyName: !Ref AWS::KeyName
-        InstanceType: !Ref AWS::InstanceType
-        MinSize: !Ref AWS::MinSize
-        MaxSize: !Ref AWS::MaxSize
+        KeyName: !Ref KeyName
+        InstanceType: !Ref InstanceType
+        MinSize: !Ref MinSize
+        MaxSize: !Ref MaxSize
 
 # Outputs:
 #   WebsiteURL:
