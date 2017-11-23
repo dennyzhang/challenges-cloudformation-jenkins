@@ -63,7 +63,7 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: !Sub ${StackName}-public-subnet1
+          Value: !Sub ${StackName}-pub-subnet1
   PublicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -73,7 +73,7 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: !Sub ${StackName}-public-subnet2
+          Value: !Sub ${StackName}-pub-subnet2
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -101,7 +101,6 @@ Resources:
   JenkinsSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: !Sub ${StackName}-secgroup
       GroupDescription: Enable HTTP access via port Jenkins port locked down to the load balancer
         + SSH access
       VpcId: !Ref VPC
@@ -116,7 +115,7 @@ Resources:
           CidrIp: !Ref 'SSHLocation'
       Tags: 
         - Key: Name 
-          Value: !Sub ${StackName}
+          Value: !Sub ${StackName}-SecurityGroup
 
 Outputs:
   StackName:
@@ -147,7 +146,7 @@ Outputs:
     Export:
       Name:
         "Fn::Sub": 
-          - ${StackName}-PublicSubnet1
+          - ${StackName}-pub-subnet2
           - StackName: !Ref AWS::StackName
 
   PublicSubnet2: 
@@ -156,7 +155,7 @@ Outputs:
     Export:
       Name:
         "Fn::Sub": 
-          - ${StackName}-PublicSubnet2
+          - ${StackName}-pub-subnet2
           - StackName: !Ref AWS::StackName
   JenkinsSecurityGroup: 
     Description: A reference to the security group for Jenkins service
@@ -164,5 +163,5 @@ Outputs:
     Export:
       Name: 
         "Fn::Sub": 
-          - ${StackName}-JenkinsSecurityGroupID
+          - ${StackName}-SecurityGroup
           - StackName: !Ref AWS::StackName
