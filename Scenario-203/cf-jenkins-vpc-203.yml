@@ -158,11 +158,11 @@ Outputs:
         "Fn::Sub": 
           - ${StackName}-PubSubnet2
           - StackName: !Ref AWS::StackName
-  JenkinsSecurityGroup: 
+  JenkinsSecurityGroupId: 
     Description: A reference to the security group for Jenkins service
     Value: !GetAtt JenkinsSecurityGroup.GroupId
     Export:
       Name: 
         "Fn::Sub":
-          - ${StackName}-SecurityGroup
+          - ${StackName}-SecurityGroupId
           - StackName: !Ref AWS::StackName

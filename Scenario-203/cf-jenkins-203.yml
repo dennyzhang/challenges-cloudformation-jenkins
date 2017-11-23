@@ -292,9 +292,10 @@ Resources:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
       InstanceType: !Ref 'InstanceType'
-      SecurityGroups:
-        - !ImportValue ${StackName}-SecurityGroup
-      SubnetId: !ImportValue ${StackName}-PubSubnet1
+      SecurityGroupIds:
+        - !GetAtt ["VPC","Outputs.JenkinsSecurityGroupId"]
+      # TODO: customize the subnet
+      SubnetId: !GetAtt ["VPC","Outputs.PublicSubnet1"]
       Monitoring: true
       KeyName: !Ref 'KeyName'
       UserData: !Base64
