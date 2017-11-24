@@ -224,9 +224,9 @@ Resources:
         StackName: !Ref AWS::StackName
         KeyName: !Ref KeyName
         InstanceType: !Ref InstanceType
-        MinSize: !Ref SizeMin
-        MaxSize: !Ref SizeMax
-        DesiredCapacity: !Ref SizeDesired
+        SizeMin: !Ref SizeMin
+        SizeMax: !Ref SizeMax
+        SizeDesired: !Ref SizeDesired
         LBPort: !Ref LBPort
         JenkinsPort: !Ref JenkinsPort
         JenkinsTestUser: !Ref JenkinsTestUser
