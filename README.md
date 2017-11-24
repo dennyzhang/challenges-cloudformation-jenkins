@@ -126,8 +126,8 @@ Case study using AWS TechStack to setup Jenkins env
 - Objective: Customize Jenkins docker deployment in AWS
 - Requirements:
 ```
-1. Finish Scenario-301, create CloudWatch for DNS endpoint
-2. In CF, export Instance
+1. Finish Scenario-301
+2. In ELB, enable logging and monitoring
 3. In Jenkins deployment, create a pipeline
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
