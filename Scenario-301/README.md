@@ -56,11 +56,12 @@ aws cloudformation delete-stack --stack-name "$STACK_NAME"
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
 - Verify Jenkins
-curl -I http://$server_ip:8080
+curl -I http://$dns_name:80
 
-TODO: enable ThinBackup for config changes
-
-TODO: remove two jenkins warnings
+# Highlights
+- Provision Loadbalancer would take minutes
+- TODO: enable ThinBackup for config changes
+- TODO: remove two jenkins warnings
 
 ```
 Allowing Jenkins CLI to work in -remoting mode is considered
@@ -76,6 +77,5 @@ documentation and consider turning it on
 s3cmd put "cf-jenkins-elb-301.yml" s3://aws.dennyzhang.com/
 ```
 
-- Provision Loadbalancer would take minutes
-
+- Cloudformation Wizard
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cf_elb_one_master.png"/> </a>
