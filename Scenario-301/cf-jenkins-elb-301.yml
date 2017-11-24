@@ -285,9 +285,6 @@ Resources:
       MinSize: !Ref SizeMin
       MaxSize: !Ref SizeMax
       DesiredCapacity: !Ref SizeDesired
-      UpdatePolicy:
-        AutoScalingRollingUpdate:
-          MinInstancesInService: 1
 
 Outputs:
   StackName:
