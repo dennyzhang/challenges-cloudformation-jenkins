@@ -118,13 +118,17 @@ Resources:
           FromPort: !Ref JenkinsPort
           ToPort: !Ref JenkinsPort
           CidrIp: !Ref 'JenkinsLocation'
-        - IpProtocol: tcp
-          FromPort: !Ref JenkinsPort
-          ToPort: !Ref JenkinsPort
-          CidrIp: !GetAtt JenkinsSecurityGroup.GroupId
-      Tags:
-        - Key: Name
-          Value: !Sub ${StackName}-secgroup
+  # Allow inbound traffic from the same security group.
+  # http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html
+  # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html
+  SGBaseIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupName: !Ref JenkinsSecurityGroup
+      IpProtocol: tcp
+      FromPort: !Ref JenkinsPort
+      FromPort: !Ref JenkinsPort
+      SourceSecurityGroupName: !Ref JenkinsSecurityGroup
 
 Outputs:
   StackName:
