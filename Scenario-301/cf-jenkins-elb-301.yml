@@ -286,7 +286,10 @@ Resources:
       LaunchConfigurationName: !Ref JenkinsLaunchConfig
       Tags:
         - Key: Name
-          Value: JenkinsScalingGroup
+          Value:
+            "Fn::Sub":
+              - "Web-${StackName}"
+              - StackName: !Ref AWS::StackName
           PropagateAtLaunch: true
       TargetGroupARNs: [ !Ref ALBTargetGroup ]
       MinSize: !Ref SizeMin
