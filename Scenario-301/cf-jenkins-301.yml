@@ -233,7 +233,7 @@ Resources:
         JenkinsPassword: !Ref JenkinsPassword
         SlackAuthToken: !Ref SlackAuthToken
 
-# Outputs:
-#   WebsiteURL:
-#     Value: !Join ['', ['http://', !GetAtt 'Jenkins.PublicDnsName', ':', !Ref JenkinsPort]]
-#     Description: Jenkins Website
+Outputs:
+  JenkinsURL:
+    Value: !GetAtt ["ELB", "Outputs.LoadBalancerUrl"]
+    Description: Jenkins URL
