@@ -15,7 +15,7 @@ Table of Contents
 2. Start Jenkins master by ELB. Configure instance count to 1
 
 # Procedures
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-301.yml)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-301.yml)
 
 - Use CF to setup the env
 
@@ -38,7 +38,7 @@ export JENKINS_PASSWORD="password123"
 ```
 
 ```
-export TMP_FILE="file://cf-jenkins-301.yml"
+export TMP_FILE="file://cf-jenkins-main-301.yml"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
     --stack-name "$STACK_NAME" --parameters \
     ParameterKey=StackName,ParameterValue=$STACK_NAME \

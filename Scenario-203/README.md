@@ -17,7 +17,7 @@ Table of Contents
 2. Use CF to create a dedicated VPC and start an EC2
 
 # Procedures
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-203.yml)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-203.yml)
 
 - Use CF to setup the env
 ```
@@ -46,7 +46,7 @@ aws cloudformation create-stack --template-body "$TMP_FILE" \
 ```
 
 ```
-export TMP_FILE="file://cf-jenkins-203.yml"
+export TMP_FILE="file://cf-jenkins-main-203.yml"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
     --stack-name "$STACK_NAME" --parameters \
     ParameterKey=StackName,ParameterValue=$STACK_NAME \

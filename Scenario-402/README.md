@@ -19,12 +19,12 @@ Table of Contents
 4. Customized VPC to allow limited network access
 
 # Procedures
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-402.yml)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-402.yml)
 
 - Use CF to setup the env
 ```
 export STACK_NAME="aws-jenkins"
-export TMP_FILE="file://cf-jenkins-402.yml"
+export TMP_FILE="file://cf-jenkins-main-402.yml"
 
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
 aws cloudformation create-stack --template-body "$TMP_FILE" \

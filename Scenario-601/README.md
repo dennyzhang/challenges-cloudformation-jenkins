@@ -13,12 +13,12 @@ Table of Contents
 2. Security: VPC, Jenkins authentication integration
 
 # Procedures
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-601.yml)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-601.yml)
 
 - Use CF to setup the env
 ```
 export STACK_NAME="aws-jenkins"
-export TMP_FILE="file://cf-jenkins-601.yml"
+export TMP_FILE="file://cf-jenkins-main-601.yml"
 
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
 aws cloudformation create-stack --template-body "$TMP_FILE" \

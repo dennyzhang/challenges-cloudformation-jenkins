@@ -12,12 +12,12 @@ Table of Contents
 3. Setup Jenkins container inside the instance
 
 # Procedures
-[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-101.yml)
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-101.yml)
 
 - Use CF to setup the env
 ```
 export STACK_NAME="aws-jenkins"
-export TMP_FILE="file://cf-jenkins-101.yml"
+export TMP_FILE="file://cf-jenkins-main-101.yml"
 
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
