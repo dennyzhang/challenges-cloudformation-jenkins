@@ -186,7 +186,7 @@ Resources:
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Name: LoadBalancerJenkins
+      Name: "LoadBalancerJenkins"
       Scheme: internet-facing
       Subnets: !Ref Subnets
       LoadBalancerAttributes:
@@ -274,6 +274,7 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       # http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Types/AvailabilityZone.html#zone_name-instance_method
+      # TODO: check this AZ
       AvailabilityZones:
         Fn::GetAZs: ""
       LaunchConfigurationName: !Ref JenkinsLaunchConfig
@@ -282,7 +283,7 @@ Resources:
           Value: !Sub ${StackName}-LaunchCfg
       MinSize: !Ref MinSize
       MaxSize: !Ref MaxSize
-      LoadBalancerNames: LoadBalancerJenkins
+      LoadBalancerNames: "LoadBalancerJenkins"
 
 Outputs:
   StackName:
