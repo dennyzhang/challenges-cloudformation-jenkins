@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 21:52:16>
+## Updated: Time-stamp: <2017-11-23 22:14:05>
 ##-------------------------------------------------------------------
 set -e
 
@@ -38,28 +38,6 @@ function prepare_files() {
     fi
 
     wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/run_chef_solo.sh
-    # TODO: how to pass the parameters?
-    JenkinsPort="8081"
-    JenkinsUser="user123"
-    JenkinsPassword="password123"
-    SlackAuthToken="DUMMYTOKEN"
-    cat > /home/ec2-user/chef/node.json << EOF
-{"jenkins_demo":
-     {"jenkins_port":"${JenkinsPort}",
-     "default_username":"${JenkinsUser}",
-     "default_password":"${JenkinsPassword}",
-     "jenkins_jobs":"CommonServerCheckRepo",
-     "slack_authtoken":"${SlackAuthToken}",
-     "slack_teamdomain":"mywechat",
-     "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
-     "slack_room":"#denny-alerts"
-     },
-     "run_list":["recipe[apt::default]",
-                 "recipe[jenkins-demo::default]",
-                 "recipe[jenkins-demo::conf_job]"
-                ]
-}
-EOF
     chown -R ec2-user:ec2-user /home/ec2-user/
 }
 
@@ -73,18 +51,21 @@ function install_chef() {
 }
 
 function run_chef_update() {
+    local json_file=${1?}
+    local cookbook_path=${2?}
     log "Run chef update"
-    cookbook_path="Scenario-302/cookbooks/jenkins-demo"
     bash -ex /home/ec2-user/run_chef_solo.sh "jenkins-demo" \
          "/home/ec2-user/chef/chef-study/${cookbook_path}" \
-         "/home/ec2-user/chef/node.json"
+         "${json_file}"
 }
 
 ################################################################################
+json_file=${1?"node.json file for chef update"}
+cookbook_path=${2:?"Jenkins cookbook to run"}
 working_dir="/home/ec2-user/chef/"
 yum install -y tmux wget tar
 
 prepare_files "$working_dir"
 install_chef
-run_chef_update
+run_chef_update "$json_file" "$cookbook_path"
 ## File: userdata_launchcfg.sh ends

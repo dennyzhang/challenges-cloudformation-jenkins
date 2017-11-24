@@ -224,6 +224,9 @@ Resources:
         MaxSize: !Ref MaxSize
         LBPort: !Ref LBPort
         JenkinsPort: !Ref JenkinsPort
+        JenkinsUser: !Ref JenkinsUser
+        JenkinsPassword: !Ref JenkinsPassword
+        SlackAuthToken: !Ref SlackAuthToken
 
 # Outputs:
 #   WebsiteURL:

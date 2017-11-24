@@ -60,6 +60,31 @@ Parameters:
     MinValue: 0
     MaxValue: 65535
     ConstraintDescription: TCP ports must be between 0 - 65535
+  JenkinsUser:
+    Description: The Jenkins username
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric
+      characters.
+  JenkinsPassword:
+    NoEcho: 'true'
+    Description: The Jenkins password
+    Type: String
+    MinLength: '8'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  SlackAuthToken:
+    Default: ''
+    NoEcho: 'true'
+    Description: Slack Token For Jenkins Jobs. If empty, slack notification is muted.
+    Type: String
+    MinLength: '0'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
   HealthCheckPath:
     Description: An environment name that will be prefixed to resource names
     Type: String
@@ -181,18 +206,31 @@ Resources:
       InstanceType: !Ref InstanceType
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
-      UserData: !Base64
-        # TODO: support metadata
-        Fn::Join:
-          - ''
-          - - '#!/bin/bash -xe
-
-              '
-            - 'wget -O /root/userdata_launchcfg.sh \
-                  https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh
-
-              '
-            - 'bash -xe /root/userdata_launchcfg.sh'
+      UserData:
+        "Fn::Base64": 
+              !Sub |
+                #!/bin/bash -xe
+                wget -O /root/userdata_launchcfg.sh \
+                   https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh
+                mkdir -p /home/ec2-user/chef/
+                cat > /home/ec2-user/chef/node.json <<EOF
+                {"jenkins_demo":
+                  {"jenkins_port":"${JenkinsPort}",
+                  "default_username":"${JenkinsUser}",
+                   "default_password":"${JenkinsPassword}",
+                   "jenkins_jobs":"CommonServerCheckRepo",
+                   "slack_authtoken":"${SlackAuthToken}",
+                   "slack_teamdomain":"mywechat",
+                   "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
+                   "slack_room":"#denny-alerts"
+                   },
+                 "run_list":["recipe[apt::default]",
+                             "recipe[jenkins-demo::default]",
+                             "recipe[jenkins-demo::conf_job]"
+                            ]
+                }               
+EOF
+                bash -xe /root/userdata_launchcfg.sh "/home/ec2-user/chef/node.json" "Scenario-302/cookbooks/jenkins-demo"
 
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
