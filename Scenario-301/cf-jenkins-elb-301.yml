@@ -71,7 +71,7 @@ Parameters:
     AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
     ConstraintDescription: must begin with a letter and contain only alphanumeric
       characters.
-  JenkinsTestPassword:
+  JenkinsTestPasswd:
     NoEcho: 'true'
     Description: The Jenkins password
     Type: String
@@ -221,7 +221,7 @@ Resources:
             {"jenkins_demo":
               {"jenkins_port":"${JenkinsPort}",
                "default_username":"${JenkinsTestUser}",
-               "default_password":"${JenkinsTestPassword}",
+               "default_password":"${JenkinsTestPasswd}",
                "jenkins_jobs":"CommonServerCheckRepo",
                "slack_authtoken":"${SlackAuthToken}",
                "slack_teamdomain":"mywechat",

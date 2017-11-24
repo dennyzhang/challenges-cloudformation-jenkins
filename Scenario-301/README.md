@@ -28,7 +28,7 @@ export STACK_NAME="aws-jenkins"
 [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
 # Test jenkins username and password
 export JENKINS_USER="jenkins123"
-export JENKINS_PASSWORD="password123"
+export JENKINS_PASSWD="password123"
 [ -n "$JENKINS_PORT" ] || export JENKINS_PORT='8081'
 
 # Slack Token for Jenkins jobs. If empty, no slack notifications
@@ -43,7 +43,7 @@ aws cloudformation create-stack --template-body "$TMP_FILE" \
     --stack-name "$STACK_NAME" --parameters \
     ParameterKey=StackName,ParameterValue=$STACK_NAME \
     ParameterKey=JenkinsTestUser,ParameterValue=$JENKINS_USER \
-    ParameterKey=JenkinsTestPassword,ParameterValue=$JENKINS_PASSWORD \
+    ParameterKey=JenkinsTestPasswd,ParameterValue=$JENKINS_PASSWD \
     ParameterKey=SlackAuthToken,ParameterValue=$SLACK_TOKEN \
     ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
     ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT \
