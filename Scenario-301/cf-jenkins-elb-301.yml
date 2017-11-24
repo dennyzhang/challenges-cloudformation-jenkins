@@ -274,20 +274,17 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       # http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Types/AvailabilityZone.html#zone_name-instance_method
-      # TODO: check this AZ
-      AvailabilityZones:
-        Fn::GetAZs: ""
+      VPCZoneIdentifier:
+        - !Select [ 0, !Ref Subnets ]
+        - !Select [ 1, !Ref Subnets ]
       LaunchConfigurationName: !Ref JenkinsLaunchConfig
       Tags:
         - Key: Name
-          Value: !Sub ${StackName}-LaunchCfg
+          Value: JenkinsScalingGroup
           PropagateAtLaunch: true
       MinSize: !Ref MinSize
       MaxSize: !Ref MaxSize
       DesiredCapacity: !Ref DesiredCapacity
-      AvailabilityZones: 
-        Fn::GetAZs: 
-          Ref: "AWS::Region"
 
 Outputs:
   StackName:
