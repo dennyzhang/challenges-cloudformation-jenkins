@@ -213,7 +213,7 @@ Resources:
                 wget -O /root/userdata_launchcfg.sh \
                    https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh
                 mkdir -p /home/ec2-user/chef/
-                cat > /home/ec2-user/chef/node.json <<EOF
+                cat > /home/ec2-user/chef/node.json << EOF
                 {"jenkins_demo":
                   {"jenkins_port":"${JenkinsPort}",
                   "default_username":"${JenkinsUser}",
@@ -228,7 +228,7 @@ Resources:
                              "recipe[jenkins-demo::default]",
                              "recipe[jenkins-demo::conf_job]"
                             ]
-                }               
+                }
 EOF
                 bash -xe /root/userdata_launchcfg.sh "/home/ec2-user/chef/node.json" "Scenario-302/cookbooks/jenkins-demo"
 
