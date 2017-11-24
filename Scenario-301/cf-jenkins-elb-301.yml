@@ -282,7 +282,7 @@ Resources:
         - Key: Name
           Value: JenkinsScalingGroup
           PropagateAtLaunch: true
-      TargetGroupARNs: [ !Ref ALBTargetGroup ]          
+      TargetGroupARNs: [ !Ref ALBTargetGroup ]
       MinSize: !Ref SizeMin
       MaxSize: !Ref SizeMax
       DesiredCapacity: !Ref SizeDesired
@@ -295,8 +295,8 @@ Outputs:
     Description: A reference to the Application Load Balancer
     Value: !Ref LoadBalancer
     Export:
-      Name: 
-        "Fn::Sub": 
+      Name:
+        "Fn::Sub":
           - ${StackName}-ALBLoadBalancer
           - StackName: !Ref AWS::StackName
   LoadBalancerUrl:
