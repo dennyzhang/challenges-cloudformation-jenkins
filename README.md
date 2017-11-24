@@ -135,6 +135,8 @@ Case study using AWS TechStack to setup Jenkins env
 - TODO
 - TODO: how the 2 Jenkins instance gonna to coordinate with each other?
 
+<a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
+
 ## Scenario-402: VM 2-Nodes Jenkins Deployment II
 - Objective: Jenkins cluster deployment
 - Requirements:
@@ -151,8 +153,6 @@ Case study using AWS TechStack to setup Jenkins env
 - TODO
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_2nodes.png"/> </a>
-
-<a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
 ## Scenario-501: ECS Jenkins Deployment I
 - Objective: Get exposed to docker orchestration service.
