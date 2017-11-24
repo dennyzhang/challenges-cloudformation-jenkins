@@ -128,7 +128,7 @@ Resources:
       IpProtocol: tcp
       FromPort: !Ref JenkinsPort
       FromPort: !Ref JenkinsPort
-      SourceSecurityGroupName: !Ref JenkinsSecurityGroup
+      SourceSecurityGroupId: !GetAtt JenkinsSecurityGroup.GroupId
 
 Outputs:
   StackName:
