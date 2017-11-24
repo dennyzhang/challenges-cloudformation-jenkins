@@ -86,14 +86,18 @@ Parameters:
     Type: Number
     MinValue: 0
     MaxValue: 65535
-    ConstraintDescription: TCP ports must be between 0 - 65535
   MaxSize:
     Default: 1
     Description: Maximum instance count
     Type: Number
     MinValue: 0
     MaxValue: 65535
-    ConstraintDescription: TCP ports must be between 0 - 65535
+  DesiredCapacity:
+    Default: 1
+    Description: Desired capacity for the Auto Scaling group.
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
 Mappings:
   AWSInstanceType2Arch:
     t1.micro:
@@ -222,6 +226,7 @@ Resources:
         InstanceType: !Ref InstanceType
         MinSize: !Ref MinSize
         MaxSize: !Ref MaxSize
+        DesiredCapacity: !Ref DesiredCapacity
         LBPort: !Ref LBPort
         JenkinsPort: !Ref JenkinsPort
         JenkinsUser: !Ref JenkinsUser

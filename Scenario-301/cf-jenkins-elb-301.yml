@@ -34,13 +34,16 @@ Parameters:
     Type: Number
     MinValue: 0
     MaxValue: 65535
-    ConstraintDescription: TCP ports must be between 0 - 65535
   MaxSize:
     Description: Maximum instance count
     Type: Number
     MinValue: 0
     MaxValue: 65535
-    ConstraintDescription: TCP ports must be between 0 - 65535
+  DesiredCapacity:
+    Description: Desired capacity for the Auto Scaling group.
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
   LBPort:
     Description: Load balancer port
     Type: Number
@@ -281,9 +284,13 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub ${StackName}-LaunchCfg
+          PropagateAtLaunch: true
       MinSize: !Ref MinSize
       MaxSize: !Ref MaxSize
-      LoadBalancerNames: "LoadBalancerJenkins"
+      DesiredCapacity: !Ref DesiredCapacity
+      AvailabilityZones: 
+        Fn::GetAZs: 
+          Ref: "AWS::Region"
 
 Outputs:
   StackName:
