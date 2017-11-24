@@ -252,9 +252,9 @@ Resources:
     Properties:
       # TODO support all AZ, instead of the first two
       # http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Types/AvailabilityZone.html#zone_name-instance_method
+      # TODO: change line to shorter
       AvailabilityZones:
-        !Join [ ",", "Fn::GetAtt":[ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], "zone_name"], 
-                     !GetAtt:[ !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"], "zone_name"]]
+        !Join [ ",", [!Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]]]
       LaunchConfigurationName: !Ref JenkinsLaunchConfig
       Tags:
         - Key: Name
