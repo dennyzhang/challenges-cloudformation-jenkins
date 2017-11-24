@@ -54,6 +54,12 @@ Parameters:
     MinValue: 0
     MaxValue: 65535
     ConstraintDescription: TCP ports must be between 0 - 65535
+  JenkinsPort:
+    Description: The Jenkins Port
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
 
 Mappings:
   AWSInstanceType2Arch:
@@ -153,9 +159,6 @@ Resources:
       KeyName: !Ref KeyName
       SecurityGroups: !Ref SecurityGroupId
       InstanceType: !Ref InstanceType
-      Tags:
-        - Key: Name
-          Value: !Sub ${StackName}-LaunchCfg
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
       UserData: !Base64
@@ -186,7 +189,6 @@ Resources:
             - '
 
               '
-
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
@@ -195,53 +197,53 @@ Resources:
           - "TG-${StackName}"
           - StackName: !Ref AWS::StackName
       HealthCheckIntervalSeconds: 30
-      HealthCheckProtocol: HTTPS
+      HealthCheckProtocol: HTTP
+      HealthCheckPort: !Ref JenkinsPort
       HealthCheckTimeoutSeconds: 10
       HealthyThresholdCount: 4
       Matcher:
         HttpCode: !Ref LBMatcherStatus
-      Name: MyTargets
       Port: !Ref LBPort
       Protocol: HTTP
       VpcId: !Ref VPC
 
-  LoadBalancer:
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-    Properties:
-      Name:
-        "Fn::Sub":
-          - "ALB-${StackName}"
-          - StackName: !Ref AWS::StackName
-      Scheme: internet-facing
-      Subnets: !Ref Subnets
-      LoadBalancerAttributes:
-      - Key: idle_timeout.timeout_seconds
-        Value: '50'
-      SecurityGroups: !Ref SecurityGroupId
-      Tags:
-        - Key: Name
-          Value: !Ref StackName
+  # LoadBalancer:
+  #   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+  #   Properties:
+  #     Name:
+  #       "Fn::Sub":
+  #         - "ALB-${StackName}"
+  #         - StackName: !Ref AWS::StackName
+  #     Scheme: internet-facing
+  #     Subnets: !Ref Subnets
+  #     LoadBalancerAttributes:
+  #     - Key: idle_timeout.timeout_seconds
+  #       Value: '50'
+  #     SecurityGroups: !Ref SecurityGroupId
+  #     Tags:
+  #       - Key: Name
+  #         Value: !Ref StackName
 
-  LoadBalancerListener:
-    Type: AWS::ElasticLoadBalancingV2::Listener
-    Properties:
-      DefaultActions:
-      - Type: forward
-        TargetGroupArn: !Ref ALBTargetGroup
-      LoadBalancerArn: !Ref LoadBalancer
-      Port: !Ref LBPort
-      Protocol: HTTP
+  # LoadBalancerListener:
+  #   Type: AWS::ElasticLoadBalancingV2::Listener
+  #   Properties:
+  #     DefaultActions:
+  #     - Type: forward
+  #       TargetGroupArn: !Ref ALBTargetGroup
+  #     LoadBalancerArn: !Ref LoadBalancer
+  #     Port: !Ref LBPort
+  #     Protocol: HTTP
 
-  JenkinsScalingGroup:
-    Type: "AWS::AutoScaling::AutoScalingGroup"
-    Properties:
-      # TODO support all AZ, instead of the first two
-      AvailabilityZones:
-        !Join [ ",", [ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"] ]]
-      LaunchConfigurationName:  !Ref JenkinsLaunchConfig
-      Tags:
-        - Key: Name
-          Value: !Sub ${StackName}-LaunchCfg
-      MinSize: !Ref MinSize
-      MaxSize: !Ref MaxSize
-      LoadBalancerNames: !Ref LoadBalancer
+  # JenkinsScalingGroup:
+  #   Type: "AWS::AutoScaling::AutoScalingGroup"
+  #   Properties:
+  #     # TODO support all AZ, instead of the first two
+  #     AvailabilityZones:
+  #       !Join [ ",", [ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"] ]]
+  #     LaunchConfigurationName:  !Ref JenkinsLaunchConfig
+  #     Tags:
+  #       - Key: Name
+  #         Value: !Sub ${StackName}-LaunchCfg
+  #     MinSize: !Ref MinSize
+  #     MaxSize: !Ref MaxSize
+  #     LoadBalancerNames: !Ref LoadBalancer
