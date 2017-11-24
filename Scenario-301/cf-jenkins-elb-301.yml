@@ -60,6 +60,12 @@ Parameters:
     MinValue: 0
     MaxValue: 65535
     ConstraintDescription: TCP ports must be between 0 - 65535
+  HealthCheckPath:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+    Default: '/'
+    MinLength: '1'
+    MaxLength: '40'
 
 Mappings:
   AWSInstanceType2Arch:
@@ -151,6 +157,21 @@ Mappings:
       HVMG2: NOT_SUPPORTED
 
 Resources:
+  # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: JenkinsLoadBalancer
+      Scheme: internet-facing
+      Subnets: !Ref Subnets
+      LoadBalancerAttributes:
+      - Key: idle_timeout.timeout_seconds
+        Value: '50'
+      SecurityGroups: !Ref SecurityGroupId
+      Tags:
+        - Key: Name
+          Value: !Ref StackName
+
   # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html
   JenkinsLaunchConfig:
     Type: "AWS::AutoScaling::LaunchConfiguration"
@@ -201,28 +222,20 @@ Resources:
       HealthCheckPort: !Ref JenkinsPort
       HealthCheckTimeoutSeconds: 10
       HealthyThresholdCount: 4
+      HealthCheckPath: !Ref HealthCheckPath
       Matcher:
         HttpCode: !Ref LBMatcherStatus
       Port: !Ref LBPort
       Protocol: HTTP
       VpcId: !Ref VPC
-
-  LoadBalancer:
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-    Properties:
-      Name:
-        "Fn::Sub":
-          - "ALB-${StackName}"
-          - StackName: !Ref AWS::StackName
-      Scheme: internet-facing
-      Subnets: !Ref Subnets
-      LoadBalancerAttributes:
-      - Key: idle_timeout.timeout_seconds
-        Value: '50'
-      SecurityGroups: !Ref SecurityGroupId
-      Tags:
-        - Key: Name
-          Value: !Ref StackName
+      # TODO: change Targets
+      # Targets:
+      # - Id:
+      #     Ref: Instance1
+      #   Port: 80
+      # - Id:
+      #     Ref: Instance2
+      #   Port: 80
 
   LoadBalancerListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
@@ -238,9 +251,11 @@ Resources:
     Type: "AWS::AutoScaling::AutoScalingGroup"
     Properties:
       # TODO support all AZ, instead of the first two
+      # http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Types/AvailabilityZone.html#zone_name-instance_method
       AvailabilityZones:
-        !Join [ ",", [ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"] ]]
-      LaunchConfigurationName:  !Ref JenkinsLaunchConfig
+        !Join [ ",", "Fn::GetAtt":[ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], "zone_name"], 
+                     !GetAtt:[ !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"], "zone_name"]]
+      LaunchConfigurationName: !Ref JenkinsLaunchConfig
       Tags:
         - Key: Name
           Value: !Sub ${StackName}-LaunchCfg
@@ -252,7 +267,6 @@ Outputs:
   StackName:
     Value:
       !Ref AWS::StackName
-
   ALBLoadBalancer:
     Description: A reference to the Application Load Balancer
     Value: !Ref LoadBalancer
@@ -261,7 +275,6 @@ Outputs:
         "Fn::Sub": 
           - ${StackName}-ALBLoadBalancer
           - StackName: !Ref AWS::StackName
-
   LoadBalancerUrl:
     Description: The URL of the ALB
     Value: !Join ['', ['http://', !GetAtt LoadBalancer.DNSName, ':', !Ref LBPort]]

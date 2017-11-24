@@ -75,3 +75,5 @@ documentation and consider turning it on
 ```
 s3cmd put "cf-jenkins-elb-301.yml" s3://aws.dennyzhang.com/
 ```
+
+- Provision Loadbalancer would take minutes
