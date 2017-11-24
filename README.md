@@ -123,8 +123,8 @@ Case study using AWS TechStack to setup Jenkins env
 - Objective: Avoid SPOF by adding 2 Jenkins instance
 - Requirements:
 ```
-1. Start 2 Jenkins instance behind one ALB
-2. Enable auto-scaling with minimum instance 2 and max 4.
+1. Start 1 jenkins master and 1 jenkins slave
+2. Jenkins master offload request to jenkins slave
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
 

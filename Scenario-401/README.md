@@ -13,8 +13,8 @@ Table of Contents
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_aio.png"/> </a>
 
 # Requirements
-1. Start 2 Jenkins instance behind one ALB
-2. Enable auto-scaling with minimum instance 2 and max 4.
+1. Start 1 jenkins master and 1 jenkins slave
+2. Jenkins master offload request to jenkins slave
 
 # Procedures
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-401.yml)
