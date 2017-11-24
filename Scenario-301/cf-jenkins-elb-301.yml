@@ -3,7 +3,7 @@ Description: 'AWS CloudFormation Sample Template: LaunchConfiguration and AutoSc
 Parameters:
   SecurityGroupId:
     Description: Security Group
-    Type: List<AWS::VPC::SecurityGroup::Id>
+    Type: List<AWS::EC2::SecurityGroup::Id>
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
@@ -127,7 +127,7 @@ Mappings:
 
 Resources:
   # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html
-  JenkinsLaunchConfig: 
+  JenkinsLaunchConfig:
     Type: "AWS::AutoScaling::LaunchConfiguration"
     Properties:
       # TODO: support metadata
@@ -162,23 +162,23 @@ Resources:
             - '
 
               '
-    Tags: 
-      - Key: Name 
+    Tags:
+      - Key: Name
         Value: !Sub ${StackName}-LaunchCfg
     SecurityGroups: !Ref 'SecurityGroupId'
     InstanceType: !Ref 'InstanceType'
 
-  JenkinsScalingGroup: 
+  JenkinsScalingGroup:
     Type: "AWS::AutoScaling::AutoScalingGroup"
     Properties:
-      # TODO change this
-      AvailabilityZones: 
-        Fn::GetAZs: ""
+      # TODO support all AZ, instead of the first two
+      AvailabilityZones:
+        !Join [ ",", [ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"] ]]
       LaunchConfigurationName:  !Ref 'JenkinsLaunchConfig'
       MinSize: !Ref 'MinSize'
       MaxSize: !Ref 'MaxSize'
-      LoadBalancerNames: 
+      LoadBalancerNames:
         - Ref: "ElasticLoadBalancer"
-      Tags: 
-        - Key: Name 
+      Tags:
+        - Key: Name
           Value: !Sub ${StackName}-LaunchCfg

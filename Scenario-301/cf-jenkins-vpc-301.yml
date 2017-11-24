@@ -41,8 +41,8 @@ Resources:
       EnableDnsSupport: true
       EnableDnsHostnames: true
       InstanceTenancy: default
-      Tags: 
-        - Key: Name 
+      Tags:
+        - Key: Name
           Value: !Ref StackName
   InternetGateway:
     Type: AWS::EC2::InternetGateway
@@ -79,8 +79,8 @@ Resources:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
-      Tags: 
-        - Key: Name 
+      Tags:
+        - Key: Name
           Value: !Sub ${StackName}-public-routes
   InternetRoute:
     Type: AWS::EC2::Route
@@ -123,12 +123,12 @@ Outputs:
     Value:
       !Ref AWS::StackName
 
-  VpcId: 
+  VpcId:
     Description: A reference to the created VPC
     Value: !Ref VPC
     Export:
-      Name: 
-        "Fn::Sub": 
+      Name:
+        "Fn::Sub":
           - ${StackName}-VpcId
           - StackName: !Ref AWS::StackName
 
@@ -137,7 +137,7 @@ Outputs:
     Value: !Join [ ",", [ !Ref PublicSubnet1, !Ref PublicSubnet2 ]]
     Export:
       Name:
-        "Fn::Sub": 
+        "Fn::Sub":
           - ${StackName}-PublicSubnetSets
           - StackName: !Ref AWS::StackName
 
@@ -146,23 +146,24 @@ Outputs:
     Value: !Ref PublicSubnet1
     Export:
       Name:
-        "Fn::Sub": 
+        "Fn::Sub":
           - ${StackName}-PubSubnet1
           - StackName: !Ref AWS::StackName
 
-  PublicSubnet2: 
+  PublicSubnet2:
     Description: A reference to the public subnet in the 2nd Availability Zone
     Value: !Ref PublicSubnet2
     Export:
       Name:
-        "Fn::Sub": 
+        "Fn::Sub":
           - ${StackName}-PubSubnet2
           - StackName: !Ref AWS::StackName
-  JenkinsSecurityGroupId: 
+
+  JenkinsSecurityGroupId:
     Description: A reference to the security group for Jenkins service
     Value: !GetAtt JenkinsSecurityGroup.GroupId
     Export:
-      Name: 
+      Name:
         "Fn::Sub":
           - ${StackName}-SecurityGroupId
           - StackName: !Ref AWS::StackName
