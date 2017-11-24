@@ -206,31 +206,32 @@ Resources:
       InstanceType: !Ref InstanceType
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
+      # TODO: change slack_buildserverurl from localhost to LoadBalancer.DNSName LBPort
       UserData:
         "Fn::Base64": 
-              !Sub |
-                #!/bin/bash -xe
-                wget -O /root/userdata_launchcfg.sh \
-                   https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh
-                mkdir -p /home/ec2-user/chef/
-                cat > /home/ec2-user/chef/node.json << EOF
-                {"jenkins_demo":
-                  {"jenkins_port":"${JenkinsPort}",
-                  "default_username":"${JenkinsUser}",
-                   "default_password":"${JenkinsPassword}",
-                   "jenkins_jobs":"CommonServerCheckRepo",
-                   "slack_authtoken":"${SlackAuthToken}",
-                   "slack_teamdomain":"mywechat",
-                   "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
-                   "slack_room":"#denny-alerts"
-                   },
-                 "run_list":["recipe[apt::default]",
-                             "recipe[jenkins-demo::default]",
-                             "recipe[jenkins-demo::conf_job]"
-                            ]
-                }
-EOF
-                bash -xe /root/userdata_launchcfg.sh "/home/ec2-user/chef/node.json" "Scenario-302/cookbooks/jenkins-demo"
+          !Sub |
+            #!/bin/bash -xe
+            wget -O /root/userdata_launchcfg.sh \
+              https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh
+            mkdir -p /home/ec2-user/chef/
+            cat > /home/ec2-user/chef/node.json <<-EOF
+            {"jenkins_demo":
+              {"jenkins_port":"${JenkinsPort}",
+               "default_username":"${JenkinsUser}",
+               "default_password":"${JenkinsPassword}",
+               "jenkins_jobs":"CommonServerCheckRepo",
+               "slack_authtoken":"${SlackAuthToken}",
+               "slack_teamdomain":"mywechat",
+               "slack_buildserverurl":"http://localhost:${JenkinsPort}/",
+               "slack_room":"#denny-alerts"
+              },
+              "run_list":["recipe[apt::default]",
+                          "recipe[jenkins-demo::default]",
+                          "recipe[jenkins-demo::conf_job]"
+                         ]
+            }
+            EOF
+            bash -xe /root/userdata_launchcfg.sh "/home/ec2-user/chef/node.json" "Scenario-302/cookbooks/jenkins-demo"
 
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
