@@ -19,6 +19,7 @@ Table of Contents
       * [Scenario-202: VM Single-Node Jenkins Deployment II](#scenario-202-vm-single-node-jenkins-deployment-ii)
       * [Scenario-203: VM Single-Node Jenkins Deployment III](#scenario-203-vm-single-node-jenkins-deployment-iii)
       * [Scenario-301: VM ASG/ELB Jenkins Deployment I](#scenario-301-vm-asgelb-jenkins-deployment-i)
+      * [Scenario-302: VM ASG/ELB Jenkins Deployment II](#scenario-302-vm-asgelb-jenkins-deployment-ii)
       * [Scenario-401: VM 2-Nodes Jenkins Deployment I](#scenario-401-vm-2-nodes-jenkins-deployment-i)
       * [Scenario-402: VM 2-Nodes Jenkins Deployment II](#scenario-402-vm-2-nodes-jenkins-deployment-ii)
       * [Scenario-501: ECS Jenkins Deployment I](#scenario-501-ecs-jenkins-deployment-i)
@@ -119,6 +120,20 @@ Case study using AWS TechStack to setup Jenkins env
 
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-301.yml)
 - See more: [Scenario-301](./Scenario-301)
+- TODO
+
+## Scenario-302: VM ASG/ELB Jenkins Deployment II
+- Objective: Customize Jenkins docker deployment in AWS
+- Requirements:
+```
+1. Finish Scenario-301, create CloudWatch for DNS endpoint
+2. In CF, export Instance
+3. In Jenkins deployment, create a pipeline
+```
+- Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
+
+[![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-302.yml)
+- See more: [Scenario-302](./Scenario-302)
 - TODO
 
 ## Scenario-401: VM 2-Nodes Jenkins Deployment I

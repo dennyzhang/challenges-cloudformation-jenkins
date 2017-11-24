@@ -1,0 +1,181 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS CloudFormation Sample Template: Create VPC, Security group'
+Parameters:
+  StackName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+    Default: 'aws-jenkins'
+  JenkinsPort:
+    Default: 8080
+    Description: The Jenkins Port
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
+  JenkinsLocation:
+    Description: The IP address range that can be used to Access Jenkins URL
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  SSHLocation:
+    Description: The IP address range that can be used to SSH to the EC2 instances
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+
+Resources:
+  # Create VPC: https://sookocheff.com/post/aws/how-to-create-a-vpc-using-cloudformation/
+  # https://github.com/humank/20171116-cfn-lab/blob/master/infrastructure/vpc.yml
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      # CidrBlock: 172.33.0.0/16
+      # public: 172.33.0.0/20, 172.33.16.0/20
+      CidrBlock: 172.33.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: !Ref StackName
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Ref StackName
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+  PublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"]
+      VpcId: !Ref VPC
+      CidrBlock: 172.33.0.0/20
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName}-pub-subnet1
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]
+      VpcId: !Ref VPC
+      CidrBlock: 172.33.16.0/20
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName}-pub-subnet2
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName}-public-routes
+  InternetRoute:
+    Type: AWS::EC2::Route
+    DependsOn: InternetGateway
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+      RouteTableId: !Ref PublicRouteTable
+  PublicSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet1
+  PublicSubnet2RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet2
+  JenkinsSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable HTTP access via port Jenkins port locked down to the load balancer
+        + SSH access
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref 'SSHLocation'
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: !Ref 'JenkinsLocation'
+        - IpProtocol: tcp
+          FromPort: !Ref JenkinsPort
+          ToPort: !Ref JenkinsPort
+          CidrIp: !Ref 'JenkinsLocation'
+  # Allow inbound traffic from the same security group.
+  # http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html
+  # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html
+  SGBaseIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      IpProtocol: tcp
+      FromPort: !Ref JenkinsPort
+      ToPort: !Ref JenkinsPort
+      GroupId: !GetAtt JenkinsSecurityGroup.GroupId
+      SourceSecurityGroupId: !GetAtt JenkinsSecurityGroup.GroupId
+
+Outputs:
+  StackName:
+    Value:
+      !Ref AWS::StackName
+
+  VpcId:
+    Description: A reference to the created VPC
+    Value: !Ref VPC
+    Export:
+      Name:
+        "Fn::Sub":
+          - ${StackName}-VpcId
+          - StackName: !Ref AWS::StackName
+
+  PublicSubnets:
+    Description: A list of the public subnets
+    Value: !Join [ ",", [ !Ref PublicSubnet1, !Ref PublicSubnet2 ]]
+    Export:
+      Name:
+        "Fn::Sub":
+          - ${StackName}-PublicSubnetSets
+          - StackName: !Ref AWS::StackName
+
+  PublicSubnet1:
+    Description: A reference to the public subnet in the 1st Availability Zone
+    Value: !Ref PublicSubnet1
+    Export:
+      Name:
+        "Fn::Sub":
+          - ${StackName}-PubSubnet1
+          - StackName: !Ref AWS::StackName
+
+  PublicSubnet2:
+    Description: A reference to the public subnet in the 2nd Availability Zone
+    Value: !Ref PublicSubnet2
+    Export:
+      Name:
+        "Fn::Sub":
+          - ${StackName}-PubSubnet2
+          - StackName: !Ref AWS::StackName
+
+  JenkinsSecurityGroupId:
+    Description: A reference to the security group for Jenkins service
+    Value: !GetAtt JenkinsSecurityGroup.GroupId
+    Export:
+      Name:
+        "Fn::Sub":
+          - ${StackName}-SecurityGroupId
+          - StackName: !Ref AWS::StackName
