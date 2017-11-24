@@ -232,15 +232,15 @@ Resources:
       Protocol: HTTP
 
   JenkinsScalingGroup:
-    Type: "AWS::AutoScaling::AutoScalingGroup"
+    Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
-      # TODO support all AZ, instead of the first two
       # http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Types/AvailabilityZone.html#zone_name-instance_method
-      # TODO: change line to shorter
+      # TODO support all AZ, instead of the first two
       # TODO: configure AvailabilityZone
-      AvailabilityZones: !Join [ ",", ["us-east-1a", "us-east-1b"]]
-      # AvailabilityZones:
-      #   !Join [ ",", [!Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]]]
+      AvailabilityZones:
+        Fn::GetAZs: ""
+      #   [!Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]]
+      # AvailabilityZones: ["us-east-1a", "us-east-1b"]
       LaunchConfigurationName: !Ref JenkinsLaunchConfig
       Tags:
         - Key: Name
