@@ -239,10 +239,7 @@ Resources:
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Name:
-        "Fn::Sub":
-          - "TG-${StackName}"
-          - StackName: !Ref AWS::StackName
+      Name: "JenkinsTargetGroup"
       HealthCheckIntervalSeconds: 30
       HealthCheckProtocol: HTTP
       HealthCheckPort: !Ref JenkinsPort
