@@ -10,6 +10,8 @@ Table of Contents
    * [Requirements](#requirements)
    * [Procedures](#procedures)
 
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cf_elb_one_master.png"/> </a>
+
 # Requirements
 1. Use CF to create ASG and ELB. And monitor ELB
 2. Start Jenkins master by ELB. Configure instance count to 1
