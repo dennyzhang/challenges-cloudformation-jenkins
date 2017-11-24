@@ -183,16 +183,17 @@ Resources:
           !Ref 'InstanceType', Arch]]
       UserData: !Base64
         # TODO: support metadata
-        # TODO: cut long line to short
         Fn::Join:
           - ''
           - - '#!/bin/bash -xe
 
               '
-            - 'wget -O /root/userdata_launchcfg.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh'
-            - '
+            - 'wget -O /root/userdata_launchcfg.sh \
+                  https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh
+
               '
             - 'bash -xe /root/userdata_launchcfg.sh'
+
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
