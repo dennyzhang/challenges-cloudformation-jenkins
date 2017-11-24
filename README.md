@@ -77,6 +77,8 @@ Case study using AWS TechStack to setup Jenkins env
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-201.yml)
 - See more: [Scenario-201](./Scenario-201)
 
+<a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
+
 ## Scenario-202: VM Single-Node Jenkins Deployment II
 - Objective: Customize Jenkins docker deployment in AWS
 - Requirements:
@@ -149,6 +151,8 @@ Case study using AWS TechStack to setup Jenkins env
 - TODO
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_2nodes.png"/> </a>
+
+<a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
 ## Scenario-501: ECS Jenkins Deployment I
 - Objective: Get exposed to docker orchestration service.
