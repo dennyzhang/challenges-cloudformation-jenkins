@@ -41,6 +41,19 @@ Parameters:
     MinValue: 0
     MaxValue: 65535
     ConstraintDescription: TCP ports must be between 0 - 65535
+  LBPort:
+    Description: Load balancer port
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
+  LBMatcherStatus:
+    Description: HTTP return code for health check
+    Default: 403
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
 
 Mappings:
   AWSInstanceType2Arch:
@@ -186,10 +199,9 @@ Resources:
       HealthCheckTimeoutSeconds: 10
       HealthyThresholdCount: 4
       Matcher:
-        # TODO
-        HttpCode: '403'
+        HttpCode: !Ref LBMatcherStatus
       Name: MyTargets
-      Port: 80
+      Port: !Ref LBPort
       Protocol: HTTP
       VpcId: !Ref VPC
 
@@ -217,8 +229,7 @@ Resources:
       - Type: forward
         TargetGroupArn: !Ref ALBTargetGroup
       LoadBalancerArn: !Ref LoadBalancer
-      # TODO
-      Port: '80'
+      Port: !Ref LBPort
       Protocol: HTTP
 
   JenkinsScalingGroup:

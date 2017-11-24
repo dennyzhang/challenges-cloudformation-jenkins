@@ -32,6 +32,13 @@ Parameters:
     MinValue: 0
     MaxValue: 65535
     ConstraintDescription: TCP ports must be between 0 - 65535
+  LBPort:
+    Description: Load balancer port
+    Default: 80
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+    ConstraintDescription: TCP ports must be between 0 - 65535
   JenkinsUser:
     Description: The Jenkins username
     Type: String
@@ -215,6 +222,7 @@ Resources:
         InstanceType: !Ref InstanceType
         MinSize: !Ref MinSize
         MaxSize: !Ref MaxSize
+        LBPort: !Ref MaxSize 
 
 # Outputs:
 #   WebsiteURL:
