@@ -161,7 +161,7 @@ Resources:
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Name: JenkinsLoadBalancer
+      Name: LoadBalancerJenkins
       Scheme: internet-facing
       Subnets: !Ref Subnets
       LoadBalancerAttributes:
@@ -176,40 +176,23 @@ Resources:
   JenkinsLaunchConfig:
     Type: "AWS::AutoScaling::LaunchConfiguration"
     Properties:
-      # TODO: support metadata
       KeyName: !Ref KeyName
       SecurityGroups: !Ref SecurityGroupId
       InstanceType: !Ref InstanceType
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
       UserData: !Base64
+        # TODO: support metadata
+        # TODO: cut long line to short
         Fn::Join:
           - ''
           - - '#!/bin/bash -xe
 
               '
-            - 'yum update -y aws-cfn-bootstrap
-
-              '
-            - '/opt/aws/bin/cfn-init -v '
-            - '         --stack '
-            - !Ref 'AWS::StackName'
-            - '         --resource Jenkins '
-            - '         --configsets jenkins_install '
-            - '         --region '
-            - !Ref 'AWS::Region'
+            - 'wget -O /root/userdata_launchcfg.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh'
             - '
-
               '
-            - '/opt/aws/bin/cfn-signal -e $? '
-            - '         --stack '
-            - !Ref 'AWS::StackName'
-            - '         --resource Jenkins '
-            - '         --region '
-            - !Ref 'AWS::Region'
-            - '
-
-              '
+            - 'bash -xe /root/userdata_launchcfg.sh'
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
@@ -253,8 +236,10 @@ Resources:
       # TODO support all AZ, instead of the first two
       # http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Types/AvailabilityZone.html#zone_name-instance_method
       # TODO: change line to shorter
-      AvailabilityZones:
-        !Join [ ",", [!Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]]]
+      # TODO: configure AvailabilityZone
+      AvailabilityZones: !Join [ ",", ["us-east-1a", "us-east-1b"]]
+      # AvailabilityZones:
+      #   !Join [ ",", [!Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]]]
       LaunchConfigurationName: !Ref JenkinsLaunchConfig
       Tags:
         - Key: Name
