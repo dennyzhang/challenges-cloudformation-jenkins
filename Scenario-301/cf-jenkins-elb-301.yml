@@ -207,43 +207,61 @@ Resources:
       Protocol: HTTP
       VpcId: !Ref VPC
 
-  # LoadBalancer:
-  #   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-  #   Properties:
-  #     Name:
-  #       "Fn::Sub":
-  #         - "ALB-${StackName}"
-  #         - StackName: !Ref AWS::StackName
-  #     Scheme: internet-facing
-  #     Subnets: !Ref Subnets
-  #     LoadBalancerAttributes:
-  #     - Key: idle_timeout.timeout_seconds
-  #       Value: '50'
-  #     SecurityGroups: !Ref SecurityGroupId
-  #     Tags:
-  #       - Key: Name
-  #         Value: !Ref StackName
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name:
+        "Fn::Sub":
+          - "ALB-${StackName}"
+          - StackName: !Ref AWS::StackName
+      Scheme: internet-facing
+      Subnets: !Ref Subnets
+      LoadBalancerAttributes:
+      - Key: idle_timeout.timeout_seconds
+        Value: '50'
+      SecurityGroups: !Ref SecurityGroupId
+      Tags:
+        - Key: Name
+          Value: !Ref StackName
 
-  # LoadBalancerListener:
-  #   Type: AWS::ElasticLoadBalancingV2::Listener
-  #   Properties:
-  #     DefaultActions:
-  #     - Type: forward
-  #       TargetGroupArn: !Ref ALBTargetGroup
-  #     LoadBalancerArn: !Ref LoadBalancer
-  #     Port: !Ref LBPort
-  #     Protocol: HTTP
+  LoadBalancerListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+      - Type: forward
+        TargetGroupArn: !Ref ALBTargetGroup
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: !Ref LBPort
+      Protocol: HTTP
 
-  # JenkinsScalingGroup:
-  #   Type: "AWS::AutoScaling::AutoScalingGroup"
-  #   Properties:
-  #     # TODO support all AZ, instead of the first two
-  #     AvailabilityZones:
-  #       !Join [ ",", [ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"] ]]
-  #     LaunchConfigurationName:  !Ref JenkinsLaunchConfig
-  #     Tags:
-  #       - Key: Name
-  #         Value: !Sub ${StackName}-LaunchCfg
-  #     MinSize: !Ref MinSize
-  #     MaxSize: !Ref MaxSize
-  #     LoadBalancerNames: !Ref LoadBalancer
+  JenkinsScalingGroup:
+    Type: "AWS::AutoScaling::AutoScalingGroup"
+    Properties:
+      # TODO support all AZ, instead of the first two
+      AvailabilityZones:
+        !Join [ ",", [ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"] ]]
+      LaunchConfigurationName:  !Ref JenkinsLaunchConfig
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName}-LaunchCfg
+      MinSize: !Ref MinSize
+      MaxSize: !Ref MaxSize
+      LoadBalancerNames: !Ref LoadBalancer
+
+Outputs:
+  StackName:
+    Value:
+      !Ref AWS::StackName
+
+  ALBLoadBalancer:
+    Description: A reference to the Application Load Balancer
+    Value: !Ref LoadBalancer
+    Export:
+      Name: 
+        "Fn::Sub": 
+          - ${StackName}-ALBLoadBalancer
+          - StackName: !Ref AWS::StackName
+
+  LoadBalancerUrl:
+    Description: The URL of the ALB
+    Value: !Join ['', ['http://', !GetAtt LoadBalancer.DNSName, ':', !Ref LBPort]]
