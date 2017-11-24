@@ -63,7 +63,7 @@ Parameters:
     MinValue: 0
     MaxValue: 65535
     ConstraintDescription: TCP ports must be between 0 - 65535
-  JenkinsUser:
+  JenkinsTestUser:
     Description: The Jenkins username
     Type: String
     MinLength: '1'
@@ -71,7 +71,7 @@ Parameters:
     AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
     ConstraintDescription: must begin with a letter and contain only alphanumeric
       characters.
-  JenkinsPassword:
+  JenkinsTestPassword:
     NoEcho: 'true'
     Description: The Jenkins password
     Type: String
@@ -220,8 +220,8 @@ Resources:
             cat > /home/ec2-user/chef/node.json <<-EOF
             {"jenkins_demo":
               {"jenkins_port":"${JenkinsPort}",
-               "default_username":"${JenkinsUser}",
-               "default_password":"${JenkinsPassword}",
+               "default_username":"${JenkinsTestUser}",
+               "default_password":"${JenkinsTestPassword}",
                "jenkins_jobs":"CommonServerCheckRepo",
                "slack_authtoken":"${SlackAuthToken}",
                "slack_teamdomain":"mywechat",

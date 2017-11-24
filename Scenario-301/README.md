@@ -42,8 +42,8 @@ export TMP_FILE="file://cf-jenkins-main-301.yml"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
     --stack-name "$STACK_NAME" --parameters \
     ParameterKey=StackName,ParameterValue=$STACK_NAME \
-    ParameterKey=JenkinsUser,ParameterValue=$JENKINS_USER \
-    ParameterKey=JenkinsPassword,ParameterValue=$JENKINS_PASSWORD \
+    ParameterKey=JenkinsTestUser,ParameterValue=$JENKINS_USER \
+    ParameterKey=JenkinsTestPassword,ParameterValue=$JENKINS_PASSWORD \
     ParameterKey=SlackAuthToken,ParameterValue=$SLACK_TOKEN \
     ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
     ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT \
