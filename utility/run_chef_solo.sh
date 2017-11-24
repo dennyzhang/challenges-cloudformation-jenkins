@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-22 15:19:58>
+## Updated: Time-stamp: <2017-11-23 23:24:01>
 ##-------------------------------------------------------------------
 set -e
 
@@ -69,6 +69,7 @@ cookbook_folder=${2?"cookbook folder"}
 node_json_file=${3:-""}
 berks_cookbooks_folder="/tmp/berks_cookbooks"
 
+export HOME="/home/ec2-user"
 get_community_cookbooks "$berks_cookbooks_folder" "$cookbook_folder"
 run_chef_solo "$berks_cookbooks_folder" "$cookbook_folder" "$cookbook_name" "$node_json_file"
 ## File: run_chef_solo.sh ends
