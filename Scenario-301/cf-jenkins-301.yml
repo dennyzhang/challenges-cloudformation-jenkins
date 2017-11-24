@@ -207,7 +207,9 @@ Resources:
     Properties:
       TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-elb-301.yml
       Parameters:
+        VPC: !GetAtt ["VPC", "Outputs.VpcId"]
         SecurityGroupId: !GetAtt ["VPC", "Outputs.JenkinsSecurityGroupId"]
+        Subnets: !GetAtt ["VPC", "Outputs.PublicSubnets"]
         StackName: !Ref AWS::StackName
         KeyName: !Ref KeyName
         InstanceType: !Ref InstanceType

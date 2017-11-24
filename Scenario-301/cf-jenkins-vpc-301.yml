@@ -114,6 +114,11 @@ Resources:
           FromPort: '22'
           ToPort: '22'
           CidrIp: !Ref 'SSHLocation'
+        # TODO: Improve security
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: '0.0.0.0/0'
       Tags:
         - Key: Name
           Value: !Sub ${StackName}-secgroup

@@ -1,9 +1,15 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'AWS CloudFormation Sample Template: LaunchConfiguration and AutoScaling'
 Parameters:
+  VPC:
+    Type: AWS::EC2::VPC::Id
+    Description: Choose which VPC the Application Load Balancer should be deployed to
   SecurityGroupId:
     Description: Security Group
     Type: List<AWS::EC2::SecurityGroup::Id>
+  Subnets:
+    Description: Choose which subnets the Application Load Balancer should be deployed to
+    Type: List<AWS::EC2::Subnet::Id>
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
@@ -132,6 +138,8 @@ Resources:
     Properties:
       # TODO: support metadata
       KeyName: !Ref 'KeyName'
+      SecurityGroups: !Ref 'SecurityGroupId'
+      InstanceType: !Ref 'InstanceType'
       Tags:
         - Key: Name
           Value: !Sub ${StackName}-LaunchCfg
@@ -165,8 +173,53 @@ Resources:
             - '
 
               '
-    SecurityGroups: !Ref 'SecurityGroupId'
-    InstanceType: !Ref 'InstanceType'
+
+  ALBTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name:
+        "Fn::Sub":
+          - "TG-${StackName}"
+          - StackName: !Ref AWS::StackName
+      HealthCheckIntervalSeconds: 30
+      HealthCheckProtocol: HTTPS
+      HealthCheckTimeoutSeconds: 10
+      HealthyThresholdCount: 4
+      Matcher:
+        # TODO
+        HttpCode: '403'
+      Name: MyTargets
+      Port: 80
+      Protocol: HTTP
+      VpcId: !Ref VPC
+
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name:
+        "Fn::Sub":
+          - "ALB-${StackName}"
+          - StackName: !Ref AWS::StackName
+      Scheme: internet-facing
+      Subnets: !Ref Subnets
+      LoadBalancerAttributes:
+      - Key: idle_timeout.timeout_seconds
+        Value: '50'
+      SecurityGroups: !Ref 'SecurityGroupId'
+      Tags:
+        - Key: Name
+          Value: !Ref StackName
+
+  LoadBalancerListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+      - Type: forward
+        TargetGroupArn: !Ref ALBTargetGroup
+      LoadBalancerArn: !Ref LoadBalancer
+      # TODO
+      Port: '80'
+      Protocol: HTTP
 
   JenkinsScalingGroup:
     Type: "AWS::AutoScaling::AutoScalingGroup"
@@ -180,5 +233,4 @@ Resources:
           Value: !Sub ${StackName}-LaunchCfg
       MinSize: !Ref 'MinSize'
       MaxSize: !Ref 'MaxSize'
-      # LoadBalancerNames:
-      #   - Ref: "ElasticLoadBalancer"
+      LoadBalancerNames: !Ref LoadBalancer
