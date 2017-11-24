@@ -132,6 +132,9 @@ Resources:
     Properties:
       # TODO: support metadata
       KeyName: !Ref 'KeyName'
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName}-LaunchCfg
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch,
           !Ref 'InstanceType', Arch]]
       UserData: !Base64
@@ -162,9 +165,6 @@ Resources:
             - '
 
               '
-    Tags:
-      - Key: Name
-        Value: !Sub ${StackName}-LaunchCfg
     SecurityGroups: !Ref 'SecurityGroupId'
     InstanceType: !Ref 'InstanceType'
 
@@ -175,10 +175,10 @@ Resources:
       AvailabilityZones:
         !Join [ ",", [ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"] ]]
       LaunchConfigurationName:  !Ref 'JenkinsLaunchConfig'
-      MinSize: !Ref 'MinSize'
-      MaxSize: !Ref 'MaxSize'
-      LoadBalancerNames:
-        - Ref: "ElasticLoadBalancer"
       Tags:
         - Key: Name
           Value: !Sub ${StackName}-LaunchCfg
+      MinSize: !Ref 'MinSize'
+      MaxSize: !Ref 'MaxSize'
+      # LoadBalancerNames:
+      #   - Ref: "ElasticLoadBalancer"
