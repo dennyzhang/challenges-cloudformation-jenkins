@@ -80,19 +80,19 @@ Parameters:
     Default: 0.0.0.0/0
     AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
-  DesiredCapacity:
+  SizeDesired:
     Default: 1
     Description: Desired capacity for the Auto Scaling group.
     Type: Number
     MinValue: 0
     MaxValue: 65535
-  MinSize:
+  SizeMin:
     Default: 1
     Description: Mininum instance count
     Type: Number
     MinValue: 0
     MaxValue: 65535
-  MaxSize:
+  SizeMax:
     Default: 1
     Description: Maximum instance count
     Type: Number
@@ -224,9 +224,9 @@ Resources:
         StackName: !Ref AWS::StackName
         KeyName: !Ref KeyName
         InstanceType: !Ref InstanceType
-        MinSize: !Ref MinSize
-        MaxSize: !Ref MaxSize
-        DesiredCapacity: !Ref DesiredCapacity
+        MinSize: !Ref SizeMin
+        MaxSize: !Ref SizeMax
+        DesiredCapacity: !Ref SizeDesired
         LBPort: !Ref LBPort
         JenkinsPort: !Ref JenkinsPort
         JenkinsUser: !Ref JenkinsUser

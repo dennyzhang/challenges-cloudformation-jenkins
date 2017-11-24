@@ -29,18 +29,18 @@ Parameters:
       - t2.small
       - m1.small
     ConstraintDescription: must be a valid EC2 instance type.
-  MinSize:
+  SizeDesired:
+    Description: Desired capacity for the Auto Scaling group.
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+  SizeMin:
     Description: Mininum instance count
     Type: Number
     MinValue: 0
     MaxValue: 65535
-  MaxSize:
+  SizeMax:
     Description: Maximum instance count
-    Type: Number
-    MinValue: 0
-    MaxValue: 65535
-  DesiredCapacity:
-    Description: Desired capacity for the Auto Scaling group.
     Type: Number
     MinValue: 0
     MaxValue: 65535
@@ -282,9 +282,9 @@ Resources:
         - Key: Name
           Value: JenkinsScalingGroup
           PropagateAtLaunch: true
-      MinSize: !Ref MinSize
-      MaxSize: !Ref MaxSize
-      DesiredCapacity: !Ref DesiredCapacity
+      MinSize: !Ref SizeMin
+      MaxSize: !Ref SizeMax
+      DesiredCapacity: !Ref SizeDesired
       UpdatePolicy:
         AutoScalingRollingUpdate:
           MinInstancesInService: 1
