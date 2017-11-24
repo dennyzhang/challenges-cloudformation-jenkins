@@ -254,7 +254,7 @@ Resources:
       HealthCheckPath: !Ref HealthCheckPath
       Matcher:
         HttpCode: !Ref LBMatcherStatus
-      Port: !Ref LBPort
+      Port: !Ref JenkinsPort
       Protocol: HTTP
       VpcId: !Ref VPC
       # TODO: change Targets
