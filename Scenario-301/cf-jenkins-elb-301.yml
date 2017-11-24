@@ -191,7 +191,7 @@ Resources:
     Properties:
       Name:
         "Fn::Sub":
-          - "ALB-${StackName}"
+          - "${StackName}"
           - StackName: !Ref AWS::StackName
       Scheme: internet-facing
       Subnets: !Ref Subnets

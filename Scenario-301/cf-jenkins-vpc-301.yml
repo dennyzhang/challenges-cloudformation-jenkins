@@ -124,10 +124,10 @@ Resources:
   SGBaseIngress:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      GroupId: !GetAtt JenkinsSecurityGroup.GroupId
       IpProtocol: tcp
       FromPort: !Ref JenkinsPort
-      FromPort: !Ref JenkinsPort
+      ToPort: !Ref JenkinsPort
+      GroupId: !GetAtt JenkinsSecurityGroup.GroupId
       SourceSecurityGroupId: !GetAtt JenkinsSecurityGroup.GroupId
 
 Outputs:
