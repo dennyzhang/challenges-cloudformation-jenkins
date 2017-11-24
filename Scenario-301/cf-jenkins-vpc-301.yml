@@ -107,10 +107,6 @@ Resources:
       VpcId: !Ref VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: !Ref JenkinsPort
-          ToPort: !Ref JenkinsPort
-          CidrIp: !Ref 'JenkinsLocation'
-        - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
           CidrIp: !Ref 'SSHLocation'
@@ -118,6 +114,14 @@ Resources:
           FromPort: '80'
           ToPort: '80'
           CidrIp: !Ref 'JenkinsLocation'
+        - IpProtocol: tcp
+          FromPort: !Ref JenkinsPort
+          ToPort: !Ref JenkinsPort
+          CidrIp: !Ref 'JenkinsLocation'
+        - IpProtocol: tcp
+          FromPort: !Ref JenkinsPort
+          ToPort: !Ref JenkinsPort
+          CidrIp: !GetAtt JenkinsSecurityGroup.GroupId
       Tags:
         - Key: Name
           Value: !Sub ${StackName}-secgroup
