@@ -246,10 +246,10 @@ Resources:
         "Fn::Sub":
           - "TG-${StackName}"
           - StackName: !Ref AWS::StackName
-      HealthCheckIntervalSeconds: 30
       HealthCheckProtocol: HTTP
       HealthCheckPort: !Ref JenkinsPort
-      HealthCheckTimeoutSeconds: 10
+      HealthCheckTimeoutSeconds: 5
+      HealthCheckIntervalSeconds: 10
       HealthyThresholdCount: 4
       HealthCheckPath: !Ref HealthCheckPath
       Matcher:
