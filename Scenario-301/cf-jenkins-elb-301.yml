@@ -150,9 +150,9 @@ Resources:
     Type: "AWS::AutoScaling::LaunchConfiguration"
     Properties:
       # TODO: support metadata
-      KeyName: !Ref 'KeyName'
-      SecurityGroups: !Ref 'SecurityGroupId'
-      InstanceType: !Ref 'InstanceType'
+      KeyName: !Ref KeyName
+      SecurityGroups: !Ref SecurityGroupId
+      InstanceType: !Ref InstanceType
       Tags:
         - Key: Name
           Value: !Sub ${StackName}-LaunchCfg
@@ -217,7 +217,7 @@ Resources:
       LoadBalancerAttributes:
       - Key: idle_timeout.timeout_seconds
         Value: '50'
-      SecurityGroups: !Ref 'SecurityGroupId'
+      SecurityGroups: !Ref SecurityGroupId
       Tags:
         - Key: Name
           Value: !Ref StackName
@@ -238,10 +238,10 @@ Resources:
       # TODO support all AZ, instead of the first two
       AvailabilityZones:
         !Join [ ",", [ !Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"] ]]
-      LaunchConfigurationName:  !Ref 'JenkinsLaunchConfig'
+      LaunchConfigurationName:  !Ref JenkinsLaunchConfig
       Tags:
         - Key: Name
           Value: !Sub ${StackName}-LaunchCfg
-      MinSize: !Ref 'MinSize'
-      MaxSize: !Ref 'MaxSize'
+      MinSize: !Ref MinSize
+      MaxSize: !Ref MaxSize
       LoadBalancerNames: !Ref LoadBalancer

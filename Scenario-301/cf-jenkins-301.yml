@@ -222,7 +222,7 @@ Resources:
         InstanceType: !Ref InstanceType
         MinSize: !Ref MinSize
         MaxSize: !Ref MaxSize
-        LBPort: !Ref MaxSize 
+        LBPort: !Ref MaxSize
 
 # Outputs:
 #   WebsiteURL:
