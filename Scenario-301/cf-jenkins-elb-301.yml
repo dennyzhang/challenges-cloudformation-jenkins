@@ -189,7 +189,10 @@ Resources:
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Name: "LoadBalancerJenkins"
+      Name:
+        "Fn::Sub":
+          - "ALB-${StackName}"
+          - StackName: !Ref AWS::StackName
       Scheme: internet-facing
       Subnets: !Ref Subnets
       LoadBalancerAttributes:
@@ -239,7 +242,10 @@ Resources:
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Name: "JenkinsTargetGroup"
+      Name:
+        "Fn::Sub":
+          - "TG-${StackName}"
+          - StackName: !Ref AWS::StackName
       HealthCheckIntervalSeconds: 30
       HealthCheckProtocol: HTTP
       HealthCheckPort: !Ref JenkinsPort
