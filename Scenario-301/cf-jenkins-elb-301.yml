@@ -235,12 +235,8 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       # http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Types/AvailabilityZone.html#zone_name-instance_method
-      # TODO support all AZ, instead of the first two
-      # TODO: configure AvailabilityZone
       AvailabilityZones:
         Fn::GetAZs: ""
-      #   [!Select [ 0, "Fn::GetAZs": !Ref "AWS::Region"], !Select [ 1, "Fn::GetAZs": !Ref "AWS::Region"]]
-      # AvailabilityZones: ["us-east-1a", "us-east-1b"]
       LaunchConfigurationName: !Ref JenkinsLaunchConfig
       Tags:
         - Key: Name
