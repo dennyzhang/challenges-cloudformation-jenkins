@@ -234,7 +234,7 @@ Resources:
                          ]
             }
             EOF
-            bash -xe /root/userdata_launchcfg.sh "/home/ec2-user/chef/node.json" "Scenario-302/cookbooks/jenkins-demo"
+            bash -xe /home/ec2-user/userdata_launchcfg.sh "/home/ec2-user/chef/node.json" "Scenario-302/cookbooks/jenkins-demo"
 
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
