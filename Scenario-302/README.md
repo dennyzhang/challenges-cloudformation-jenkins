@@ -32,7 +32,6 @@ Here we use nested CF, to organize code in small modules.
 
 ```
 export STACK_NAME="aws-jenkins"
-
 # The IP address range that can be used to Access Jenkins URL
 [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
 # Test jenkins username and password
