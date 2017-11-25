@@ -235,6 +235,14 @@ Resources:
         JenkinsTestPasswd: !Ref JenkinsTestPasswd
         SlackAuthToken: !Ref SlackAuthToken
         SNSTopicARN: !Ref SNSTopicARN
+  CloudWatch:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-monitoring-302.yml
+      Parameters:
+        LoadBalancerID: !GetAtt ["VPC", "Outputs.ALBLoadBalancer"]
+        StackName: !Ref AWS::StackName
+        SNSTopicARN: !Ref SNSTopicARN
 
 Outputs:
   JenkinsURL:

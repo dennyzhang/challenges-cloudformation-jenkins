@@ -6,31 +6,38 @@ Parameters:
     Type: String
     MinLength: '1'
     MaxLength: '100'
+  LoadBalancerID:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer::Id
+    Description: LoadBalancer ID
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
     Default: 'aws-jenkins'
+  ELBErrorCountThreshold:
+    Description: If too many ELB 5xx error within one minutes, get alerts
+    Default: 1
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
 
 Resources:
   # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
-  LoadBalancer:
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+  CPUAlarm:
+    Type: AWS::CloudWatch::Alarm
     Properties:
-      Name:
-        "Fn::Sub":
-          - "${StackName}"
-          - StackName: !Ref AWS::StackName
-      Scheme: internet-facing
-      Subnets: !Ref Subnets
-      LoadBalancerAttributes:
-      - Key: idle_timeout.timeout_seconds
-        Value: '50'
-      SecurityGroups: !Ref SecurityGroupId
-      Tags:
-        - Key: Name
-          Value: !Ref StackName
-
-Outputs:
-  StackName:
-    Value:
-      !Ref AWS::StackName
+      AlarmDescription: Jenkins ELB 5XX
+      AlarmName: !Sub ${StackName}-ELB-5XX
+      AlarmActions:
+      - Ref: !Ref SNSTopicARN
+      Namespace: ApplicationELB
+      Statistic: Sum
+      Period: '60'
+      EvaluationPeriods: '3'
+      Threshold: !Ref ELBErrorCountThreshold
+      ComparisonOperator: GreaterThanThreshold
+      # http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elb-metricscollected.html
+      MetricName: HTTPCode_ELB_5XX_Count
+      Dimensions:
+      - Name: LoadBalancer
+        Value:
+          Ref: !Ref LoadBalancerID
