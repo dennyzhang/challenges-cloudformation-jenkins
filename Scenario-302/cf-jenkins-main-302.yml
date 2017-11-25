@@ -99,6 +99,7 @@ Parameters:
     Type: String
     MinLength: '1'
     MaxLength: '100'
+    # TODO: better ARN validation
 Mappings:
   AWSInstanceType2Arch:
     t1.micro:
