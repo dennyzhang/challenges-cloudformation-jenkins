@@ -97,7 +97,7 @@ Parameters:
   SNSTopicARN:
     Description: SNS topic to get notifications for autoscaling events
     Type: String
-    MinLength: '1'
+    MinLength: '5'
     MaxLength: '100'
     # TODO: better ARN validation
 Mappings:

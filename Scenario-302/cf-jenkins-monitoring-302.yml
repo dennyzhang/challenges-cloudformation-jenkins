@@ -7,8 +7,11 @@ Parameters:
     MinLength: '1'
     MaxLength: '100'
   LoadBalancerID:
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer::Id
+    Type: String
     Description: LoadBalancer ID
+    Type: String
+    MinLength: '5'
+    MaxLength: '100'
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
