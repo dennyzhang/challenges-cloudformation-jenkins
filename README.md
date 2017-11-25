@@ -258,7 +258,12 @@ https://github.com/awslabs
 Below are folks who have contributed via GitHub!
 - Critical Info
 ```
-CentOS Jenkins conf: /etc/sysconfig/jenkins
+# Centos Jenkins Conf
+/etc/sysconfig/jenkins
+
+# Run chef deployment
+chef-solo --config "/home/ec2-user/chef/solo.rb" --log_level auto -L "/home/ec2-user/log/run_chef_solo.log" \
+       --force-formatter --no-color --json-attributes "/home/ec2-user/chef/node.json"
 ```
 
 # License
