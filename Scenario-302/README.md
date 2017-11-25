@@ -44,6 +44,8 @@ export JENKINS_PASSWD="password123"
 # ssh key name to access EC2 instance
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="YOUR_SSH_KEYNAME_CUSTOMIZE"
 [ -n "$SNS_TOPIC_ARN" ] || export SNS_TOPIC_ARN="arn:aws:sns:us-east-1:YOUR_SNS_TOPIC"
+[ -n "$SIZE_DESIRED" ] || export SIZE_DESIRED="1"
+[ -n "$SIZE_MIN" ] || export SIZE_MIN="1"
 ```
 
 ```
@@ -56,6 +58,8 @@ aws cloudformation create-stack --template-body "$TMP_FILE" \
     ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
     ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT \
     ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME \
+    ParameterKey=SizeDesired,ParameterValue=$SIZE_DESIRED \
+    ParameterKey=SizeMin,ParameterValue=$SIZE_MIN \
     ParameterKey=SNSTopicARN,ParameterValue=$SNS_TOPIC_ARN
 ```
 
