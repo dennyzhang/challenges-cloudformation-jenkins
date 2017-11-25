@@ -146,8 +146,11 @@ Case study using AWS TechStack to setup Jenkins env
 1. Finish Scenario-302
 2. ELB export EC2 instance resource
 3. Enable logging for ELB
+4. When SNSTopicName is empty, avoid adding SNS notification
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
+
+- TODO
 
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-303.yml)
 - See more: [Scenario-303](./Scenario-303)
