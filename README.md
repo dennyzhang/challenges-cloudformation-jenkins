@@ -242,8 +242,11 @@ Case study using AWS TechStack to setup Jenkins env
 2. Improve HA
 ```
 
-- Really like container deployments over VM deployments.
-- Jenkins community don't have HA solution for Jenkins master yet.
+- Personal Review:
+```
+1. Really like container/ECS deployment over VM deployment.
+2. Jenkins community don't have HA solution for Jenkins master yet.
+```
 
 Discussions & Further Improvements:
 - TOOD
