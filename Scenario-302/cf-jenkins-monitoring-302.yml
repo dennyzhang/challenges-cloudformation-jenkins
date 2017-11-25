@@ -7,7 +7,6 @@ Parameters:
     MinLength: '5'
     MaxLength: '200'
   LoadBalancerID:
-    Type: String
     Description: LoadBalancer ID
     Type: String
     MinLength: '5'
