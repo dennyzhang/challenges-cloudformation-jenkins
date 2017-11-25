@@ -11,11 +11,14 @@ Table of Contents
    * [Procedures](#procedures)
 
 # Requirements
+```
 1. Finish Scenario-301
-2. In ELB, enable logging and monitoring
-3. Get slack notificaiton for autoscaling events.
+2. Get slack notificaiton for autoscaling events.
    Here we assume, one SNS topic has already been created.
+3. In ELB, enable logging and monitoring
+   Verify it by terminating existing instance
 4. In Jenkins deployment, create a pipeline
+```
 
 # Procedures
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-302.yml)
