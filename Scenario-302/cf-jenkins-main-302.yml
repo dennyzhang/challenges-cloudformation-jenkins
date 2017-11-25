@@ -240,7 +240,7 @@ Resources:
     Properties:
       TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-monitoring-302.yml
       Parameters:
-        LoadBalancerID: !GetAtt ["VPC", "Outputs.ALBLoadBalancer"]
+        LoadBalancerID: !GetAtt ["ELB", "Outputs.ALBLoadBalancer"]
         StackName: !Ref AWS::StackName
         SNSTopicARN: !Ref SNSTopicARN
 
