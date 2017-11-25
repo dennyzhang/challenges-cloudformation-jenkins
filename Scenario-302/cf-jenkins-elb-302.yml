@@ -308,7 +308,8 @@ Outputs:
       !Ref AWS::StackName
   ALBLoadBalancerName:
     Description: A reference to the Application Load Balancer
-    Value: !GetAtt LoadBalancer.Name
+    # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#w2ab2c21c10d597c10
+    Value: !GetAtt LoadBalancer.LoadBalancerFullName
     Export:
       Name:
         "Fn::Sub":
