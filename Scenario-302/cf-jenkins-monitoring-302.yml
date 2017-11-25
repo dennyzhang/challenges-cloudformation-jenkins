@@ -27,8 +27,7 @@ Resources:
     Properties:
       AlarmDescription: Jenkins ELB 5XX
       AlarmName: !Sub ${StackName}-ELB-5XX
-      AlarmActions:
-      - Ref: !Ref SNSTopicARN
+      AlarmActions: !Ref SNSTopicARN
       Namespace: ApplicationELB
       Statistic: Sum
       Period: '60'
@@ -39,5 +38,4 @@ Resources:
       MetricName: HTTPCode_ELB_5XX_Count
       Dimensions:
       - Name: LoadBalancer
-        Value:
-          Ref: !Ref LoadBalancerID
+        Value: !Ref LoadBalancerID
