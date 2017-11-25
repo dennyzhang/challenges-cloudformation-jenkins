@@ -128,7 +128,9 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 1. Finish Scenario-301
 2. In ELB, enable logging and monitoring
-3. In Jenkins deployment, create a pipeline
+3. Get slack notificaiton for autoscaling events.
+   Here we assume, one SNS topic has already been created.
+4. In Jenkins deployment, create a pipeline
 ```
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
 

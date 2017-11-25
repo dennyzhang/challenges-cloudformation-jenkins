@@ -94,6 +94,12 @@ Parameters:
     Type: Number
     MinValue: 0
     MaxValue: 65535
+  SNSTopicName:
+    Description: SNS topic to get notifications for autoscaling events
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9-]*'
 Mappings:
   AWSInstanceType2Arch:
     t1.micro:
@@ -203,7 +209,7 @@ Resources:
   VPC:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-vpc-301.yml
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-vpc-302.yml
       Parameters:
         StackName: !Ref AWS::StackName
         JenkinsPort: !Ref JenkinsPort
@@ -212,7 +218,7 @@ Resources:
   ELB:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-elb-301.yml
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-elb-302.yml
       Parameters:
         VPC: !GetAtt ["VPC", "Outputs.VpcId"]
         SecurityGroupId: !GetAtt ["VPC", "Outputs.JenkinsSecurityGroupId"]
@@ -228,6 +234,7 @@ Resources:
         JenkinsTestUser: !Ref JenkinsTestUser
         JenkinsTestPasswd: !Ref JenkinsTestPasswd
         SlackAuthToken: !Ref SlackAuthToken
+        SNSTopicName: !Ref SNSTopicName
 
 Outputs:
   JenkinsURL:

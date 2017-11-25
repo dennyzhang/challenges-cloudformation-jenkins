@@ -104,6 +104,9 @@ Resources:
     Properties:
       GroupDescription: Enable HTTP access via port Jenkins port locked down to the load balancer
         + SSH access
+      Tags: 
+        - Key: Name
+          Value: !Sub ${StackName}
       VpcId: !Ref VPC
       SecurityGroupIngress:
         - IpProtocol: tcp

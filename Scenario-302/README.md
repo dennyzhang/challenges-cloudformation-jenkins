@@ -13,7 +13,9 @@ Table of Contents
 # Requirements
 1. Finish Scenario-301
 2. In ELB, enable logging and monitoring
-3. In Jenkins deployment, create a pipeline
+3. Get slack notificaiton for autoscaling events.
+   Here we assume, one SNS topic has already been created.
+4. In Jenkins deployment, create a pipeline
 
 # Procedures
 [![Launch](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-302.yml)
@@ -36,6 +38,7 @@ export JENKINS_PASSWD="password123"
 [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
 # ssh key name to access EC2 instance
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
+[ -n "$SNS_TOPIC_NAME" ] || export SNS_TOPIC_NAME="sns-topic1-denny"
 ```
 
 ```
@@ -47,7 +50,8 @@ aws cloudformation create-stack --template-body "$TMP_FILE" \
     ParameterKey=SlackAuthToken,ParameterValue=$SLACK_TOKEN \
     ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
     ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT \
-    ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME
+    ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME \
+    ParameterKey=SNSTopicName,ParameterValue=$SNS_TOPIC_NAME
 ```
 
 ```
