@@ -44,5 +44,5 @@ Resources:
       MetricName: HTTPCode_ELB_5XX_Count
       # http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-cloudwatch-metrics.html#load-balancer-metric-dimensions-clb
       Dimensions:
-      - Name: LoadBalancerName
+      - Name: LoadBalancer
         Value: !Ref LoadBalancerName
