@@ -42,7 +42,6 @@ export JENKINS_PASSWD="password123"
 export TMP_FILE="file://cf-jenkins-main-302.yml"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
     --stack-name "$STACK_NAME" --parameters \
-    ParameterKey=StackName,ParameterValue=$STACK_NAME \
     ParameterKey=JenkinsTestUser,ParameterValue=$JENKINS_USER \
     ParameterKey=JenkinsTestPasswd,ParameterValue=$JENKINS_PASSWD \
     ParameterKey=SlackAuthToken,ParameterValue=$SLACK_TOKEN \
