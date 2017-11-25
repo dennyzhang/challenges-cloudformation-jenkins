@@ -37,6 +37,7 @@ Parameters:
     ConstraintDescription: TCP ports must be between 0 - 65535
   JenkinsTestUser:
     Description: The Jenkins username
+    Default: 'jenkins123'
     Type: String
     MinLength: '1'
     MaxLength: '16'
@@ -45,6 +46,7 @@ Parameters:
       characters.
   JenkinsTestPasswd:
     NoEcho: 'true'
+    Default: 'password123'
     Description: The Jenkins password
     Type: String
     MinLength: '8'
