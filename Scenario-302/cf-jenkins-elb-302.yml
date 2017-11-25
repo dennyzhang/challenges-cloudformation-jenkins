@@ -14,7 +14,7 @@ Parameters:
     Description: SNS topic to get notifications for autoscaling events
     Type: String
     MinLength: '1'
-    MaxLength: '100'
+    MaxLength: '200'
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
