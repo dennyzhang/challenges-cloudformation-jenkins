@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS CloudFormation Sample Template: Setup CloudWatch'
+Parameters:
+  SNSTopicARN:
+    Description: SNS topic to get notifications for autoscaling events
+    Type: String
+    MinLength: '1'
+    MaxLength: '100'
+  StackName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+    Default: 'aws-jenkins'
+
+Resources:
+  # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name:
+        "Fn::Sub":
+          - "${StackName}"
+          - StackName: !Ref AWS::StackName
+      Scheme: internet-facing
+      Subnets: !Ref Subnets
+      LoadBalancerAttributes:
+      - Key: idle_timeout.timeout_seconds
+        Value: '50'
+      SecurityGroups: !Ref SecurityGroupId
+      Tags:
+        - Key: Name
+          Value: !Ref StackName
+
+Outputs:
+  StackName:
+    Value:
+      !Ref AWS::StackName

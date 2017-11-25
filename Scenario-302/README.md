@@ -9,13 +9,16 @@ Table of Contents
 
    * [Requirements](#requirements)
    * [Procedures](#procedures)
+   * [Highlights](#highlights)
+   * [Verifications](#verifications)
 
 # Requirements
 ```
 1. Finish Scenario-301
 2. Get slack notificaiton for autoscaling events.
    Here we assume, one SNS topic has already been created.
-3. In ELB, enable logging and monitoring
+   Verify it by terminating existing instance
+3. In ELB, enable monitoring
    Verify it by terminating existing instance
 4. In Jenkins deployment, create a pipeline
 ```
@@ -82,7 +85,28 @@ documentation and consider turning it on
 - Useful Commands
 ```
 s3cmd put "cf-jenkins-elb-302.yml" s3://aws.dennyzhang.com/
+
+dns_url=http://aws-jenkins-elb-kcnzdkirty1x-2072597276.us-east-1.elb.amazonaws.com
+for((i=0; i< 10; i++)); do { curl -I "$dns_url"; sleep 1 ;}; done
 ```
 
 - Cloudformation Wizard
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cf_elb_one_master.png"/> </a>
+
+# Verifications
+
+- How to test autoscaling
+
+```
+1. We now only have one Jenkins master instance. Terminate the instance.
+2. We shall get one slack notification about the temrination.
+3. Very soon, we shall get another slack notification about launching a new EC2 instance
+```
+
+- How to monitoring
+
+```
+1. Login to instance and shutdown jenkins service
+2. We shall slack notification from ELB-5XX metric
+3. Start jenkins, it shall return to normal
+```
