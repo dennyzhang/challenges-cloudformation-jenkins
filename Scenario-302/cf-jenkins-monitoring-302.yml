@@ -23,8 +23,10 @@ Parameters:
     MaxValue: 65535
 
 Resources:
+  # http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elb-metricscollected.html
+  # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatch.html
   # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
-  CPUAlarm:
+  ELBAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmDescription: Jenkins ELB 5XX
@@ -36,7 +38,6 @@ Resources:
       EvaluationPeriods: '3'
       Threshold: !Ref ELBErrorCountThreshold
       ComparisonOperator: GreaterThanThreshold
-      # http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elb-metricscollected.html
       MetricName: HTTPCode_ELB_5XX_Count
       Dimensions:
       - Name: LoadBalancer
