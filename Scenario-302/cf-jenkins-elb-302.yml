@@ -262,14 +262,6 @@ Resources:
       Port: !Ref JenkinsPort
       Protocol: HTTP
       VpcId: !Ref VPC
-      # TODO: change Targets
-      # Targets:
-      # - Id:
-      #     Ref: Instance1
-      #   Port: 80
-      # - Id:
-      #     Ref: Instance2
-      #   Port: 80
 
   LoadBalancerListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
