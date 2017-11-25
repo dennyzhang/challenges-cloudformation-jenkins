@@ -249,6 +249,8 @@ Case study using AWS TechStack to setup Jenkins env
 - See more: [Scenario-601](./Scenario-601)
 - TODO
 
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_master_ha.png"/> </a>
+
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 # Highlights
 - **Principles**:
@@ -277,7 +279,7 @@ Discussions & Further Improvements:
 - More Resources:
 ```
 https://github.com/awslabs/startup-kit-templates
-https://github.com/awslabs
+http://templates.cloudonaut.io/en/stable/jenkins/
 ```
 
 # Contributors: Give People Credits
