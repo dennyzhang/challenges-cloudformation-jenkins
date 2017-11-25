@@ -9,8 +9,8 @@ Table of Contents
 
    * [Requirements](#requirements)
    * [Procedures](#procedures)
-   * [Highlights](#highlights)
    * [Verifications](#verifications)
+   * [Highlights](#highlights)
 
 # Requirements
 ```
@@ -65,8 +65,24 @@ aws cloudformation delete-stack --stack-name "$STACK_NAME"
 ```
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
-- Verify Jenkins
-curl -I http://$dns_name:80
+
+# Verifications
+
+- How to test autoscaling
+
+```
+1. We now only have one Jenkins master instance. Terminate the instance.
+2. We shall get one slack notification about the temrination.
+3. Very soon, we shall get another slack notification about launching a new EC2 instance
+```
+
+- How to monitoring
+
+```
+1. Login to instance and shutdown jenkins service
+2. We shall slack notification from ELB-5XX metric
+3. Start jenkins, it shall return to normal
+```
 
 # Highlights
 - Provision Loadbalancer would take minutes
@@ -92,21 +108,3 @@ for((i=0; i< 10; i++)); do { curl -I "$dns_url"; sleep 1 ;}; done
 
 - Cloudformation Wizard
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cf_elb_one_master.png"/> </a>
-
-# Verifications
-
-- How to test autoscaling
-
-```
-1. We now only have one Jenkins master instance. Terminate the instance.
-2. We shall get one slack notification about the temrination.
-3. Very soon, we shall get another slack notification about launching a new EC2 instance
-```
-
-- How to monitoring
-
-```
-1. Login to instance and shutdown jenkins service
-2. We shall slack notification from ELB-5XX metric
-3. Start jenkins, it shall return to normal
-```
