@@ -306,9 +306,9 @@ Outputs:
   StackName:
     Value:
       !Ref AWS::StackName
-  ALBLoadBalancer:
+  ALBLoadBalancerName:
     Description: A reference to the Application Load Balancer
-    Value: !Ref LoadBalancer
+    Value: !GetAtt LoadBalancer.Name
     Export:
       Name:
         "Fn::Sub":

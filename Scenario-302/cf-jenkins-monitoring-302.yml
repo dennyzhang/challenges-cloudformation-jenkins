@@ -6,8 +6,8 @@ Parameters:
     Type: String
     MinLength: '5'
     MaxLength: '200'
-  LoadBalancerID:
-    Description: LoadBalancer ID
+  LoadBalancerName:
+    Description: LoadBalancer Name
     Type: String
     MinLength: '5'
     MaxLength: '200'
@@ -35,13 +35,14 @@ Resources:
       # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatch.html
       AlarmActions:
       - Ref: SNSTopicARN
-      Namespace: ApplicationELB
+      Namespace: AWS/ApplicationELB
       Statistic: Sum
       Period: '60'
-      EvaluationPeriods: '3'
+      EvaluationPeriods: '1'
       Threshold: !Ref ELBErrorCountThreshold
       ComparisonOperator: GreaterThanThreshold
       MetricName: HTTPCode_ELB_5XX_Count
+      # http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-cloudwatch-metrics.html#load-balancer-metric-dimensions-clb
       Dimensions:
-      - Name: LoadBalancer
-        Value: !Ref LoadBalancerID
+      - Name: LoadBalancerName
+        Value: !Ref LoadBalancerName
