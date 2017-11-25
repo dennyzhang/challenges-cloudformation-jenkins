@@ -300,8 +300,7 @@ Resources:
       # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html
       # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-autoscaling.html#scenario-as-notification
       NotificationConfigurations:
-      - TopicARN:
-        Ref: topic1
+      - TopicARN: !Ref SNSTopicName
         NotificationTypes:
           - autoscaling:EC2_INSTANCE_LAUNCH
           - autoscaling:EC2_INSTANCE_LAUNCH_ERROR
