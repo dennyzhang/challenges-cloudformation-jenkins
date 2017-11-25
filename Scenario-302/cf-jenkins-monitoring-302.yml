@@ -31,7 +31,10 @@ Resources:
     Properties:
       AlarmDescription: Jenkins ELB 5XX
       AlarmName: !Sub ${StackName}-ELB-5XX
-      AlarmActions: !Ref SNSTopicARN
+      # https://github.com/caussourd/public-cloudformation-templates/blob/master/Symfony_or_Drupal_Instance_with_optional_RDS_instance.template
+      # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatch.html
+      AlarmActions:
+      - Ref: SNSTopicARN
       Namespace: ApplicationELB
       Statistic: Sum
       Period: '60'
