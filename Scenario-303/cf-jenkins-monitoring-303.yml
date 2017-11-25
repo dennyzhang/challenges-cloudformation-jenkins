@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS CloudFormation Sample Template: Setup CloudWatch'
+Parameters:
+  SNSTopicARN:
+    Description: SNS topic to get notifications for autoscaling events
+    Type: String
+    MinLength: '5'
+    MaxLength: '200'
+  LoadBalancerName:
+    Description: LoadBalancer Name
+    Type: String
+    MinLength: '5'
+    MaxLength: '200'
+  StackName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+    Default: 'aws-jenkins'
+  ELBErrorCountThreshold:
+    Description: If too many ELB 5xx error within one minutes, get alerts
+    Default: 1
+    Type: Number
+    MinValue: 0
+    MaxValue: 65535
+
+Resources:
+  # http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/elb-metricscollected.html
+  # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatch.html
+  # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
+  ELBAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Jenkins ELB 5XX
+      AlarmName: !Sub ${StackName}-ELB-5XX
+      # https://github.com/caussourd/public-cloudformation-templates/blob/master/Symfony_or_Drupal_Instance_with_optional_RDS_instance.template
+      # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatch.html
+      AlarmActions:
+      - Ref: SNSTopicARN
+      Namespace: AWS/ApplicationELB
+      Statistic: Sum
+      Period: '60'
+      EvaluationPeriods: '1'
+      Threshold: !Ref ELBErrorCountThreshold
+      ComparisonOperator: GreaterThanThreshold
+      MetricName: HTTPCode_ELB_5XX_Count
+      # http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-cloudwatch-metrics.html#load-balancer-metric-dimensions-clb
+      Dimensions:
+      - Name: LoadBalancer
+        Value: !Ref LoadBalancerName
