@@ -25,7 +25,7 @@ Table of Contents
 export STACK_NAME="aws-jenkins"
 export TMP_FILE="file://cf-jenkins-main-201.yml"
 
-[ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
+[ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="YOUR_SSH_KEYNAME_CUSTOMIZE"
 aws cloudformation create-stack --template-body "$TMP_FILE" \
     --stack-name "$STACK_NAME" --parameters \
     ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME

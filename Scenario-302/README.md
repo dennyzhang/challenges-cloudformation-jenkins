@@ -43,8 +43,8 @@ export JENKINS_PASSWD="password123"
 # Slack Token for Jenkins jobs. If empty, no slack notifications
 [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
 # ssh key name to access EC2 instance
-[ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
-[ -n "$SNS_TOPIC_ARN" ] || export SNS_TOPIC_ARN="arn:aws:sns:us-east-1:938874974988:sns-topic1-denny"
+[ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="YOUR_SSH_KEYNAME_CUSTOMIZE"
+[ -n "$SNS_TOPIC_ARN" ] || export SNS_TOPIC_ARN="arn:aws:sns:us-east-1:YOUR_SNS_TOPIC"
 ```
 
 ```
