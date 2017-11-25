@@ -10,12 +10,11 @@ Parameters:
   Subnets:
     Description: Choose which subnets the Application Load Balancer should be deployed to
     Type: List<AWS::EC2::Subnet::Id>
-  SNSTopicName:
+  SNSTopicARN:
     Description: SNS topic to get notifications for autoscaling events
     Type: String
     MinLength: '1'
-    MaxLength: '16'
-    AllowedPattern: '[a-zA-Z][a-zA-Z0-9-]*'
+    MaxLength: '100'
   StackName:
     Description: An environment name that will be prefixed to resource names
     Type: String
@@ -300,7 +299,7 @@ Resources:
       # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html
       # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-autoscaling.html#scenario-as-notification
       NotificationConfigurations:
-      - TopicARN: !Ref SNSTopicName
+      - TopicARN: !Ref SNSTopicARN
         NotificationTypes:
           - autoscaling:EC2_INSTANCE_LAUNCH
           - autoscaling:EC2_INSTANCE_LAUNCH_ERROR

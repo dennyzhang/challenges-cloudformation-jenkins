@@ -94,12 +94,11 @@ Parameters:
     Type: Number
     MinValue: 0
     MaxValue: 65535
-  SNSTopicName:
+  SNSTopicARN:
     Description: SNS topic to get notifications for autoscaling events
     Type: String
     MinLength: '1'
-    MaxLength: '16'
-    AllowedPattern: '[a-zA-Z][a-zA-Z0-9-]*'
+    MaxLength: '100'
 Mappings:
   AWSInstanceType2Arch:
     t1.micro:
@@ -234,7 +233,7 @@ Resources:
         JenkinsTestUser: !Ref JenkinsTestUser
         JenkinsTestPasswd: !Ref JenkinsTestPasswd
         SlackAuthToken: !Ref SlackAuthToken
-        SNSTopicName: !Ref SNSTopicName
+        SNSTopicARN: !Ref SNSTopicARN
 
 Outputs:
   JenkinsURL:

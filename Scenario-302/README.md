@@ -38,7 +38,7 @@ export JENKINS_PASSWD="password123"
 [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
 # ssh key name to access EC2 instance
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="denny-ssh-key1"
-[ -n "$SNS_TOPIC_NAME" ] || export SNS_TOPIC_NAME="sns-topic1-denny"
+[ -n "$SNS_TOPIC_ARN" ] || export SNS_TOPIC_ARN="arn:aws:sns:us-east-1:938874974988:sns-topic1-denny"
 ```
 
 ```
@@ -51,7 +51,7 @@ aws cloudformation create-stack --template-body "$TMP_FILE" \
     ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
     ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT \
     ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME \
-    ParameterKey=SNSTopicName,ParameterValue=$SNS_TOPIC_NAME
+    ParameterKey=SNSTopicARN,ParameterValue=$SNS_TOPIC_ARN
 ```
 
 ```
