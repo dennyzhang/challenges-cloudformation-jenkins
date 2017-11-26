@@ -272,6 +272,14 @@ Resources:
         SNSTopicARN: !Ref SNSTopicARN
 
 Outputs:
+  StackName:
+    Description: 'Stack name'
+    Value: !Sub '${AWS::StackName}'
   JenkinsURL:
     Value: !GetAtt ["ELB", "Outputs.LoadBalancerUrl"]
     Description: Jenkins URL
+  JenkinsTestUser:
+    Description: 'User name for the Jenkins test account.'
+    Value: !Ref JenkinsTestUser
+    Export:
+      Name: !Sub '${AWS::StackName}-JenkinsTestUser'
