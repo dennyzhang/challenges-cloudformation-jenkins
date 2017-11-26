@@ -261,7 +261,8 @@ Case study using AWS TechStack to setup Jenkins env
 3. Improve service availability
 4. When issues have happened, we detect it earlier.
 5. Auto-healing.
-6. Fast-learning: I have never used CF before. This is the deliverable of 1.5 weeks' work.
+6. Fast-learning: I have never used CF before.
+   This GitHub repo is the deliverable of 1.5 weeks' part time work.
 ```
 
 - Discussions & Further Improvements:
