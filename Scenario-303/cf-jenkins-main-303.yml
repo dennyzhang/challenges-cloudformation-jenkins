@@ -235,7 +235,7 @@ Resources:
   VPC:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-vpc-302.yml
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-vpc-303.yml
       Parameters:
         StackName: !Ref AWS::StackName
         JenkinsPort: !Ref JenkinsPort
@@ -244,7 +244,7 @@ Resources:
   ELB:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-elb-302.yml
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-elb-303.yml
       Parameters:
         VPC: !GetAtt ["VPC", "Outputs.VpcId"]
         SecurityGroupId: !GetAtt ["VPC", "Outputs.JenkinsSecurityGroupId"]
@@ -264,7 +264,7 @@ Resources:
   CloudWatch:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-monitoring-302.yml
+      TemplateURL: https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-monitoring-303.yml
       Parameters:
         LoadBalancerName: !GetAtt ["ELB", "Outputs.ALBLoadBalancerName"]
         StackName: !Ref AWS::StackName
