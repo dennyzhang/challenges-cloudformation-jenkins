@@ -2,6 +2,30 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'AWS CloudFormation Sample Template: Jenkins is web software you can use to CI/CD. 
              This template installs Jenkins configured by Chef'
 Parameters:
+  ParameterGroups:
+  - Label:
+    default: 'Jenkins Parameters'
+    Parameters:
+      - JenkinsPort
+      - JenkinsTestUser
+      - JenkinsTestPasswd
+      - SlackAuthToken
+  - Label:
+    default: 'AutoScaling/ASG'
+    Parameters:
+      - LBPort
+      - SizeDesired
+      - SizeMin
+      - SizeMax
+      - SNSTopicARN
+  - Label:
+    default: 'Basic AWS Resources'
+    Parameters:
+      - KeyName
+      - InstanceType
+      - JenkinsLocation
+      - SSHLocation
+    
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
     Type: AWS::EC2::KeyPair::KeyName
