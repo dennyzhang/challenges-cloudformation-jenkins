@@ -106,6 +106,17 @@ dns_url=http://aws-jenkins-elb-kcnzdkirty1x-2072597276.us-east-1.elb.amazonaws.c
 for((i=0; i< 10; i++)); do { curl -I "$dns_url"; sleep 1 ;}; done
 ```
 
+Test fast with Chef
+```
+docker exec -it jenkins-demo-centos7 bash
+rm -rf /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key.pub
+rm -rf /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_dsa_key.pub
+exit
+
+docker commit jenkins-demo-centos7 denny/centos_test
+
+export IMAGE_NAME="denny/centos_test"
+```
 - Cloudformation Wizard
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cf_elb_one_master_303.png"/> </a>
