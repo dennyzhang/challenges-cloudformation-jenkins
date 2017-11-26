@@ -144,7 +144,7 @@ Case study using AWS TechStack to setup Jenkins env
 - Requirements:
 ```
 1. Finish Scenario-302
-2. ELB export EC2 instance resource
+2. ELB export target group
 3. Enable logging for ELB
 4. When SNSTopicName is empty, avoid adding SNS notification
 ```
