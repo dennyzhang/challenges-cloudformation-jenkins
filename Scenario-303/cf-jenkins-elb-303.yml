@@ -238,7 +238,7 @@ Resources:
               },
               "run_list":["recipe[apt::default]",
                           "recipe[jenkins-demo::default]",
-                          "recipe[jenkins-demo::conf_job]"
+                          "recipe[jenkins-demo::conf_test_job]"
                          ]
             }
             EOF
