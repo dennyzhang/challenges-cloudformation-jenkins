@@ -263,21 +263,23 @@ Case study using AWS TechStack to setup Jenkins env
 5. Auto-healing.
 ```
 
+- Discussions & Further Improvements:
+
+TOOD
+```
+1. Speed up the whole setup process
+2. Reduce the deployment failure rate
+3. Save the cloud bills
+4. Use serverless instead of Jenkins hosted solution
+5. Use CodeDeploy to replace Chef
+6. Use EFS for shared storage of Jenkins HOME
+7. Improve error handling. e.g, False positive. when EC2 instance is up, but chef apply hasn't finished
+```
+
 - Personal Review:
 ```
 1. Really like container/ECS deployment over VM deployment.
 2. Jenkins community don't have HA solution for Jenkins master yet.
-```
-
-Discussions & Further Improvements:
-- TOOD
-```
-- speed up the whole setup process
-- reduce the deployment failure rate
-- Use CodeDeploy to replace Chef
-- Stack dashboard is giving false positive: when EC2 instance is up, but chef apply hasn't finished
-- Use EFS for shared storage of Jenkins HOME
-- Use serverless instead of Jenkins hosted solution
 ```
 
 - More Resources:
