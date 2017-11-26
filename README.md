@@ -253,10 +253,14 @@ Case study using AWS TechStack to setup Jenkins env
 
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 # Highlights
-- **Principles**:
+
+- **Highlights For This Case Study**
 ```
-1. Fully automated
-2. Improve HA
+1. OS support: Amazon AMI, Ubuntu and CentOS
+2. Use CF to fully automate all deployments
+3. Improve service availability
+4. When issues have happened, we detect it earlier.
+5. Auto-healing.
 ```
 
 - Personal Review:
