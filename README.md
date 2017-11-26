@@ -37,8 +37,8 @@ Case study using AWS TechStack to setup Jenkins env
 
 **Related GitHub Repos**:
 - [chef-study](https://github.com/DennyZhang/chef-study): Chef Case study from dummies to pros
-- [jenkins-groovy-study](https://github.com/DennyZhang/jenkins-groovy-study): Case Study: Use groovy, Jenkinsfile, Pipeline in Jenkins as a Pro
-- [aws-jenkins-study](https://github.com/DennyZhang/aws-jenkins-study): Case Study Using AWS To Setup Jenkins. 
+- [jenkins-groovy-study](https://github.com/DennyZhang/jenkins-groovy-study): Case Study: Use groovy and Pipeline in Jenkins as a Pro
+- [aws-jenkins-study](https://github.com/DennyZhang/aws-jenkins-study): Case Study Using AWS To Setup Jenkins.
 
 # Scenarios
 
