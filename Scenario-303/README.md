@@ -86,8 +86,9 @@ aws cloudformation delete-stack --stack-name "$STACK_NAME"
 
 # Highlights
 - Provision Loadbalancer would take minutes
+- Total time estimation: 5 min for AWS resources(AutoScaling group, LB), 13 min for Chef(package, jenkins plugins)
 - TODO: enable ThinBackup for config changes
-- TODO: remove two jenkins warnings
+- TODO: fix two jenkins warnings
 
 ```
 Allowing Jenkins CLI to work in -remoting mode is considered
