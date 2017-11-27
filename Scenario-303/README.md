@@ -38,6 +38,8 @@ Here we use nested CF, to organize code in small modules.
 bash -ex ./create_stack.sh
 ```
 
+create_stack.sh: [here](create_stack.sh)
+
 ```
 export STACK_NAME="aws-jenkins"
 aws cloudformation delete-stack --stack-name "$STACK_NAME"
