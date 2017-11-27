@@ -278,6 +278,7 @@ Case study using AWS TechStack to setup Jenkins env
 
 TOOD
 ```
+0. Use docker/ecs/k8s
 1. Speed up the whole setup process
 2. Reduce the deployment failure rate
 3. Improve master HA by using EFS for shared storage of Jenkins HOME
