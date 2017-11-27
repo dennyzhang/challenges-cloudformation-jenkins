@@ -4,12 +4,12 @@
 ## Licensed under MIT
 ##   https://www.dennyzhang.com/wp-content/mit_license.txt
 ##
-## File: test_demo.sh
+## File: create_stack.sh
 ## Author : Denny <https://www.dennyzhang.com/contact>
 ## Description :
 ## --
 ## Created : <2017-11-27>
-## Updated: Time-stamp: <2017-11-27 10:08:13>
+## Updated: Time-stamp: <2017-11-27 10:12:31>
 ##-------------------------------------------------------------------
 export STACK_NAME="aws-jenkins"
 # Test jenkins username and password
@@ -32,4 +32,4 @@ aws cloudformation create-stack --template-body "$TMP_FILE" \
     ParameterKey=SizeDesired,ParameterValue=$SIZE_DESIRED \
     ParameterKey=SizeMin,ParameterValue=$SIZE_MIN \
     ParameterKey=SNSTopicARN,ParameterValue=$SNS_TOPIC_ARN
-## File: test_demo.sh ends
+## File: create_stack.sh ends
