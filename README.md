@@ -8,6 +8,10 @@ File me [tickets](https://github.com/DennyZhang/aws-jenkins-study/issues) or sta
 
 <a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
 
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_icon.png"/> </a>
+
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cloudformation_icon.jpg"/> </a>
+
 Table of Contents
 =================
 
@@ -39,10 +43,6 @@ Case study using AWS TechStack to setup Jenkins env
 - [chef-study](https://github.com/DennyZhang/chef-study): Chef Case study from dummies to pros
 - [jenkins-groovy-study](https://github.com/DennyZhang/jenkins-groovy-study): Case Study: Use groovy and Pipeline in Jenkins as a Pro
 - [aws-jenkins-study](https://github.com/DennyZhang/aws-jenkins-study): Case Study Using AWS To Setup Jenkins.
-
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_icon.png"/> </a>
-
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cloudformation_icon.jpg"/> </a>
 
 # Scenarios
 
