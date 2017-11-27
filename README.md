@@ -40,6 +40,10 @@ Case study using AWS TechStack to setup Jenkins env
 - [jenkins-groovy-study](https://github.com/DennyZhang/jenkins-groovy-study): Case Study: Use groovy and Pipeline in Jenkins as a Pro
 - [aws-jenkins-study](https://github.com/DennyZhang/aws-jenkins-study): Case Study Using AWS To Setup Jenkins.
 
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_icon.png"/> </a>
+
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cloudformation_icon.jpg"/> </a>
+
 # Scenarios
 
 ## Scenario-101: Docker Single-Node Jenkins Deployment I
