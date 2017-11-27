@@ -297,6 +297,10 @@ TOOD
 ```
 https://github.com/awslabs/startup-kit-templates
 http://templates.cloudonaut.io/en/stable/jenkins/
+
+# Jenkins Security
+https://wiki.jenkins.io/display/JENKINS/Standard+Security+Setup
+https://d0.awsstatic.com/whitepapers/DevOps/Jenkins_on_AWS.pdf
 ```
 
 # Contributors: Give People Credits

@@ -4,3 +4,6 @@ local-mode-cache
 Berksfile.lock
 .kitchen
 Gemfile.lock
+test_demo.sh
+Scenario-303/Makefile
+
