@@ -28,39 +28,18 @@ Table of Contents
 Here we use nested CF, to organize code in small modules.
 
 ```
-export STACK_NAME="aws-jenkins"
 # The IP address range that can be used to Access Jenkins URL
 [ -n "$JENKINS_LOCATION" ] || export JENKINS_LOCATION="0.0.0.0/0"
-# Test jenkins username and password
-export JENKINS_USER="jenkins123"
-export JENKINS_PASSWD="password123"
-[ -n "$JENKINS_PORT" ] || export JENKINS_PORT='8081'
-
 # Slack Token for Jenkins jobs. If empty, no slack notifications
 [ -n "$SLACK_TOKEN" ] || export SLACK_TOKEN='CUSTOMIZETHIS'
 # ssh key name to access EC2 instance
 [ -n "$SSH_KEY_NAME" ] || export SSH_KEY_NAME="YOUR_SSH_KEYNAME_CUSTOMIZE"
 [ -n "$SNS_TOPIC_ARN" ] || export SNS_TOPIC_ARN="arn:aws:sns:us-east-1:YOUR_SNS_TOPIC"
-[ -n "$SIZE_DESIRED" ] || export SIZE_DESIRED="1"
-[ -n "$SIZE_MIN" ] || export SIZE_MIN="1"
+bash -ex ./create_stack.sh
 ```
 
 ```
-export TMP_FILE="file://cf-jenkins-main-303.yml"
-aws cloudformation create-stack --template-body "$TMP_FILE" \
-    --stack-name "$STACK_NAME" --parameters \
-    ParameterKey=JenkinsTestUser,ParameterValue=$JENKINS_USER \
-    ParameterKey=JenkinsTestPasswd,ParameterValue=$JENKINS_PASSWD \
-    ParameterKey=SlackAuthToken,ParameterValue=$SLACK_TOKEN \
-    ParameterKey=JenkinsLocation,ParameterValue=$JENKINS_LOCATION \
-    ParameterKey=JenkinsPort,ParameterValue=$JENKINS_PORT \
-    ParameterKey=KeyName,ParameterValue=$SSH_KEY_NAME \
-    ParameterKey=SizeDesired,ParameterValue=$SIZE_DESIRED \
-    ParameterKey=SizeMin,ParameterValue=$SIZE_MIN \
-    ParameterKey=SNSTopicARN,ParameterValue=$SNS_TOPIC_ARN
-```
-
-```
+export STACK_NAME="aws-jenkins"
 aws cloudformation delete-stack --stack-name "$STACK_NAME"
 ```
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
