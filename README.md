@@ -267,10 +267,10 @@ Case study using AWS TechStack to setup Jenkins env
 ```
 1. OS support: Amazon AMI, Ubuntu and CentOS
 2. Use CF to fully automate all deployments
-3. Improve service availability
+3. Auto-healing: autoscaling group. Improved service availability
 4. When issues have happened, we detect it earlier.
-5. Auto-healing.
-6. Fast-learning: I have never used CF before.
+5. Pretty secured
+6. Quick learner: I have never used CF before.
    This GitHub repo is the deliverable of 1.5 weeks' part time work.
 ```
 
@@ -280,17 +280,19 @@ TOOD
 ```
 1. Speed up the whole setup process
 2. Reduce the deployment failure rate
-3. Save the cloud bills
-4. Use serverless instead of Jenkins hosted solution
-5. Use CodeDeploy to replace Chef
-6. Use EFS for shared storage of Jenkins HOME
-7. Improve error handling. e.g, False positive. when EC2 instance is up, but chef apply hasn't finished
+3. Improve master HA by using EFS for shared storage of Jenkins HOME
+4. Setup 1 master N slaves models
+5. Improve error handling. e.g, False positive. when EC2 instance is up, but chef apply hasn't finished
+6. Save the cloud bills
+7. Use serverless instead of Jenkins hosted solution
+8. Use CodeDeploy to replace Chef
 ```
 
 - Personal Review:
 ```
 1. Really like container/ECS deployment over VM deployment.
 2. Jenkins community don't have HA solution for Jenkins master yet.
+3. Jenkins plugins dependency is really troublesome.
 ```
 
 - More Resources:
