@@ -14,7 +14,7 @@ File me [tickets](https://github.com/DennyZhang/aws-jenkins-study/issues) or sta
 
 Table of Contents
 =================
-Case study using AWS TechStack to setup Jenkins env
+Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 
    * [Scenarios](#scenarios)
       * [Scenario-101: Docker Single-Node Jenkins Deployment I](#scenario-101-docker-single-node-jenkins-deployment-i)
