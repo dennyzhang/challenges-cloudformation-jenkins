@@ -14,8 +14,8 @@ File me [tickets](https://github.com/DennyZhang/aws-jenkins-study/issues) or sta
 
 Table of Contents
 =================
+Case study using AWS TechStack to setup Jenkins env
 
-   * [aws-jenkins-study](#aws-jenkins-study)
    * [Scenarios](#scenarios)
       * [Scenario-101: Docker Single-Node Jenkins Deployment I](#scenario-101-docker-single-node-jenkins-deployment-i)
       * [Scenario-102: Docker Single-Node Jenkins Deployment II](#scenario-102-docker-single-node-jenkins-deployment-ii)
@@ -37,12 +37,7 @@ Table of Contents
 
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
-Case study using AWS TechStack to setup Jenkins env
-
-**Related GitHub Repos**:
-- [chef-study](https://github.com/DennyZhang/chef-study): Chef Case study from dummies to pros
-- [jenkins-groovy-study](https://github.com/DennyZhang/jenkins-groovy-study): Case Study: Use groovy and Pipeline in Jenkins as a Pro
-- [aws-jenkins-study](https://github.com/DennyZhang/aws-jenkins-study): Case Study Using AWS To Setup Jenkins.
+**Similar Challenges**: https://www.dennyzhang.com/battle
 
 # Scenarios
 
@@ -298,6 +293,7 @@ TOOD
 
 - More Resources:
 ```
+https://github.com/widdix/aws-cf-templates
 https://github.com/awslabs/startup-kit-templates
 http://templates.cloudonaut.io/en/stable/jenkins/
 
