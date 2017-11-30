@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <2017-11-15>
-## Updated: Time-stamp: <2017-11-23 22:14:05>
+## Updated: Time-stamp: <2017-11-29 19:36:17>
 ##-------------------------------------------------------------------
 set -e
 
@@ -37,7 +37,7 @@ function prepare_files() {
         mv DennyZhang-${repo_name}-* "$repo_name"
     fi
 
-    wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/run_chef_solo.sh
+    wget -O /home/ec2-user/run_chef_solo.sh https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/utility/run_chef_solo.sh
     chown -R ec2-user:ec2-user /home/ec2-user/
 }
 

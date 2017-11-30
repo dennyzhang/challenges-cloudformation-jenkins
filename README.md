@@ -1,16 +1,16 @@
-# aws-jenkins-study
+# challenges-aws-jenkins
 
-[![Build Status](https://travis-ci.org/DennyZhang/aws-jenkins-study.svg?branch=master)](https://travis-ci.org/DennyZhang/aws-jenkins-study) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![Build Status](https://travis-ci.org/DennyZhang/challenges-aws-jenkins.svg?branch=master)](https://travis-ci.org/DennyZhang/challenges-aws-jenkins) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 [![LinkedIn](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/linkedin.png)](https://www.linkedin.com/in/dennyzhang001) <a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="http://slack.dennyzhang.com/badge.svg" alt="slack"/></a> [![Github](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/github.png)](https://github.com/DennyZhang)
 
-File me [tickets](https://github.com/DennyZhang/aws-jenkins-study/issues) or star [the repo](https://github.com/DennyZhang/aws-jenkins-study).
+File me [tickets](https://github.com/DennyZhang/challenges-aws-jenkins/issues) or star [the repo](https://github.com/DennyZhang/challenges-aws-jenkins).
 
 <a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_icon.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_icon.png"/> </a>
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cloudformation_icon.jpg"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/cloudformation_icon.jpg"/> </a>
 
 Table of Contents
 =================
@@ -69,7 +69,7 @@ Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 - See more: [Scenario-102](./Scenario-102)
 - TODO
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_docker_aio.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_docker_aio.png"/> </a>
 
 ## Scenario-201: VM Single-Node Jenkins Deployment I
 - Objective: We need a live Jenkins env in public Cloud. Fast and easy.
@@ -112,7 +112,7 @@ Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 - See more: [Scenario-203](./Scenario-203)
 - TODO
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_aio.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_vm_aio.png"/> </a>
 
 ## Scenario-301: VM ASG/ELB Jenkins Deployment I
 - Objective: Customize Jenkins docker deployment in AWS
@@ -190,7 +190,7 @@ Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 - See more: [Scenario-402](./Scenario-402)
 - TODO
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_vm_2nodes.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_vm_2nodes.png"/> </a>
 
 ## Scenario-501: ECS Jenkins Deployment I
 - Objective: Get exposed to docker orchestration service.
@@ -220,7 +220,7 @@ Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_ecs_2nodes.png"/> </a>
 
 ## Scenario-503: ECS Jenkins Deployment III
 - Objective: Deploy Jenkins 1 Master 3 Slaves with 2 nodes in ECS2
@@ -237,7 +237,7 @@ Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes_4instances.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_ecs_2nodes_4instances.png"/> </a>
 
 ## Scenario-601: Large Scale Jenkins Deployment I
 - Objective: Suppose you have 1K developers to use your Jenkins. Improve scalability, availability, security, etc.
@@ -253,7 +253,7 @@ Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 - See more: [Scenario-601](./Scenario-601)
 - TODO
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_master_ha.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_master_ha.png"/> </a>
 
 <a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
 # Highlights

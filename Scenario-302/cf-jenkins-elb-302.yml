@@ -223,7 +223,7 @@ Resources:
           !Sub |
             #!/bin/bash -xe
             wget -O /home/ec2-user/userdata_launchcfg.sh \
-              https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/utility/userdata_launchcfg.sh
+              https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/utility/userdata_launchcfg.sh
             mkdir -p /home/ec2-user/chef/
             cat > /home/ec2-user/chef/node.json <<-EOF
             {"jenkins_demo":

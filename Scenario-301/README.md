@@ -78,4 +78,4 @@ s3cmd put "cf-jenkins-elb-301.yml" s3://aws.dennyzhang.com/
 ```
 
 - Cloudformation Wizard
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cf_elb_one_master.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/cf_elb_one_master.png"/> </a>

@@ -101,4 +101,4 @@ export IMAGE_NAME="denny/centos_test"
 ```
 - Cloudformation Wizard
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cf_elb_one_master_303.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/cf_elb_one_master_303.png"/> </a>

@@ -5,7 +5,7 @@ Table of Contents
    * [Procedures](#procedures)
    * [More Resources](#more-resources)
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/jenkins_ecs_2nodes.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_ecs_2nodes.png"/> </a>
 
 # Requirements
 1. Scalability: multiple Jenkins master instances

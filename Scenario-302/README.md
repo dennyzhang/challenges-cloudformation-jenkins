@@ -111,4 +111,4 @@ for((i=0; i< 10; i++)); do { curl -I "$dns_url"; sleep 1 ;}; done
 
 - Cloudformation Wizard
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/aws-jenkins-study/master/images/cf_elb_one_master.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/cf_elb_one_master.png"/> </a>
