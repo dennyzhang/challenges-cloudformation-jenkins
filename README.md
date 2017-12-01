@@ -257,7 +257,6 @@ See more challenges from Denny: [here](https://www.dennyzhang.com/battle)
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_master_ha.png"/> </a>
 
-<a href="https://www.dennyzhang.com"><img align="right" width="201" height="268" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/denny_201706.png"></a>
 # Highlights
 
 - **Highlights For This Case Study**
