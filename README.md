@@ -6,7 +6,7 @@
 
 File me [tickets](https://github.com/DennyZhang/challenges-aws-jenkins/issues) or star [the repo](https://github.com/DennyZhang/challenges-aws-jenkins).
 
-See more challenges from Denny: [here](https://www.dennyzhang.com/battle)
+**Similar Challenges**: https://www.dennyzhang.com/battle
 
 <a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
 
@@ -303,6 +303,8 @@ http://templates.cloudonaut.io/en/stable/jenkins/
 https://wiki.jenkins.io/display/JENKINS/Standard+Security+Setup
 https://d0.awsstatic.com/whitepapers/DevOps/Jenkins_on_AWS.pdf
 ```
+
+<a href="https://www.dennyzhang.com"><img align="right" width="201" height="268" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/denny_201706.png"></a>
 
 # Contributors: Give People Credits
 Below are folks who have contributed via GitHub!
