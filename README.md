@@ -6,6 +6,8 @@
 
 File me [tickets](https://github.com/DennyZhang/challenges-aws-jenkins/issues) or star [the repo](https://github.com/DennyZhang/challenges-aws-jenkins).
 
+See more challenges from Denny: [here](https://www.dennyzhang.com/battle)
+
 <a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_icon.png"/> </a>
@@ -37,7 +39,7 @@ Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 
-**Similar Challenges**: https://www.dennyzhang.com/battle
+See more challenges from Denny: [here](https://www.dennyzhang.com/battle)
 
 # Scenarios
 
@@ -255,7 +257,7 @@ Challenges Your AWS And Cloudformation Skills By Solving Real Questions.
 
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/jenkins_master_ha.png"/> </a>
 
-<a href="https://www.dennyzhang.com"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/magic.gif"></a>
+<a href="https://www.dennyzhang.com"><img align="right" width="201" height="268" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/denny_201706.png"></a>
 # Highlights
 
 - **Highlights For This Case Study**
