@@ -31,7 +31,6 @@ Parameters:
     ConstraintDescription: must begin with a letter and contain only alphanumeric
       characters.
   JenkinsUser:
-    # TODO: feed JenkinsUser and JenkinsPassword to the script
     Description: The Jenkins username
     Type: String
     MinLength: '1'
@@ -408,7 +407,6 @@ Resources:
               group: ec2-user
           commands:
             01_install_chef:
-              # TODO: too long
               # TODO: better way to install chefdk
               command:
                 !Join
