@@ -399,10 +399,10 @@ Resources:
             yum:
               tmux: []
           sources:
-              /home/ec2-user/chef/challenges-aws-jenkins: 'https://github.com/DennyZhang/challenges-aws-jenkins/tarball/master'
+              /home/ec2-user/chef/challenges-cloudformation-jenkins: 'https://github.com/DennyZhang/challenges-cloudformation-jenkins/tarball/master'
           files:
             /home/ec2-user/run_chef_solo.sh:
-              source: https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/utility/run_chef_solo.sh
+              source: https://raw.githubusercontent.com/DennyZhang/challenges-cloudformation-jenkins/master/utility/run_chef_solo.sh
               mode: 755
               owner: ec2-user
               group: ec2-user
@@ -426,7 +426,7 @@ Resources:
                 - - 'sudo bash -ex /home/ec2-user/run_chef_solo.sh '
                   - '"jenkins-demo"'
                   - ' '
-                  - '"/home/ec2-user/chef/challenges-aws-jenkins/utility/chef/201/jenkins-demo"'
+                  - '"/home/ec2-user/chef/challenges-cloudformation-jenkins/utility/chef/201/jenkins-demo"'
               test: which chef-solo
 
     Properties:

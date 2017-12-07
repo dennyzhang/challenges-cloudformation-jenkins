@@ -1,6 +1,6 @@
 [![LinkedIn](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/linkedin.png)](https://www.linkedin.com/in/dennyzhang001) <a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="http://slack.dennyzhang.com/badge.svg" alt="slack"/></a> [![Github](https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/github.png)](https://github.com/DennyZhang)
 
-File me [tickets](https://github.com/DennyZhang/challenges-aws-jenkins/issues) or star [the repo](https://github.com/DennyZhang/challenges-aws-jenkins).
+File me [tickets](https://github.com/DennyZhang/challenges-cloudformation-jenkins/issues) or star [the repo](https://github.com/DennyZhang/challenges-cloudformation-jenkins).
 
 <a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="300" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
 
@@ -111,4 +111,4 @@ for((i=0; i< 10; i++)); do { curl -I "$dns_url"; sleep 1 ;}; done
 
 - Cloudformation Wizard
 
-<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-aws-jenkins/master/images/cf_elb_one_master.png"/> </a>
+<a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-cloudformation-jenkins/master/images/cf_elb_one_master.png"/> </a>
