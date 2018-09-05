@@ -54,7 +54,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-102.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-102][Scenario-102]]
-- TODO
 
 #+BEGIN_HTML
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-cloudformation-jenkins/master/images/jenkins_docker_aio.png"/> </a>
@@ -104,7 +103,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-203.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-203][Scenario-203]]
-- TODO
 
 #+BEGIN_HTML
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-cloudformation-jenkins/master/images/jenkins_vm_aio.png"/> </a>
@@ -153,8 +151,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
 
-- TODO
-
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-302.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-303][Scenario-303]]
 
@@ -170,7 +166,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-401.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-401][Scenario-401]]
-- TODO
 - TODO: how the 2 Jenkins instance gonna to coordinate with each other?
 
 #+BEGIN_HTML
@@ -191,7 +186,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-402.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-402][Scenario-402]]
-- TODO
 
 #+BEGIN_HTML
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-cloudformation-jenkins/master/images/jenkins_vm_2nodes.png"/> </a>
@@ -209,7 +203,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-501.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-501][Scenario-501]]
-- TODO
 
 ** Scenario-502: ECS Jenkins Deployment II
 - Objective: Deploy a 2-nodes Jenkins cluster
@@ -224,7 +217,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-502.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-502][Scenario-502]]
-- TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
 #+BEGIN_HTML
@@ -244,7 +236,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-503.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-503][Scenario-503]]
-- TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
 #+BEGIN_HTML
@@ -264,7 +255,6 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-601.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
 - See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-601][Scenario-601]]
-- TODO
 
 #+BEGIN_HTML
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-cloudformation-jenkins/master/images/jenkins_master_ha.png"/> </a>
