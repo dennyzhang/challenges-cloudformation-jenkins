@@ -1,30 +1,27 @@
-* org-mode configuration                                           :noexport:
-#+STARTUP: overview customtime noalign logdone hidestars
-#+TITLE:  Challenges Your AWS Cloudformation Skills
-#+DESCRIPTION: 
-#+KEYWORDS: 
-#+AUTHOR: Denny Zhang
-#+EMAIL:  denny@dennyzhang.com
-#+TAGS: noexport(n)
-#+PRIORITIES: A D C
-#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+EXPORT_EXCLUDE_TAGS: exclude noexport
-#+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
-#+LINK_UP:   
-#+LINK_HOME: 
-* Summary
+* Challenges Your AWS Cloudformation Skills                             :AWS:
+:PROPERTIES:
+:type:     cloudformation
+:END:
+---------------------------------------------------------------------
+Deploy Jenkins via AWS Cloudformation. Scenario-by-scenario.
+
+[[image-blog:Challenges Your AWS Cloudformation Skills][https://raw.githubusercontent.com/DennyZhang/challenges-cloudformation-jenkins/master/images/cloud-formation.png]]
+---------------------------------------------------------------------
 #+BEGIN_HTML
-<a href="https://www.linkedin.com/in/dennyzhang001"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a>
-<a href="https://github.com/DennyZhang"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a>
-<a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="http://slack.dennyzhang.com/badge.svg" alt="slack"/></a>
-<a href="https://github.com/DennyZhang"><img align="right" width="200" height="183" src="https://www.dennyzhang.com/wp-content/uploads/denny/watermark/github.png" /></a>
+<a href="https://github.com/dennyzhang/challenges-cloudformation-jenkins"><img align="right" width="200" height="183" src="https://www.dennyzhang.com/wp-content/uploads/denny/watermark/github.png" /></a>
+<div id="the whole thing" style="overflow: hidden;">
+<div style="float: left; padding: 5px"> <a href="https://www.linkedin.com/in/dennyzhang001"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a></div>
+<div style="float: left; padding: 5px"><a href="https://github.com/dennyzhang"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a></div>
+<div style="float: left; padding: 5px"><a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="https://slack.dennyzhang.com/badge.svg" alt="slack"/></a></div>
+</div>
 
 <br/><br/>
-
 <a href="http://makeapullrequest.com" target="_blank" rel="nofollow"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/></a>
 #+END_HTML
-* CheatSheet
+
+- Blog URL: https://www.dennyzhang.com/challenges-cloudformation-jenkins
+- Category: [[https://www.dennyzhang.com/category/AWS/][AWS]]
+
 File me [[https://github.com/DennyZhang/challenges-cloudformation-jenkins/issues][Issues]] or star [[https://github.com/DennyZhang/challenges-cloudformation-jenkins][this repo]].
 
 See more challenges from Denny: [[https://github.com/topics/denny-challenges][#denny-challenges]]
@@ -41,7 +38,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Docker
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-101.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-101][Scenario-101]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-101][Scenario-101]]
 
 ** Scenario-102: Docker Single-Node Jenkins Deployment II
 - Objective: Customize Jenkins docker deployment in AWS
@@ -56,7 +53,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Docker
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-102.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-102][Scenario-102]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-102][Scenario-102]]
 - TODO
 
 #+BEGIN_HTML
@@ -74,7 +71,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Chef
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-201.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-201][Scenario-201]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-201][Scenario-201]]
 
 #+BEGIN_HTML
 <a href="https://www.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
@@ -93,7 +90,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Chef, VPC, Slack
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-202.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-202][Scenario-202]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-202][Scenario-202]]
 
 ** Scenario-203: VM Single-Node Jenkins Deployment III
 - Objective: Customize Jenkins docker deployment in AWS
@@ -106,7 +103,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-203.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-203][Scenario-203]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-203][Scenario-203]]
 - TODO
 
 #+BEGIN_HTML
@@ -124,7 +121,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-301.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-301][Scenario-301]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-301][Scenario-301]]
 
 ** Scenario-302: VM ASG/ELB Jenkins Deployment II
 - Objective: Customize Jenkins docker deployment in AWS
@@ -142,7 +139,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Slack
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-302.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-302][Scenario-302]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-302][Scenario-302]]
 
 ** Scenario-303: VM ASG/ELB Jenkins Deployment II
 - Objective: Customize Jenkins docker deployment in AWS
@@ -159,7 +156,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - TODO
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-302.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-303][Scenario-303]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-303][Scenario-303]]
 
 ** Scenario-401: VM 2-Nodes Jenkins Deployment I
 - Objective: Avoid SPOF by adding 2 Jenkins instance
@@ -172,7 +169,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, Jenkins Slack Integration, ALB
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-401.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-401][Scenario-401]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-401][Scenario-401]]
 - TODO
 - TODO: how the 2 Jenkins instance gonna to coordinate with each other?
 
@@ -193,7 +190,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, Chef, VPC, CloudWatch, EBS, Jenkins Slack Integration, ALB
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-402.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-402][Scenario-402]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-402][Scenario-402]]
 - TODO
 
 #+BEGIN_HTML
@@ -211,7 +208,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, ECS, EBS
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-501.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-501][Scenario-501]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-501][Scenario-501]]
 - TODO
 
 ** Scenario-502: ECS Jenkins Deployment II
@@ -226,7 +223,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, ALB
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-502.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-502][Scenario-502]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-502][Scenario-502]]
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
@@ -246,7 +243,7 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, ECS, ELB, CloudWatch, ALB
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-503.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-503][Scenario-503]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-503][Scenario-503]]
 - TODO
 - TODO: How to avoid Jenkins SPOF, theoretically speaking?
 
@@ -266,61 +263,59 @@ See more challenges from Denny: [[https://github.com/topics/denny-challenges][#d
 - Main Tech: Cloudformation, ECS, EBS, ALB
 
 [[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-jenkins&templateURL=https://s3.amazonaws.com/aws.dennyzhang.com/cf-jenkins-main-601.yml][https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png]]
-- See more: [[Scenario-601][Scenario-601]]
+- See more: [[https://github.com/dennyzhang/challenges-cloudformation-jenkins/tree/master/Scenario-601][Scenario-601]]
 - TODO
 
 #+BEGIN_HTML
 <a href="https://www.dennyzhang.com"><img src="https://raw.githubusercontent.com/DennyZhang/challenges-cloudformation-jenkins/master/images/jenkins_master_ha.png"/> </a>
 #+END_HTML
+** Highlights
 
-* Highlights
-
-- **Highlights For This Case Study**
-#+BEGIN_EXAMPLE
-1. OS support: Amazon AMI, Ubuntu and CentOS
-2. Use CF to fully automate all deployments
-3. Auto-healing: autoscaling group. Improved service availability
-4. When issues have happened, we detect it earlier.
-5. Pretty secured
-6. Quick learner: I have never used CF before.
-   This GitHub repo is the deliverable of 1.5 weeks' part time work.
-#+END_EXAMPLE
+ - **Highlights For This Case Study**
+ #+BEGIN_EXAMPLE
+ 1. OS support: Amazon AMI, Ubuntu and CentOS
+ 2. Use CF to fully automate all deployments
+ 3. Auto-healing: autoscaling group. Improved service availability
+ 4. When issues have happened, we detect it earlier.
+ 5. Pretty secured
+ 6. Quick learner: I have never used CF before.
+    This GitHub repo is the deliverable of 1.5 weeks' part time work.
+ #+END_EXAMPLE
 
 
-- Discussions & Further Improvements:
+ - Discussions & Further Improvements:
 
-TOOD
-#+BEGIN_EXAMPLE
-0. Use docker/ecs/k8s
-1. Speed up the whole setup process
-2. Reduce the deployment failure rate
-3. Improve master HA by using EFS for shared storage of Jenkins HOME
-4. Setup 1 master N slaves models
-5. Improve error handling. e.g, False positive. when EC2 instance is up, but chef apply hasn't finished
-6. Save the cloud bills
-7. Use serverless instead of Jenkins hosted solution
-8. Use CodeDeploy to replace Chef
-#+END_EXAMPLE
+ TOOD
+ #+BEGIN_EXAMPLE
+ 0. Use docker/ecs/k8s
+ 1. Speed up the whole setup process
+ 2. Reduce the deployment failure rate
+ 3. Improve master HA by using EFS for shared storage of Jenkins HOME
+ 4. Setup 1 master N slaves models
+ 5. Improve error handling. e.g, False positive. when EC2 instance is up, but chef apply hasn't finished
+ 6. Save the cloud bills
+ 7. Use serverless instead of Jenkins hosted solution
+ 8. Use CodeDeploy to replace Chef
+ #+END_EXAMPLE
 
-- Personal Review:
-#+BEGIN_EXAMPLE
-1. Really like container/ECS deployment over VM deployment.
-2. Jenkins community don't have HA solution for Jenkins master yet.
-3. Jenkins plugins dependency is really troublesome.
-#+END_EXAMPLE
+ - Personal Review:
+ #+BEGIN_EXAMPLE
+ 1. Really like container/ECS deployment over VM deployment.
+ 2. Jenkins community don't have HA solution for Jenkins master yet.
+ 3. Jenkins plugins dependency is really troublesome.
+ #+END_EXAMPLE
 
-- Critical Info
-#+BEGIN_SRC sh
-# Centos Jenkins Conf
-/etc/sysconfig/jenkins
+ - Critical Info
+ #+BEGIN_SRC sh
+ # Centos Jenkins Conf
+ /etc/sysconfig/jenkins
 
-# Run chef deployment
-chef-solo --config "/home/ec2-user/chef/solo.rb" \
-  --log_level auto -L "/home/ec2-user/log/run_chef_solo.log" \
-  --force-formatter --no-color \
-  --json-attributes "/home/ec2-user/chef/node.json"
-#+END_SRC
-
+ # Run chef deployment
+ chef-solo --config "/home/ec2-user/chef/solo.rb" \
+   --log_level auto -L "/home/ec2-user/log/run_chef_solo.log" \
+   --force-formatter --no-color \
+   --json-attributes "/home/ec2-user/chef/node.json"
+ #+END_SRC
 * More Resources
 License: Code is licensed under [[https://www.dennyzhang.com/wp-content/mit_license.txt][MIT License]].
 
@@ -340,3 +335,19 @@ https://d0.awsstatic.com/whitepapers/DevOps/Jenkins_on_AWS.pdf
 
 <a href="https://www.dennyzhang.com"><img align="right" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
 #+END_HTML
+
+* org-mode configuration                                           :noexport:
+#+STARTUP: overview customtime noalign logdone hidestars
+#+TITLE:  Challenges Your AWS Cloudformation Skills
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+AUTHOR: Denny Zhang
+#+EMAIL:  denny@dennyzhang.com
+#+TAGS: noexport(n)
+#+PRIORITIES: A D C
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+EXPORT_EXCLUDE_TAGS: exclude noexport
+#+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
+#+LINK_UP:   
+#+LINK_HOME: 
